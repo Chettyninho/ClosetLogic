@@ -7,9 +7,9 @@ import java.util.Properties;
 
 public class Conexion implements AutoCloseable {
 
-    private static final String url = "jdbc:mysql://localhost:3306/prueba_cliente_servidor";
+    private static final String url = "jdbc:mysql://localhost:3306/good_closet";
     private static final String usuario = "root";
-    private static final String pswd = "********" //poner contraseña;
+    private static final String pswd = "a12345678" ;//poner contraseña;
 
     private static Conexion instancia;
     private Connection connection;
