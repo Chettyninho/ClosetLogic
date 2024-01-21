@@ -1,18 +1,22 @@
 CREATE DATABASE GOOD_CLOSET;
 USE GOOD_CLOSET;
 
-  /*drop table usuarios;*/
+  drop table usuarios;
   /*truncate table usuarios;*/
-CREATE TABLE usuarios(
-id integer auto_increment primary key,
-Name varchar(30),
-Surname varchar(40),
-Email varchar(40),
-pswd varchar(40),
-UserName varchar(18)
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(30),
+    surname VARCHAR(40),
+    email VARCHAR(40),
+    userName VARCHAR(18),
+    fechaNacimiento varchar(20), -- Puedes ajustar el tipo de dato según tus necesidades como DATE
+    hashContraseña VARCHAR(200), -- Otra forma de almacenar el hash si es necesario
+    salt BINARY(16) -- Tamaño adecuado para un salt (16 bytes)
 );
 
-  /*drop table seguidores;*/
+
+
+  drop table seguidores;
   /*truncate table seguidores;*/
 CREATE TABLE seguidores(
 id integer auto_increment primary key,
