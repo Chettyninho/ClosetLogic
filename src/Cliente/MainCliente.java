@@ -29,10 +29,9 @@ public class MainCliente {
 				case 1:
 					altaUsuarioMainCliente(dos);
 					break;
-					//ya iremos añadiendo casos , tampoco se si esto ira asi realmente.Miguel
+				// ya iremos añadiendo casos , tampoco se si esto ira asi realmente.Miguel
 				}
-				
-				
+
 				dos.close();
 				sk.close();
 			}
@@ -66,8 +65,9 @@ public class MainCliente {
 
 		System.out.print("Contraseña: ");
 		String contraseña = scanner.nextLine();
-		
-		String entrada = nombre + "," + apellido + "," + email + "," + nombreUsuario + "," + fechaNacimiento + "," + contraseña; 
+
+		String entrada = nombre + "," + apellido + "," + email + "," + nombreUsuario + "," + fechaNacimiento + ","
+				+ contraseña;
 		try {
 			dos.writeUTF(entrada);
 		} catch (IOException e) {

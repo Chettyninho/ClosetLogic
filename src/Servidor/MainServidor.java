@@ -9,18 +9,18 @@ import BBDD.Fachada;
 
 public class MainServidor {
 
-    public static void main(String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(3000)) {
-            String mensaje = "";
+	public static void main(String[] args) {
+		try (ServerSocket serverSocket = new ServerSocket(3000)) {
+			String mensaje = "";
 
-            do {
-                System.out.println("Estado : ON");
-                
-                try (Socket socketCliente = serverSocket.accept();
-                      DataInputStream dis = new DataInputStream(socketCliente.getInputStream())) {
-                	altaUserServer(dis);
-                	
-                	//   DEJAR ESTA FUNCION POR SI ACASO  AUNQUE HABRA ALGO PARECIDO EN FACHADA ////
+			do {
+				System.out.println("Estado : ON");
+
+				try (Socket socketCliente = serverSocket.accept();
+						DataInputStream dis = new DataInputStream(socketCliente.getInputStream())) {
+					altaUserServer(dis);
+
+					// DEJAR ESTA FUNCION POR SI ACASO AUNQUE HABRA ALGO PARECIDO EN FACHADA ////
 
 //                try (Socket socketCliente = serverSocket.accept();
 //                     DataInputStream dis = new DataInputStream(socketCliente.getInputStream())) {
@@ -44,24 +44,25 @@ public class MainServidor {
 //                        break;
 //                    }
 //
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
-            } while (!mensaje.equals("exit"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private static void altaUserServer(DataInputStream dis) {
-    	try {
+			} while (!mensaje.equals("exit"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void altaUserServer(DataInputStream dis) {
+		try {
 			String mensaje = dis.readUTF();
 			String[] data = mensaje.split(",");
-            Fachada f = new Fachada();
-            f.altaUsuarioFachada(data);
+			Fachada f = new Fachada();
+			f.altaUsuarioFachada(data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}    }
+		}
+	}
 }

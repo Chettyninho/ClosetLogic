@@ -12,62 +12,68 @@ import java.util.Base64;
 import Tablas.Usuarios;
 
 public class GestorUsuarios {
-	private ArrayList<Usuarios> usersList = new ArrayList<Usuarios>();
+	// private ArrayList<Usuarios> usersList = new ArrayList<Usuarios>();
 
 ////////////////////////////      TAMLA DE USUARIOS          //////////////////////////////////////////////
 
-	public ArrayList<Usuarios> altaUsuario( ArrayList<Usuarios> listaUsuarios, String[] data) {
+	public ArrayList<Usuarios> altaUsuario(ArrayList<Usuarios> listaUsuarios, String[] data) {
 
 		// variables que generamos: id, hass y contraseñaHasseada:
-		boolean existe = false;
+		// boolean existe = false;
 
 		// aqui comprobamos si existe
-		if (comprobarUsuario(data)) {
-			existe = true;
-		} else {
+		if (!comprobarUsuario(data)) {
+			// existe = true;
 			int ultimoIdBbdd = comprobarUltimoIdBbdd();// este id valdra para guardarlo en java, en mySQL se incrementa
-													  // solo
-			// comprobar ultimo id de la bbdd
+			// solo
+// comprobar ultimo id de la bbdd
 			byte[] salt = generateSalt();
-			// generar el hass
+// generar el hass
 			String hassPswd = hashPassword(data[5], salt);
-			// generar la contraseñaHasseada
-			Usuarios usuario = new Usuarios(ultimoIdBbdd+1, data[0], data[1], data[2], data[3], data[4], hassPswd, salt);
-			// introducir a bbdd y a la clase java
+// generar la contraseñaHasseada
+
+			Usuarios usuario = new Usuarios(ultimoIdBbdd + 1, data[0], data[1], data[2], data[3], data[4], hassPswd,
+					salt);
+// introducir a bbdd y a la clase java
 			listaUsuarios.add(usuario);
-			
+
 			InsertarBBDD(usuario);
+
+		} else {
+			System.out.println("ususario existente principal flujo");
 		}
-return listaUsuarios;
+		return listaUsuarios;
 	}
 
-	private static boolean comprobarUsuario(String[] data) {// esta funcion la haremos privada para comprobar si existe
-		boolean coincide = false; // o no existe en la bbdd y solo entonces se le dará de alta.
+	private static boolean comprobarUsuario(String[] data) {
+		boolean coincide = false;
 
-		try (Conexion con = Conexion.getInstance()) { // si YA EXISTE se lanza excepcion(?)(Donde gestionamos las
-														// excepciones?))
-
+		try (Conexion con = Conexion.getInstance()) {
 			String query = "SELECT * FROM USUARIOS WHERE nombre = ?";
 			PreparedStatement ps = con.getConnection().prepareStatement(query);
 
-			// Establece el valor del parámetro
 			ps.setString(1, data[0]);
 
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				String pswcheck = rs.getString("hashContraseña");
+				String nombre = rs.getString(2);
+				// System.out.println(nombre);
+				// System.out.println("DataArray = " + data[0]);
+				String apellido = rs.getString(3);
+				// System.out.println(apellido);
+				// System.out.println("DataArray = " + data[1]);
+				String correo = rs.getString(4);
+				// System.out.println(correo);
+				// System.out.println("DataArray = " + data[2]);
 
-				// Compara la contraseña proporcionada con la almacenada en la base de datos
-				if (data[5].equals(pswcheck)) {
+				if (data[0].equals(nombre) && data[1].equals(apellido) && data[2].equals(correo)) {
 					coincide = true;
-
-					System.out.println("Usuario y contraseña coinciden.");
+					System.out.println("Este usuario existía anteriormente, no debería darse de alta.");
 				} else {
-					System.out.println("Contraseña incorrecta.");
+					System.out.println("Esto es la comprobación, usuario no existente, dar de alta. GestorUsuarios");
 				}
 			}
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -124,33 +130,33 @@ return listaUsuarios;
 			return null;
 		}
 	}
-	
+
 	private static void InsertarBBDD(Usuarios usuario) {
-	    try (Conexion con = Conexion.getInstance()) {
-	        String query = "INSERT INTO USUARIOS (Nombre, Surname, Email, userName, fechaNacimiento, hashContraseña, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	        PreparedStatement ps = con.getConnection().prepareStatement(query);
+		try (Conexion con = Conexion.getInstance()) {
+			String query = "INSERT INTO USUARIOS (Nombre, Surname, Email, userName, fechaNacimiento, hashContraseña, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = con.getConnection().prepareStatement(query);
 
-	        ps.setString(1, usuario.getNombre());
-	        ps.setString(2, usuario.getSurname());
-	        ps.setString(3, usuario.getEmail());
-	        ps.setString(4, usuario.getUserName());
-	        ps.setString(5, usuario.getFechaNacimiento());
-	        ps.setString(6, usuario.getHashContraseña());
-	        ps.setBytes(7, usuario.getSalt());
+			ps.setString(1, usuario.getNombre());
+			ps.setString(2, usuario.getSurname());
+			ps.setString(3, usuario.getEmail());
+			ps.setString(4, usuario.getUserName());
+			ps.setString(5, usuario.getFechaNacimiento());
+			ps.setString(6, usuario.getHashContraseña());
+			ps.setBytes(7, usuario.getSalt());
 
-	        // Ejecutar la consulta de inserción
-	        int filasAfectadas = ps.executeUpdate();
+			// Ejecutar la consulta de inserción
+			int filasAfectadas = ps.executeUpdate();
 
-	        if (filasAfectadas > 0) {
-	            System.out.println("Usuario insertado correctamente en la base de datos.");
-	        } else {
-	            System.out.println("Error al insertar el usuario en la base de datos.");
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } catch (Exception e1) {
-	        e1.printStackTrace();
-	    }
+			if (filasAfectadas > 0) {
+				System.out.println("Usuario insertado correctamente en la base de datos.");
+			} else {
+				System.out.println("Error al insertar el usuario en la base de datos.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }

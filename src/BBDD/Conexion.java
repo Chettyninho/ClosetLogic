@@ -7,54 +7,50 @@ import java.util.Properties;
 
 public class Conexion implements AutoCloseable {
 
-    private static final String url = "jdbc:mysql://localhost:3306/good_closet";
-    private static final String usuario = "root";
-    private static final String pswd = "a12345678" ;//poner contraseña;
+	private static final String url = "jdbc:mysql://localhost:3306/good_closet";
+	private static final String usuario = "root";
+	private static final String pswd = "a12345678";// poner contraseña;
 
-    private static Conexion instancia;
-    private Connection connection;
+	private static Conexion instancia;
+	private Connection connection;
 
-    // Constructor privado para evitar la creación directa de instancias
-    private Conexion() {
-        try {
-            Properties props = new Properties();
-            props.setProperty("user", usuario);
-            props.setProperty("password", pswd);
-            props.setProperty("ssl", "true"); //esto es una metodo de seguridad (Secure Sockets Layer)
-System.out.println("conexion control:");	//para la encriptación de los datos transmitidos entre el cliente y el servidor
-            this.connection = DriverManager.getConnection(url, props);
-            
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al abrir la conexión", e);
-        }
-    }
+	// Constructor privado para evitar la creación directa de instancias
+	private Conexion() {
+		try {
+			Properties props = new Properties();
+			props.setProperty("user", usuario);
+			props.setProperty("password", pswd);
+			props.setProperty("ssl", "true"); // esto es una metodo de seguridad (Secure Sockets Layer)
+			System.out.println("conexion control:"); // para la encriptación de los datos transmitidos entre el cliente
+														// y el servidor
+			this.connection = DriverManager.getConnection(url, props);
 
-    // Método estático para obtener la única instancia (Singleton)
-    public static synchronized Conexion getInstance() {
-        if (instancia == null) {
-            instancia = new Conexion();
-        }
-        return instancia;
-    }
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al abrir la conexión", e);
+		}
+	}
 
-    // Método para obtener la conexión
-    public Connection getConnection() {
-        return connection;
-    }
+	// Método estático para obtener la única instancia (Singleton)
+	public static synchronized Conexion getInstance() {
+		if (instancia == null) {
+			instancia = new Conexion();
+		}
+		return instancia;
+	}
+
+	// Método para obtener la conexión
+	public Connection getConnection() {
+		return connection;
+	}
 
 	@Override
 	public void close() throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-//	@Override
-//	public void close() throws Exception {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-    // Implementación del método close() de la interfaz AutoCloseable
+	// Implementación del método close() de la interfaz AutoCloseable cuando
+	// cerremos la aplicacion y tal
 //    @Override
 //    public void close() {
 //        try {
