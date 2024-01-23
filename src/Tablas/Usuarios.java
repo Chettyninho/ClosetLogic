@@ -1,6 +1,8 @@
 package Tablas;
 
-public class Usuarios {
+import java.io.Serializable;
+
+public class Usuarios implements Serializable{
 	private int id;
 	private String nombre;
 	private String surname;
@@ -79,4 +81,10 @@ public class Usuarios {
 		return salt;
 	}
 
+	 @Override
+	    public String toString() {
+	        return " id=" + id + ", \nnombre=" + nombre + ", \nsurname=" + surname + ", \nemail=" + email
+	                + ", \nuserName=" + userName + ", \nfechaNacimiento=" + fechaNacimiento + ", \nhashContraseña="
+	                + hashContraseña + "]";
+	    }
 }

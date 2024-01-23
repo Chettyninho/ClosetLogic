@@ -15,4 +15,9 @@ public class Fachada {
 	}
 		
 
+	public ArrayList<Usuarios> leerUsuarioFachada() {		
+		usersList = gestorUsuarios.leerBBDDUsuario();
+		return usersList;
+		//tratamos los datos, el id se generará en el gestor, despues de comprobar si ya existe este usuario y antes de añadirlo a la bbdd o crear la instancia de objeto
+	}
 }

@@ -1,9 +1,14 @@
 package Cliente;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import Tablas.Usuarios;
 
 public class MainCliente {
 
@@ -12,34 +17,48 @@ public class MainCliente {
 		int option;
 
 		// Crear objeto clase Socket
-		try {
+		try (Socket sk = new Socket("localhost", 3000);
+	             DataOutputStream dos = new DataOutputStream(sk.getOutputStream())) {
+			
 			for (int i = 0; i < 10; i++) {// prueba del buvle cuando se ponga exit el servidor se cierra
-				Socket sk = new Socket("localhost", 3000);
-				DataOutputStream dos = new DataOutputStream(sk.getOutputStream());
+				//Socket sk = new Socket("localhost", 3000);
+				//DataOutputStream dos = new DataOutputStream(sk.getOutputStream());
 				// Imprimir bienvenida con formato
 				System.out.println("+-------------------------------------------+");
-				System.out.println("|    BIENVENIDO A GOODCLOSET - EL ARMARIO    |");
+				System.out.println("|    BIENVENIDO A GOODCLOSET - EL ARMARIO   |");
 				System.out.println("|    DE LOS AUTÉNTICOS TITANES XD           |");
 				System.out.println("|    ELIJA UNA OPCIÓN:                      |");
 				System.out.println("|    1. ALTA USUARIO                        |");
 				System.out.println("+-------------------------------------------+");
 
 				option = sc.nextInt();
+				System.out.println(option + "En main cliente");
 				switch (option) {
 				case 1:
+					dos.writeUTF(String.valueOf(option));
 					altaUsuarioMainCliente(dos);
+					break;
+				case 2:
+					dos.writeUTF(String.valueOf(option));
+					 DataInputStream dis = new DataInputStream(sk.getInputStream());
+		             listarUsuarios(dis);
 					break;
 				// ya iremos añadiendo casos , tampoco se si esto ira asi realmente.Miguel
 				}
-
-				dos.close();
-				sk.close();
+				
+//				dos.close();
+//				sk.close();
 			}
-			sc.close();
+			// Después del bucle for en el cliente
+			dos.close();
+			sk.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // definimos el puerto por donde se establece la conexion de escucha
+		} finally {
+		    sc.close();
+		}
 
 	}
 
@@ -68,12 +87,31 @@ public class MainCliente {
 
 		String entrada = nombre + "," + apellido + "," + email + "," + nombreUsuario + "," + fechaNacimiento + ","
 				+ contraseña;
+		
 		try {
 			dos.writeUTF(entrada);
+			dos.writeInt(1); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    scanner.close();
 		}
 	}
+	private static void listarUsuarios(DataInputStream dis) {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(dis);
+            ArrayList<Usuarios> listaUsuarios = (ArrayList<Usuarios>) ois.readObject();
+
+            // Mostrar la lista de usuarios en la consola
+            System.out.println("Lista de usuarios:");
+            for (Usuarios usuario : listaUsuarios) {
+              System.out.println(usuario.toString());
+            }
+            
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

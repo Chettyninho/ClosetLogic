@@ -12,7 +12,7 @@ import java.util.Base64;
 import Tablas.Usuarios;
 
 public class GestorUsuarios {
-	// private ArrayList<Usuarios> usersList = new ArrayList<Usuarios>();
+	 private ArrayList<Usuarios> usersListRead = new ArrayList<Usuarios>();
 
 ////////////////////////////      TAMLA DE USUARIOS          //////////////////////////////////////////////
 
@@ -26,15 +26,15 @@ public class GestorUsuarios {
 			// existe = true;
 			int ultimoIdBbdd = comprobarUltimoIdBbdd();// este id valdra para guardarlo en java, en mySQL se incrementa
 			// solo
-// comprobar ultimo id de la bbdd
+			// comprobar ultimo id de la bbdd
 			byte[] salt = generateSalt();
-// generar el hass
+			// generar el hass
 			String hassPswd = hashPassword(data[5], salt);
-// generar la contraseñaHasseada
+			// generar la contraseñaHasseada
 
 			Usuarios usuario = new Usuarios(ultimoIdBbdd + 1, data[0], data[1], data[2], data[3], data[4], hassPswd,
 					salt);
-// introducir a bbdd y a la clase java
+			// introducir a bbdd y a la clase java
 			listaUsuarios.add(usuario);
 
 			InsertarBBDD(usuario);
@@ -49,7 +49,7 @@ public class GestorUsuarios {
 		boolean coincide = false;
 
 		try (Conexion con = Conexion.getInstance()) {
-			String query = "SELECT * FROM USUARIOS WHERE nombre = ?";
+			String query = "SELECT * FROM USUARIO WHERE nombre = ?";
 			PreparedStatement ps = con.getConnection().prepareStatement(query);
 
 			ps.setString(1, data[0]);
@@ -133,9 +133,10 @@ public class GestorUsuarios {
 
 	private static void InsertarBBDD(Usuarios usuario) {
 		try (Conexion con = Conexion.getInstance()) {
-			String query = "INSERT INTO USUARIOS (Nombre, Surname, Email, userName, fechaNacimiento, hashContraseña, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO USUARIO (Nombre, Surname, Email, userName, fechaNacimiento, hashContraseña, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.getConnection().prepareStatement(query);
 
+			
 			ps.setString(1, usuario.getNombre());
 			ps.setString(2, usuario.getSurname());
 			ps.setString(3, usuario.getEmail());
@@ -143,6 +144,8 @@ public class GestorUsuarios {
 			ps.setString(5, usuario.getFechaNacimiento());
 			ps.setString(6, usuario.getHashContraseña());
 			ps.setBytes(7, usuario.getSalt());
+			
+			
 
 			// Ejecutar la consulta de inserción
 			int filasAfectadas = ps.executeUpdate();
@@ -159,4 +162,38 @@ public class GestorUsuarios {
 		}
 	}
 
+	
+	public ArrayList<Usuarios> leerBBDDUsuario() {
+		try (Conexion con = Conexion.getInstance()) {
+			String query = "SELECT * FROM USUARIO";
+			
+			 try (PreparedStatement ps = con.getConnection().prepareStatement(query);
+		             ResultSet rs = ps.executeQuery()) {
+				 while (rs.next()) {
+		                // Obtener datos del resultado y construir un objeto Usuarios
+		                int id = rs.getInt("id");
+		                String nombre = rs.getString("nombre");
+		                String surname = rs.getString("surname");
+		                String email = rs.getString("email");
+		                String userName = rs.getString("userName");
+		                String fechaNacimiento = rs.getString("fechaNacimiento");
+		                String hashContraseña = rs.getString("hashContraseña");
+		                byte[] salt = rs.getBytes("salt");
+
+		                Usuarios usuario = new Usuarios(id, nombre, surname, email, userName, fechaNacimiento, hashContraseña, salt);
+		                usersListRead.add(usuario);
+		            }
+				 System.out.println("Se ha leído la base de datos de usuarios.");
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		            System.out.println("Error al leer la base de datos de usuarios.");
+		        }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return usersListRead;
+	}
 }

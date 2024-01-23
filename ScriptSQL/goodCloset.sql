@@ -25,8 +25,8 @@ id integer auto_increment primary key,
 id_seguidor integer,
 id_seguido integer,
 
-FOREIGN KEY (id_seguidor) REFERENCES usuarios(id),
-FOREIGN KEY (id_seguido) REFERENCES usuarios(id)
+FOREIGN KEY (id_seguidor) REFERENCES usuario(id),
+FOREIGN KEY (id_seguido) REFERENCES usuario(id)
 );
 
   /*drop table armario;*/
@@ -42,7 +42,8 @@ contadorDeLikes integer
 CREATE TABLE outfit(
 id integer auto_increment primary key,
 Nombre varchar(50),
-descripcion varchar(120)
+descripcion varchar(120),
+fecha_cracion varchar(20)
 );
 
 /*drop table prenda_outfit;*/
