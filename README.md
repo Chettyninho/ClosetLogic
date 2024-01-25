@@ -34,6 +34,19 @@ También iría dirigida a personas que quieran pasar un buen rato compartiendo y
 ![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/60ba5141-ad70-4132-b6a3-41646bb9de65)
 
 
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #292d4e |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #393d66 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #45517d |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #0b1327 |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #ffffff |
+
+
+
+
 
 Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y confianza, elementos esenciales en la comunidad de moda. El negro aporta elegancia y profesionalismo, mientras que el blanco transmite pureza y luminosidad, creando un entorno agradable y estéticamente atractivo.
 
