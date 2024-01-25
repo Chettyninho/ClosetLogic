@@ -38,11 +38,11 @@ También iría dirigida a personas que quieran pasar un buen rato compartiendo y
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #292d4e |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #393d66 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #45517d |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #0b1327 |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #ffffff |
+| Space cadet | ![#292d4e](https://via.placeholder.com/10/0a192f?text=+) #292d4e |
+| Delft Blue | ![#393d66](https://via.placeholder.com/10/f8f8f8?text=+) #393d66 |
+| YlnMn BLue | ![#45517d](https://via.placeholder.com/10/00b48a?text=+) #45517d |
+| Oxford Blue | ![#0b1327](https://via.placeholder.com/10/00b48a?text=+) #0b1327 |
+| White | ![#ffffff](https://via.placeholder.com/10/00b48a?text=+) #ffffff |
 
 
 
