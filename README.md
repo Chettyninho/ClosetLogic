@@ -73,8 +73,9 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
  Opentype, TrueType, Contornos.
  
 ### Tamaños de letra
+![Antic-Regular1](https://github.com/Chettyninho/ClosetLogic/assets/132547532/1b076d9e-5e99-4d8a-9ef2-8168ad15914e)
 
-![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/da89e126-3b07-438a-a6b4-a2769ca499c9)
+
 
  
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
