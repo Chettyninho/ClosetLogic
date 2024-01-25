@@ -95,11 +95,11 @@ En la sección de búsqueda, puedes utilizar filtros como marca, tipo y algunos 
 
 Cuando visualizas un outfit que te gusta, hay un botón que te permite guardarlo. Puedes ver los outfit guardados en tu perfil para referencia futura.
 
-### Pregunta: ¿Cómo puedo crear un nuevo outfit desde cero?
+#### Pregunta: ¿Cómo puedo crear un nuevo outfit desde cero?
 
 Dirígete a la sección de "Crear Outfit" en tu perfil, donde podrás seleccionar prendas de tu armario para formar un nuevo conjunto. Puedes agregar detalles como nombre y descripción.
  
-### Pregunta: ¿Es posible compartir mis outfits con otros usuarios en la plataforma?
+#### Pregunta: ¿Es posible compartir mis outfits con otros usuarios en la plataforma?
 
 Por supuesto que si, puedes compartir tus outfits para que los usuarios los puedan ver ,darle me gusta y guardarselos en caso que quieran.
 
