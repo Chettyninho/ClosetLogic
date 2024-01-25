@@ -76,3 +76,8 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 
  
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
+## Creadores / Desarrolladores
+- [@carloosbravo](https://www.github.com/carloosbravo)
+- [@Chettyninho](https://www.github.com/Chettyninho)
+- [@MarioCastilloArenas](https://www.github.com/MarioCastilloArenas)
+- [@RubenIrimiaPerez](https://www.github.com/RubenIrimiaPerez)
