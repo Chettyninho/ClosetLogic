@@ -52,4 +52,24 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 
 ---
 
+## Logo
+![logo-color](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f4f79357-6857-45f9-b819-65e04ac5ad73)
+
+## ICON
+![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/7fe08bec-fbc7-46b8-a5eb-8945bfea0145)
+
+### Variaciones del logo
+![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/de1e523b-9161-4d5b-a37d-ffa1cfff8568)-![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/c54b6883-f478-4a7e-aa49-d782c01f4905)-![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/3eba0a17-0feb-4166-9fc6-70d32f084406)
+
+## Tipography 
+ **Nombre de la fuente :** Antic Regular.
+ **Versión:** 1.0012.
+ **Disposición :** Opentype, TrueType, Contornos.
+**Tamaños de letra :**
+ ![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/0a239d37-c6a2-403e-930b-96dd7f0a4944)
+
+ 
+
+
+
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
