@@ -59,10 +59,12 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/7fe08bec-fbc7-46b8-a5eb-8945bfea0145)
 
 ### Variaciones del logo
-![Logo 1](![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/09004628-015a-4ab5-8c94-84545135c9be)
+![Logo 1](![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/dd8ea97e-6f62-4478-af7d-f168c1132b5e)
+)
 ) | ![Logo 2](![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f9c3014b-41a0-4f17-a7c7-e576a25f383d)
 ) | ![Logo 3](![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/83b1f072-a6bf-4bb8-9616-c9c9973fec2d)
 )
+
 
 ## Tipography 
 ### Nombre de la fuente 
