@@ -1,0 +1,138 @@
+<mxfile host="app.diagrams.net" modified="2024-01-25T08:50:57.977Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="p-sM6sgrjpAa8TgMhq0n" version="23.0.1" type="device">
+  <diagram name="Página-1" id="vJuelPmkKzQrSOnD5UHj">
+    <mxGraphModel dx="1467" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-1" value="&lt;b&gt;Registro de usuarios.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="20" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-2" target="TyXlKK2p9FE4LaXy_nsj-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-2" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-3" target="TyXlKK2p9FE4LaXy_nsj-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-3" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /Usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-5" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-7" value="&lt;b&gt;Verificación de Usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="235" y="170" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-8" target="TyXlKK2p9FE4LaXy_nsj-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-8" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-9" target="TyXlKK2p9FE4LaXy_nsj-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-9" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /login)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-10" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Verifica las credenciales)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-13" value="&lt;b&gt;Obtener perfil usuario.&amp;nbsp;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="230" y="320" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-19" target="TyXlKK2p9FE4LaXy_nsj-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-19" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-21" target="TyXlKK2p9FE4LaXy_nsj-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-21" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /usuarios(id))" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-22" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Obtener la información del usuario)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-24" target="TyXlKK2p9FE4LaXy_nsj-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-24" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-26" target="TyXlKK2p9FE4LaXy_nsj-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-26" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-27" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-28" value="&lt;b&gt;Seguir a otro usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="230" y="450" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-29" value="&lt;b&gt;Crear outfit.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="600" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-31" target="TyXlKK2p9FE4LaXy_nsj-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-31" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-33" target="TyXlKK2p9FE4LaXy_nsj-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-33" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /outfits)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-34" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla outfit, asocia las prendas usando la tabla prenda_outfit)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="625" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-35" value="&lt;b&gt;Buscar prendas por etiqueta&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="230" y="760" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-37" target="TyXlKK2p9FE4LaXy_nsj-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-37" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-39" target="TyXlKK2p9FE4LaXy_nsj-40">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="1050" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-39" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /prenda?tags={nombre_etiqueta)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-40" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Busca en la tabla prenda , las prendas que tengan esa etiqueta y las saca)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="815" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-42" value="&lt;b&gt;Crear prenda.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="930" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-44" target="TyXlKK2p9FE4LaXy_nsj-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-44" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="995" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-46" target="TyXlKK2p9FE4LaXy_nsj-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-46" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /prenda)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="995" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-47" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla prenda)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="980" width="180" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
