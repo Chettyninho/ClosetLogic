@@ -60,7 +60,7 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 
 ### Variaciones del logo
 ![BeFunky-collage](https://github.com/Chettyninho/ClosetLogic/assets/132547532/d3c47529-e8f8-4936-b1ab-90b9ec2762ca)
-## Tipography 
+## Tipografia
 ### Nombre de la fuente 
   Antic Regular
 ### Versión
@@ -69,7 +69,8 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
  Opentype, TrueType, Contornos.
  
 ### Tamaños de letra
-![Antic-Regular1](https://github.com/Chettyninho/ClosetLogic/assets/132547532/1b076d9e-5e99-4d8a-9ef2-8168ad15914e)
+![Antic-Regular1](https://github.com/Chettyninho/ClosetLogic/assets/132547532/e8783c50-e3ee-43df-8803-5f644d85e84c)
+
 
 
 
