@@ -55,7 +55,7 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ## Logo
 ![logo-color](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f4f79357-6857-45f9-b819-65e04ac5ad73)
 
-## ICON
+## Icono
 ![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/7fe08bec-fbc7-46b8-a5eb-8945bfea0145)
 
 ### Variaciones del logo
@@ -107,6 +107,10 @@ Por supuesto que si, puedes compartir tus outfits para que los usuarios los pued
 #### Pregunta: ¿Puedo cambiar mi contraseña?
 
 Ve a la sección de configuración de tu perfil y encontraras un apartado de "editar perfil" y hay podrás modificar los datos incluidos la contraseña.
+
+### Sugerencias
+
+Para cualquier sugerencia hacer un pull request indicando el nombre del archivo y las lineas en las que hay modificaciones y la solicitud sera considerada.
 
 
 ## Creadores / Desarrolladores
