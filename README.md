@@ -59,11 +59,9 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/7fe08bec-fbc7-46b8-a5eb-8945bfea0145)
 
 ### Variaciones del logo
-![Logo 1](![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/dd8ea97e-6f62-4478-af7d-f168c1132b5e)
-)
-) | ![Logo 2](![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f9c3014b-41a0-4f17-a7c7-e576a25f383d)
-) | ![Logo 3](![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/83b1f072-a6bf-4bb8-9616-c9c9973fec2d)
-)
+![Logo 1](![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/dd8ea97e-6f62-4478-af7d-f168c1132b5e))
+|![Logo 2](![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f9c3014b-41a0-4f17-a7c7-e576a25f383d))
+|![Logo 3](![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/83b1f072-a6bf-4bb8-9616-c9c9973fec2d))
 
 
 ## Tipography 
@@ -73,8 +71,10 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
   1.0012.
 ### Disposición
  Opentype, TrueType, Contornos.
+ 
 ### Tamaños de letra
- ![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/0a239d37-c6a2-403e-930b-96dd7f0a4944)
+
+![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/da89e126-3b07-438a-a6b4-a2769ca499c9)
 
  
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
