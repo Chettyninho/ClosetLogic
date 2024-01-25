@@ -26,7 +26,7 @@ Con The good closet buscamos revolucionar el mundo de la ropa con una red social
 
 ### Persona a la que va Dirigida
 
-**The Good Closet** está diseñado principalmente iría dirigida a personas amantes de la moda que quieran compartir sus outfits, descubrir nuevos estilos y conocer gente que comparta su interés por el mundo de la moda.
+**The Good Closet** principalmente iría dirigida a personas amantes de la moda que quieran compartir sus outfits, descubrir nuevos estilos y conocer gente que comparta su interés por el mundo de la moda.
 También iría dirigida a personas que quieran pasar un buen rato compartiendo y viendo los outfits de las personas registradas en la aplicación y así poder coger ideas a la hora de vestir.
 
 
