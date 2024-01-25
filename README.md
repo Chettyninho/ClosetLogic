@@ -62,10 +62,13 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/de1e523b-9161-4d5b-a37d-ffa1cfff8568)-![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/c54b6883-f478-4a7e-aa49-d782c01f4905)-![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/3eba0a17-0feb-4166-9fc6-70d32f084406)
 
 ## Tipography 
- **Nombre de la fuente :** Antic Regular.
- **Versión:** 1.0012.
- **Disposición :** Opentype, TrueType, Contornos.
-**Tamaños de letra :**
+ **Nombre de la fuente**
+  Antic Regular
+ **Versión**
+  1.0012.
+ **Disposición** 
+ Opentype, TrueType, Contornos.
+**Tamaños de letra**
  ![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/0a239d37-c6a2-403e-930b-96dd7f0a4944)
 
  
