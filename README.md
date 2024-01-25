@@ -59,20 +59,20 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![image](https://github.com/Chettyninho/ClosetLogic/assets/132547532/7fe08bec-fbc7-46b8-a5eb-8945bfea0145)
 
 ### Variaciones del logo
-![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/de1e523b-9161-4d5b-a37d-ffa1cfff8568)-![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/c54b6883-f478-4a7e-aa49-d782c01f4905)-![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/3eba0a17-0feb-4166-9fc6-70d32f084406)
+![Logo 1](![logo-black](https://github.com/Chettyninho/ClosetLogic/assets/132547532/09004628-015a-4ab5-8c94-84545135c9be)
+) | ![Logo 2](![logo-no-background](https://github.com/Chettyninho/ClosetLogic/assets/132547532/f9c3014b-41a0-4f17-a7c7-e576a25f383d)
+) | ![Logo 3](![logo-white](https://github.com/Chettyninho/ClosetLogic/assets/132547532/83b1f072-a6bf-4bb8-9616-c9c9973fec2d)
+)
 
 ## Tipography 
- **Nombre de la fuente**
+### Nombre de la fuente 
   Antic Regular
- **Versión**
+### Versión
   1.0012.
- **Disposición** 
+### Disposición
  Opentype, TrueType, Contornos.
-**Tamaños de letra**
+### Tamaños de letra
  ![Antic-Regular](https://github.com/Chettyninho/ClosetLogic/assets/132547532/0a239d37-c6a2-403e-930b-96dd7f0a4944)
 
  
-
-
-
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
