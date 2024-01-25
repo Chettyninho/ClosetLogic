@@ -76,6 +76,39 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 
  
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
+
+## Preguntas y Respuestas
+
+#### Pregunta:¿Cómo puedo registrarme en la plataforma?
+
+Para registrarte, simplemente haz clic en el botón "Registrarse" en la página principal. Llena el formulario con tu información personal y sigue las instrucciones para crear tu cuenta.
+
+#### Pregunta: ¿Cómo puedo seguir a otros usuarios?
+
+Para seguir a otro usuario, visita su perfil y busca el botón "Seguir". Al hacer clic en él, establecerás una conexión de seguimiento con ese usuario y verás sus actualizaciones en tu feed.
+
+#### Pregunta: ¿Cómo puedo buscar prendas específicas por marca o tipo?
+
+En la sección de búsqueda, puedes utilizar filtros como marca, tipo y algunos más para encontrar exactamente lo que estás buscando. Simplemente selecciona los filtros deseados y haz clic en "Buscar".
+
+#### Pregunta: ¿Cómo guardo un outfit que me gusta?
+
+Cuando visualizas un outfit que te gusta, hay un botón que te permite guardarlo. Puedes ver los outfit guardados en tu perfil para referencia futura.
+
+### Pregunta: ¿Cómo puedo crear un nuevo outfit desde cero?
+
+Dirígete a la sección de "Crear Outfit" en tu perfil, donde podrás seleccionar prendas de tu armario para formar un nuevo conjunto. Puedes agregar detalles como nombre y descripción.
+ 
+### Pregunta: ¿Es posible compartir mis outfits con otros usuarios en la plataforma?
+
+Por supuesto que si, puedes compartir tus outfits para que los usuarios los puedan ver ,darle me gusta y guardarselos en caso que quieran.
+
+
+#### Pregunta: ¿Puedo cambiar mi contraseña?
+
+Ve a la sección de configuración de tu perfil y encontraras un apartado de "editar perfil" y hay podrás modificar los datos incluidos la contraseña.
+
+
 ## Creadores / Desarrolladores
 - [@carloosbravo](https://www.github.com/carloosbravo)
 - [@Chettyninho](https://www.github.com/Chettyninho)
