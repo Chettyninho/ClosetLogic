@@ -13,12 +13,12 @@ import Tablas.Usuarios;
 public class MainServidor {
 
 	public static void main(String[] args) {
-		try (ServerSocket serverSocket = new ServerSocket(3000)) {
+		try (ServerSocket serverSocket = new ServerSocket(9995)) {
 			String mensaje = "";
 
 			do {
 				System.out.println("Estado : ON");
-
+				recuperarDatos();
 				try (Socket socketCliente = serverSocket.accept();
                         DataInputStream dis = new DataInputStream(socketCliente.getInputStream())) {
                     int opcion = Integer.parseInt(dis.readUTF());
@@ -35,8 +35,17 @@ public class MainServidor {
 			e.printStackTrace();
 		}
 	}
+	private static void recuperarDatos() {
+        Fachada f = new Fachada();
+        f.recuperarDatosFachada();  
+    }
+	
 	
 	 private static void procesarOpcion(int opcion, Socket socketCliente) {
+		 
+		 //aqui antes de procesar laopcion tendremos que usar una adpatacion de la funcion leer para recuperar todos los datos de la bbdd y 
+		 //asignarlos al arraylist de usuarios(en este caso) o al que corresponda
+		 
 		 System.out.println(opcion);
 	        switch (opcion) {
 	            case 1:
@@ -46,8 +55,17 @@ public class MainServidor {
 	            	System.out.println("entra en 2");
 	                leerUsuariosDesdeBBDD(socketCliente);
 	                break;
-	            default:
-	                System.out.println("Opción no válida.");
+	            case 3:
+	            	System.out.println("entra en 3");
+	            	 leerUsuariosDesdeBBDD(socketCliente);
+					break;
+				case 4:
+					System.out.println("entra en 4");
+					borrarUsuarioServer(socketCliente);
+					break;
+				default:
+					System.out.println("Opción no válida. Introduzca un número del 1 al 4.");
+					break;
 	        }
 	        try {
 				socketCliente.close();
@@ -91,4 +109,17 @@ public class MainServidor {
 		}
         
     }
+	
+	private static void borrarUsuarioServer(Socket socketCliente) {
+		try {
+			DataInputStream dis = new DataInputStream(socketCliente.getInputStream());
+			int mensaje = dis.readInt();
+			int data = mensaje;
+			Fachada f = new Fachada();
+			f.borrarUsuarioFachada(data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

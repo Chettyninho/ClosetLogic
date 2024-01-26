@@ -183,7 +183,7 @@ public class GestorUsuarios {
 		                Usuarios usuario = new Usuarios(id, nombre, surname, email, userName, fechaNacimiento, hashContraseña, salt);
 		                usersListRead.add(usuario);
 		            }
-				 System.out.println("Se ha leído la base de datos de usuarios.");
+				 //System.out.println("Se ha leído la base de datos de usuarios.");
 		        } catch (SQLException e) {
 		            e.printStackTrace();
 		            System.out.println("Error al leer la base de datos de usuarios.");
@@ -195,5 +195,28 @@ public class GestorUsuarios {
 			e1.printStackTrace();
 		}
 		return usersListRead;
+	}
+
+	public void borrarUsuarioGestorUsuarios(int idUsuario) {
+		try (Conexion con = Conexion.getInstance()) {
+			String query = "DELETE FROM USUARIO WHERE id = ?";
+			PreparedStatement ps = con.getConnection().prepareStatement(query);
+System.err.println("id usuario es en gestor usuarios = " +idUsuario);
+			ps.setInt(1, idUsuario);
+
+//			ResultSet rs = ps.executeQuery();
+			int filasAfectadas = ps.executeUpdate();
+				if (filasAfectadas > 0) {
+					System.out.println("Usuario ELIMINADO correctamente en la base de datos.");
+					//falta eliminar de el arraylist de usuarios el usuario eliminado: 
+				} else {
+					System.out.println("Error al ELIMINAR el usuario en la base de datos.");
+				}
+//			rs.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

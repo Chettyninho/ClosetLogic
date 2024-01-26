@@ -20,4 +20,23 @@ public class Fachada {
 		return usersList;
 		//tratamos los datos, el id se generará en el gestor, despues de comprobar si ya existe este usuario y antes de añadirlo a la bbdd o crear la instancia de objeto
 	}
+	
+	public void borrarUsuarioFachada(int idUsuario){
+		System.err.println("SE SUPONE QUE ESTOY EN FACHADA");
+		for (Usuarios usuarios : usersList) {
+			if(usuarios.getId()==idUsuario) {
+	            usersList.remove(idUsuario);
+			}
+		}
+		gestorUsuarios.borrarUsuarioGestorUsuarios(idUsuario);
+	}
+
+
+	public ArrayList<Usuarios> recuperarDatosFachada() {
+		usersList = gestorUsuarios.leerBBDDUsuario();
+		return usersList;
+	}
+
+	
+
 }

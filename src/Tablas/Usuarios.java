@@ -81,10 +81,9 @@ public class Usuarios implements Serializable{
 		return salt;
 	}
 
-	 @Override
-	    public String toString() {
-	        return " id=" + id + ", \nnombre=" + nombre + ", \nsurname=" + surname + ", \nemail=" + email
-	                + ", \nuserName=" + userName + ", \nfechaNacimiento=" + fechaNacimiento + ", \nhashContraseña="
-	                + hashContraseña + "]";
-	    }
+	@Override
+	public String toString() {
+	    return String.format(" id=%s, \n| nombre=%s, \n| surname=%s, \n| email=%s, \n| userName=%s, \n| fechaNacimiento=%s, \n| hashContraseña=%s\n-",
+	            id, nombre, surname, email, userName, fechaNacimiento, hashContraseña);
+	}
 }

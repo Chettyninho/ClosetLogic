@@ -16,51 +16,64 @@ public class MainCliente {
 		Scanner sc = new Scanner(System.in);
 		int option;
 
-		// Crear objeto clase Socket
-		try (Socket sk = new Socket("localhost", 3000);
-	             DataOutputStream dos = new DataOutputStream(sk.getOutputStream())) {
-			
-			for (int i = 0; i < 10; i++) {// prueba del buvle cuando se ponga exit el servidor se cierra
-				//Socket sk = new Socket("localhost", 3000);
-				//DataOutputStream dos = new DataOutputStream(sk.getOutputStream());
-				// Imprimir bienvenida con formato
-				System.out.println("+-------------------------------------------+");
-				System.out.println("|    BIENVENIDO A GOODCLOSET - EL ARMARIO   |");
-				System.out.println("|    DE LOS AUTÉNTICOS TITANES XD           |");
-				System.out.println("|    ELIJA UNA OPCIÓN:                      |");
-				System.out.println("|    1. ALTA USUARIO                        |");
-				System.out.println("+-------------------------------------------+");
+		try (Socket sk = new Socket("localhost", 9995);
+				DataOutputStream dos = new DataOutputStream(sk.getOutputStream())) {
 
+			System.out.println("+--------------------------------------------+");
+			System.out.println("|    BIENVENIDO A GOODCLOSET - EL ARMARIO    |");
+			System.out.println("|    DE LOS AUTÉNTICOS TITANES XD            |");
+			System.out.println("|    ELIJA UNA OPCIÓN:                       |");
+			System.out.println("|    1. ALTA USUARIO                         |");
+			System.out.println("|    2. LISTAR USUARIOS                      |");
+			System.out.println("|    3. MODIFICAR MI USUARIO                 |");
+			System.out.println("|    4. ELIMINAR USUARIO 		     |");
+			System.out.println("+--------------------------------------------+");
+
+			if (sc.hasNextInt()) {
 				option = sc.nextInt();
-				System.out.println(option + "En main cliente");
+				System.out.println(option + " En main cliente");
+
 				switch (option) {
 				case 1:
-					dos.writeUTF(String.valueOf(option));
+					dos.writeUTF(String.valueOf(option)); // altasUsuario
 					altaUsuarioMainCliente(dos);
 					break;
 				case 2:
+				    dos.writeUTF(String.valueOf(option));
+				    DataInputStream disListar = new DataInputStream(sk.getInputStream()); // Nuevo flujo de entrada para LISTAR USUARIOS
+				    listarUsuarios(disListar);
+				    disListar.close(); // Cerrar nuevo DataInputStream después de usarlo
+				    break;
+				case 3:
+				    dos.writeUTF(String.valueOf(option));
+				    DataInputStream disModificar = new DataInputStream(sk.getInputStream()); // Nuevo flujo de entrada para MODIFICAR MI USUARIO
+				    listarUsuarios(disModificar);
+				    disModificar.close();
+				    // Lógica para modificar usuario
+				    break;
+				case 4:
 					dos.writeUTF(String.valueOf(option));
-					 DataInputStream dis = new DataInputStream(sk.getInputStream());
-		             listarUsuarios(dis);
+					borrarUsuario(dos);
 					break;
-				// ya iremos añadiendo casos , tampoco se si esto ira asi realmente.Miguel
+				default:
+					System.out.println("Opción no válida. Introduzca un número del 1 al 4.");
+					break;
 				}
-				
-//				dos.close();
-//				sk.close();
+			} else {
+				System.out.println("Entrada no válida. Debe ingresar un número.");
 			}
-			// Después del bucle for en el cliente
+
+			// Cierre del cliente
 			dos.close();
 			sk.close();
-			
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-		    sc.close();
+			sc.close();
 		}
-
 	}
+
 
 	private static void altaUsuarioMainCliente(DataOutputStream dos) {
 		Scanner scanner = new Scanner(System.in);
@@ -87,31 +100,61 @@ public class MainCliente {
 
 		String entrada = nombre + "," + apellido + "," + email + "," + nombreUsuario + "," + fechaNacimiento + ","
 				+ contraseña;
-		
+
 		try {
 			dos.writeUTF(entrada);
-			dos.writeInt(1); 
+			dos.writeInt(1);
+			dos.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-		    scanner.close();
+			scanner.close();
 		}
 	}
 	private static void listarUsuarios(DataInputStream dis) {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(dis);
-            ArrayList<Usuarios> listaUsuarios = (ArrayList<Usuarios>) ois.readObject();
+		try {
+			ObjectInputStream ois = new ObjectInputStream(dis);
+			@SuppressWarnings("unchecked") // No se para qué vale esto la verdad, saludos
+			ArrayList<Usuarios> listaUsuarios = (ArrayList<Usuarios>) ois.readObject();
 
-            // Mostrar la lista de usuarios en la consola
-            System.out.println("Lista de usuarios:");
-            for (Usuarios usuario : listaUsuarios) {
-              System.out.println(usuario.toString());
-            }
-            
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+			System.out.println("Lista de usuarios:");
+			for (Usuarios usuario : listaUsuarios) {
+				System.out.println(usuario.toString());
+			}
 
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void borrarUsuario(DataOutputStream dos) {
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			System.out.println("Introduzca el id del usuario que quiere eliminar:");
+			int idDelete = sc.nextInt();
+			dos.writeInt(idDelete);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			sc.close();
+		}
+	}
+	
+	
+	/// hay qye acabar el update Usuario para modificarlo realmente
+	private static void updateUsuario(DataOutputStream dos) {
+		
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Introduzca el id del usuario que quiere eliminar:");
+			int idDelete = sc.nextInt();
+			dos.writeInt(idDelete);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			sc.close();
+		}
+	}
 }
