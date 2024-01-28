@@ -72,6 +72,7 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![Antic-Regular1](https://github.com/Chettyninho/ClosetLogic/assets/132547532/e8783c50-e3ee-43df-8803-5f644d85e84c)
 
 
+[Figma.pdf](https://github.com/Chettyninho/ClosetLogic/files/14076209/Figma.pdf)
 
 
  
