@@ -1,136 +1,285 @@
-<mxfile host="app.diagrams.net" modified="2024-01-25T08:50:57.977Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="p-sM6sgrjpAa8TgMhq0n" version="23.0.1" type="device">
+<mxfile host="app.diagrams.net" modified="2024-01-28T16:54:10.384Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="isXKZjZH3XmgrhLBPuqd" version="23.0.2" type="device">
   <diagram name="Página-1" id="vJuelPmkKzQrSOnD5UHj">
-    <mxGraphModel dx="1467" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1500" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-1" value="&lt;b&gt;Registro de usuarios.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-1" value="&lt;b&gt;Registro de usuarios.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="240" y="20" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-2" target="TyXlKK2p9FE4LaXy_nsj-3">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-2" target="TyXlKK2p9FE4LaXy_nsj-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-2" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-2" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="80" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-3" target="TyXlKK2p9FE4LaXy_nsj-5">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-3" target="TyXlKK2p9FE4LaXy_nsj-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-3" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /Usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-3" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /Usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="80" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-5" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-5" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla usuarios)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="400" y="80" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-7" value="&lt;b&gt;Verificación de Usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-7" value="&lt;b&gt;Verificación de Usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="235" y="170" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-8" target="TyXlKK2p9FE4LaXy_nsj-9">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-8" target="TyXlKK2p9FE4LaXy_nsj-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-8" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-8" value="USUARIO" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="220" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-9" target="TyXlKK2p9FE4LaXy_nsj-10">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-9" target="TyXlKK2p9FE4LaXy_nsj-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-9" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /login)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-9" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /login)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="220" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-10" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Verifica las credenciales)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-10" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Verifica las credenciales)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="400" y="220" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-13" value="&lt;b&gt;Obtener perfil usuario.&amp;nbsp;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-13" value="&lt;b&gt;Obtener perfil usuario.&amp;nbsp;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="230" y="320" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-19" target="TyXlKK2p9FE4LaXy_nsj-21">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-19" target="TyXlKK2p9FE4LaXy_nsj-21" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-19" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-19" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-21" target="TyXlKK2p9FE4LaXy_nsj-22">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-21" target="TyXlKK2p9FE4LaXy_nsj-22" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-21" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /usuarios(id))" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-21" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /usuarios(id))" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-22" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Obtener la información del usuario)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-22" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Obtener la información del usuario)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="400" y="360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-24" target="TyXlKK2p9FE4LaXy_nsj-26">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-24" target="TyXlKK2p9FE4LaXy_nsj-26" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-24" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-24" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="500" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-26" target="TyXlKK2p9FE4LaXy_nsj-27">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-26" target="TyXlKK2p9FE4LaXy_nsj-27" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-26" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-26" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="500" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-27" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-27" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla seguidores)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="400" y="500" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-28" value="&lt;b&gt;Seguir a otro usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-28" value="&lt;b&gt;Seguir a otro usuario.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="230" y="450" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-29" value="&lt;b&gt;Crear outfit.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="220" y="600" width="150" height="30" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-35" value="&lt;b&gt;Buscar prendas por etiqueta&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2010" y="180" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-31" target="TyXlKK2p9FE4LaXy_nsj-33">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-37" target="TyXlKK2p9FE4LaXy_nsj-39" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-31" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="640" width="120" height="60" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-37" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="250" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-33" target="TyXlKK2p9FE4LaXy_nsj-34">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-33" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /outfits)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="640" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-34" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla outfit, asocia las prendas usando la tabla prenda_outfit)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="625" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-35" value="&lt;b&gt;Buscar prendas por etiqueta&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="230" y="760" width="150" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-37" target="TyXlKK2p9FE4LaXy_nsj-39">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-37" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="830" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-39" target="TyXlKK2p9FE4LaXy_nsj-40">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-39" target="TyXlKK2p9FE4LaXy_nsj-40" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="470" y="1050" as="targetPoint" />
+            <mxPoint x="2250" y="470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-39" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /prenda?tags={nombre_etiqueta)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="830" width="120" height="60" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-39" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /prenda?tags={nombre_etiqueta)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2020" y="250" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-40" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Busca en la tabla prenda , las prendas que tengan esa etiqueta y las saca)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="815" width="180" height="90" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-40" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Busca en la tabla prenda , las prendas que tengan esa etiqueta y las saca)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2180" y="235" width="180" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-42" value="&lt;b&gt;Crear prenda.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="220" y="930" width="150" height="30" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-42" value="&lt;b&gt;Crear prenda.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2000" y="20" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-44" target="TyXlKK2p9FE4LaXy_nsj-46">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-44" target="TyXlKK2p9FE4LaXy_nsj-46" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-44" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="995" width="120" height="60" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-44" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="85" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TyXlKK2p9FE4LaXy_nsj-46" target="TyXlKK2p9FE4LaXy_nsj-47">
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="TyXlKK2p9FE4LaXy_nsj-46" target="TyXlKK2p9FE4LaXy_nsj-47" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-46" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /prenda)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="995" width="120" height="60" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-46" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /prenda)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2020" y="85" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TyXlKK2p9FE4LaXy_nsj-47" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla prenda)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="980" width="180" height="90" as="geometry" />
+        <mxCell id="TyXlKK2p9FE4LaXy_nsj-47" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla prenda)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2180" y="70" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-2" target="qPMyMq26H5zdgvlt-TvE-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-2" value="USUARIO&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="660" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-4" target="qPMyMq26H5zdgvlt-TvE-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-4" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /ARMARIO)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-5" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla armario)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-7" target="qPMyMq26H5zdgvlt-TvE-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-7" value="USUARIO&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="660" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-9" target="qPMyMq26H5zdgvlt-TvE-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-9" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get&amp;nbsp;/ARMARIO)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-10" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Obtiene info de la tabla armario)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-11" value="&lt;b&gt;Añadir nuev Armario&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="820" y="20" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-12" value="&lt;b&gt;Listar los armarios&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="805" y="180" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-13" value="&lt;b&gt;Crear outfit.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="21" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-15" target="qPMyMq26H5zdgvlt-TvE-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-15" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-17" target="qPMyMq26H5zdgvlt-TvE-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-17" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /outfits)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1380" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-18" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Inserta un campo nuevo en la tabla outfit, asocia las prendas usando la tabla prenda_outfit)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1540" y="65" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-19" value="&lt;b&gt;Listar outfit.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="176" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-21" target="qPMyMq26H5zdgvlt-TvE-23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-21" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="235" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-23" target="qPMyMq26H5zdgvlt-TvE-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-23" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get/outfits)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1380" y="235" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-24" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Consulta para buscar los outfits del armario en concreto)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1540" y="220" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-25" value="&lt;b&gt;Listar prendas de armario&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2010" y="360" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-27" target="qPMyMq26H5zdgvlt-TvE-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-27" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-29" target="qPMyMq26H5zdgvlt-TvE-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2250" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-29" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Get /prenda?ID_USER={id_user)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2020" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-30" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Busqueda inner_join entre armario,y outfit)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2180" y="415" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-32" target="qPMyMq26H5zdgvlt-TvE-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-32" value="USUARIO&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="660" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-34" target="qPMyMq26H5zdgvlt-TvE-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-34" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /ARMARIO)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-35" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Borra el armario seleccionado por el usuario y sus relacion)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-36" value="&lt;b&gt;Eliminar armarios&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="805" y="330" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-37" value="&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;DELETE FROM prenda_outfit WHERE id_outfit IN (SELECT id FROM outfit WHERE id_armario = :id_armario_usuario);&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;DELETE FROM armario WHERE id = :id_armario_usuario;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="705" y="433" width="340" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-46" target="qPMyMq26H5zdgvlt-TvE-48" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-46" value="USUARIO&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="665" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="qPMyMq26H5zdgvlt-TvE-48" target="qPMyMq26H5zdgvlt-TvE-49" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-48" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Update/ARMARIO)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="825" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-49" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Actualizar los likes)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="985" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qPMyMq26H5zdgvlt-TvE-50" value="&lt;b&gt;Modificar Armario&amp;nbsp;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="810" y="490" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-1" value="&lt;b&gt;Borrar Outfit&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="334" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="o0KdeXdGqZud5wBvW9sR-3" target="o0KdeXdGqZud5wBvW9sR-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-3" value="USUARIO&lt;br&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="393" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="o0KdeXdGqZud5wBvW9sR-5" target="o0KdeXdGqZud5wBvW9sR-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-5" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Update/outfits)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="393" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-6" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Consulta para eliminar un outfit dew un armario en concreto y la relacion de las prendas que componen dicho outfit en outfit_prendas)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1540" y="378" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="o0KdeXdGqZud5wBvW9sR-8" target="o0KdeXdGqZud5wBvW9sR-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-8" value="USUARIO&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;(verificado)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="655" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="o0KdeXdGqZud5wBvW9sR-10" target="o0KdeXdGqZud5wBvW9sR-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-10" value="&lt;u&gt;API REST&lt;/u&gt;&lt;br&gt;(Post /ARMARIO)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-11" value="&lt;u&gt;BASE DE DATOS&lt;/u&gt;&lt;br&gt;(Establece una relacion entre un outfit y un armariio)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="975" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o0KdeXdGqZud5wBvW9sR-12" value="&lt;b&gt;Añadir oufti&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="815" y="620" width="130" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
