@@ -73,7 +73,14 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 
 ## Casos de uso
 
-![Captura de pantalla 2024-01-28 144635](https://github.com/Chettyninho/ClosetLogic/assets/132547532/882229f0-5f91-4c1e-88ee-18e043227978)
+### Casos de uso de Usuarios
+![Captura de pantalla 2024-01-28 180552](https://github.com/Chettyninho/ClosetLogic/assets/132547532/65683edc-a2fa-4da9-87c6-94a6626d52f5)
+### Casos de uso de Armario
+![Captura de pantalla 2024-01-28 180846](https://github.com/Chettyninho/ClosetLogic/assets/132547532/eb7fdb17-d9e3-4c02-b085-ddab5dd73b73)
+### Casos de uso de Outfit
+![Captura de pantalla 2024-01-28 181030](https://github.com/Chettyninho/ClosetLogic/assets/132547532/33e890db-8df4-43cd-9a8e-131e09f8fb44)
+### Casos de uso de Prenda
+![Captura de pantalla 2024-01-28 181117](https://github.com/Chettyninho/ClosetLogic/assets/132547532/2df69795-0977-4faa-ae4b-68c33f922be3)
 
 
 ## Explicación del diseño
