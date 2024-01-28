@@ -83,11 +83,12 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ![Captura de pantalla 2024-01-28 181117](https://github.com/Chettyninho/ClosetLogic/assets/132547532/2df69795-0977-4faa-ae4b-68c33f922be3)
 
 
-## Explicación del diseño
+## Explicación del diseño visualmente
+![figma](https://github.com/Chettyninho/ClosetLogic/assets/132547532/0d3f2be1-3244-4619-aa50-09421eaccf3f)
 
-#### Explicación del diseño PDF
+#### Explicación del diseño para descargar PDF
 [Figma.pdf](https://github.com/Chettyninho/ClosetLogic/files/14076209/Figma.pdf)
-#### Explicación del diseño DOCX
+#### Explicación del diseño para descargar DOCX
 [Figma.docx](https://github.com/Chettyninho/ClosetLogic/files/14076222/Figma.docx)
 
 
