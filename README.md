@@ -71,10 +71,20 @@ Hemos seleccionado tonalidades de azul para transmitir amistad, seguridad y conf
 ### Tamaños de letra
 ![Antic-Regular1](https://github.com/Chettyninho/ClosetLogic/assets/132547532/e8783c50-e3ee-43df-8803-5f644d85e84c)
 
+## Casos de uso
+
+![Captura de pantalla 2024-01-28 144635](https://github.com/Chettyninho/ClosetLogic/assets/132547532/882229f0-5f91-4c1e-88ee-18e043227978)
+
+
+## Explicación del diseño
+
+#### Explicación del diseño PDF
+[Figma.pdf](https://github.com/Chettyninho/ClosetLogic/files/14076209/Figma.pdf)
+#### Explicación del diseño DOCX
+[Figma.docx](https://github.com/Chettyninho/ClosetLogic/files/14076222/Figma.docx)
 
 
 
- 
 **¡Únete a The Good Closet y lleva tu pasión por la moda al siguiente nivel!** 🌟
 
 ## Preguntas y Respuestas
