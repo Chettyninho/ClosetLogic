@@ -1,0 +1,5 @@
+/*el "update" en este parametro:
+ spring.jpa.hibernate.ddl-auto="none"
+ lo que hace es si no encuentra la tabla que le pides o lo que sea lo genera*/
+ cambiar toda la bbdd para que no haya ninguna columna con nombre de este estilo: ejemploColumna.
+ tienen que seguir esta tipografia: ejemplo_columna

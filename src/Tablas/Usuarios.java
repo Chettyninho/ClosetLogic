@@ -11,7 +11,7 @@ public class Usuarios implements Serializable{
 	private String fechaNacimiento;// no incluida en la bbdd del anterior commit, al igual que contraseñaHasseada y
 									// salt
 
-	private String hashContraseña;// asegurarse de que en la bbdd existan estos dos camposs
+	private String hashContrasena;// asegurarse de que en la bbdd existan estos dos camposs
 	private byte[] salt;// numero que añade seguridad, se aplicará en el hasseo.
 
 	public Usuarios(int id, String nombre, String surname, String email, String userName, String fechaNacimiento,
@@ -23,7 +23,7 @@ public class Usuarios implements Serializable{
 		this.email = email;
 		this.userName = userName;
 		this.fechaNacimiento = fechaNacimiento;
-		this.hashContraseña = hashContraseña;
+		this.hashContrasena = hashContraseña;
 		this.salt = salt;
 	}
 
@@ -74,7 +74,7 @@ public class Usuarios implements Serializable{
 	}
 
 	public String getHashContraseña() {
-		return hashContraseña;
+		return hashContrasena;
 	}
 
 	public byte[] getSalt() {
@@ -84,6 +84,6 @@ public class Usuarios implements Serializable{
 	@Override
 	public String toString() {
 	    return String.format(" id=%s, \n| nombre=%s, \n| surname=%s, \n| email=%s, \n| userName=%s, \n| fechaNacimiento=%s, \n| hashContraseña=%s\n-",
-	            id, nombre, surname, email, userName, fechaNacimiento, hashContraseña);
+	            id, nombre, surname, email, userName, fechaNacimiento, hashContrasena);
 	}
 }

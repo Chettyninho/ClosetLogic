@@ -122,7 +122,7 @@ public class GestorUsuarios {
 			md.update(salt);
 			byte[] hashedPassword = md.digest(password.getBytes());
 
-			// Convertir el hash a una representación en formato Base64
+			// Convertir el hash a una representación en formato Base64 para meterlo a la bbdd
 			return Base64.getEncoder().encodeToString(hashedPassword);
 		} catch (NoSuchAlgorithmException e) {
 			// Manejar la excepción apropiadamente
@@ -133,7 +133,7 @@ public class GestorUsuarios {
 
 	private static void InsertarBBDD(Usuarios usuario) {
 		try (Conexion con = Conexion.getInstance()) {
-			String query = "INSERT INTO USUARIO (Nombre, Surname, Email, userName, fechaNacimiento, hashContraseña, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO USUARIO (Nombre, Surname, Email, user_name, fecha_nacimiento, hash_contrasena, Salt) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.getConnection().prepareStatement(query);
 
 			
@@ -175,9 +175,9 @@ public class GestorUsuarios {
 		                String nombre = rs.getString("nombre");
 		                String surname = rs.getString("surname");
 		                String email = rs.getString("email");
-		                String userName = rs.getString("userName");
-		                String fechaNacimiento = rs.getString("fechaNacimiento");
-		                String hashContraseña = rs.getString("hashContraseña");
+		                String userName = rs.getString("user_name");
+		                String fechaNacimiento = rs.getString("fecha_nacimiento");
+		                String hashContraseña = rs.getString("hash_contrasena");
 		                byte[] salt = rs.getBytes("salt");
 
 		                Usuarios usuario = new Usuarios(id, nombre, surname, email, userName, fechaNacimiento, hashContraseña, salt);
