@@ -19,6 +19,6 @@ public class Outfit {
 
     private String nombre;
     private String descripcion;
-    private String fecha_creacion;
+    private String fecha_cracion;
 
 }

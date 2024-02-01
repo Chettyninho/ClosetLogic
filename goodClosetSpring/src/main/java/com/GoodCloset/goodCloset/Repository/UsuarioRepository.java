@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
-    List<Usuario> findAll();
+    //List<Usuario> findAll(); este metodo realmene no hace fata porque viene predefinido en JpaRepository
 }

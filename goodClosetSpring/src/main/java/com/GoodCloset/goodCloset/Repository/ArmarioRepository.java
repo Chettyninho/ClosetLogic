@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ArmarioRepository extends JpaRepository<Armario,Integer> {
-List<Armario> findAll();
+//List<Armario> findAll(); este metodo realmene no hace fata porque viene predefinido en JpaRepository
 }

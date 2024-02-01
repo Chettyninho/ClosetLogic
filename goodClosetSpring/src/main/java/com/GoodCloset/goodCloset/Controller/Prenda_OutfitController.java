@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/p-o")
+@RequestMapping("/po")
 public class Prenda_OutfitController {
     @Autowired
     private Prenda_OutfitService prenda_outfitService;
