@@ -20,11 +20,12 @@ public class Usuario {
     private String nombre;
     private String surname;
     private String email;
+    @Column(name = "user_name")
     private String userName;
-    @Column(name = "contadorSeguidores")
+    @Column(name = "contador_seguidores")
     private Integer contadorSeguidores;
     private Boolean privado;
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
     @Column(name = "hash_contrasena")
     private String hashContraseña;

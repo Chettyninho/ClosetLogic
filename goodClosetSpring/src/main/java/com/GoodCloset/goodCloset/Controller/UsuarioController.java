@@ -3,9 +3,7 @@ package com.GoodCloset.goodCloset.Controller;
 import com.GoodCloset.goodCloset.Models.Usuario;
 import com.GoodCloset.goodCloset.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,10 @@ public class UsuarioController {
     @GetMapping("/all")
     public List<Usuario> getAllUsuarios(){
         return usuarioService.getAllUsuarios();
+    }
+
+    @PostMapping("/saveUser")
+    public Usuario saveUser(@RequestBody Usuario usuario){
+        return usuarioService.saveUser(usuario);
     }
 }

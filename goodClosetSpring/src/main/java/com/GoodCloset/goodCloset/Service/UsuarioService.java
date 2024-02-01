@@ -17,4 +17,8 @@ public class UsuarioService {
     public Usuario getUsuarioById(Integer id){
         return usuarioRepository.findById(id).get();
     }
+
+    public Usuario saveUser(Usuario usuario){
+        return usuarioRepository.save(usuario);
+    }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-@Controller
+@RestController
 @RequestMapping("/prenda")
 public class PrendaController {
     @Autowired//para conectar directamente con el Repository
