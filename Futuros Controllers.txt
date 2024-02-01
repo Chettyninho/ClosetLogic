@@ -1,0 +1,47 @@
+@Get @post y @update necesarios en goodCloset:
+
+Ordenado por pantallas de figma...
+
+-Registro:
+@Post nuevoUsuario, habria que comprobar si existe o no, si existe devuelva null o algo asi que permita sacar un popUP en adnroid.
+
+-Login:
+@Post logIn, habria que comprobar si existe con ese nombre y esa contraseña, sino devuelve null.
+Si devuelve alguno, y es igual a 1 los que ha devuelto  devuelvw null sino entra.
+
+-HomePage:
+@Get getById(usuarios que en tabla seguidor id_seguidor = id_app)
+CrearOutfits:
+@Post postear las 3 prendas (en teoria se seleccionan con una foto, (no se si camara o galeria), se añaden a prendas y se relacionan con outfit, armario y user)
+		Tendra que saltar un popUp o algo asi para dar un nombre al outfit y tal y que lo añada a un armario. si no existe armario relacionado lo crea.
+
+-Perfil:
+@Get Perfil_Seguidores_Armario(hariamos un get en comun para mostrar el perfil y los seguidores, tendra que traerse en lista, formato json
+---------json--------
+{
+"seguido":[{ususario1},{usuario2},{usuario3}]
+"seguidro" : [{ususario1},{usuario2},{usuario3}]
+
+"armarios":[{armario1_user},{armario2_user},{armario3_user}]
+}
+
+--------java------
+public class seguidoSeguidorArmario{
+List<Usuario>
+List<Usuaro>
+List<Armario>
+}
+
+-Explorar:
+@Get allUsuarios(), usamos la foto de perfil para pintarla 
+@Get buscador
+
+-Editar Perfil:
+@Get PerfilById(id_app), recuperamos el objeto y pintamos en hint, 
+
+-Cambio Contrasñea:
+cambio de contraseña pasamos el objeto de usuario obtenido en EditarPerfil
+
+-OtherCloset:
+@Get armario(que contendria outfit y prendas) del id del usuario que estamos viendo, se enseñarian las prendas de ese oufit numeradas por oufit, como hay 3 prendas obligadas por outfit(limitado desde la app) al hacer scroll n unaas de las card para cambiar por ejemplo la parte de arriba entre los outfits de ese armario se tendria que cambiar la posicion del outfit que se esta mostrando (lista)
+
