@@ -17,8 +17,9 @@ public class ArmarioService {
     public List<Armario> getAllArmarios(){
         return armarioRepository.findAll();
     }
-    public Armario getArmarioById(Integer id){
-        return armarioRepository.findById(id).get();
+
+    public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
+        return armarioRepository.findAllByPropietario(idPropietario);
     }
 
 }

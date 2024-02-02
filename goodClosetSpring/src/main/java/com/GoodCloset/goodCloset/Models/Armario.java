@@ -1,14 +1,12 @@
 package com.GoodCloset.goodCloset.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;  // Cambiado a la anotación correcta
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Armario")
@@ -23,4 +21,16 @@ public class Armario {
 
     private int contador_de_outfits;
     private int contador_de_likes;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_propietario")
+    private Usuario propietario;
+
+    @ManyToMany
+    @JoinTable(
+            name = "armario_outfit",
+            joinColumns = @JoinColumn(name = "id_armario"),
+            inverseJoinColumns = @JoinColumn(name = "id_outfit"))
+    private List<Outfit> outfits;
 }

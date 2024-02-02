@@ -61,8 +61,29 @@ VALUES
     (5, 250, 2),
     (8, 300, 3),
     (15, 700, 4),
-    (12, 450, 5);
-
+    (12, 450, 5),
+    (66, 66, 1);
+    
+CREATE TABLE armario_outfit(
+id integer auto_increment primary key,
+  id_armario int,
+  id_outfit int,
+  FOREIGN KEY(id_armario) REFERENCES armario(id),
+  FOREIGN KEY(id_outfit) REFERENCES outfit(id)
+  );
+  
+  
+   INSERT INTO armario_outfit (id_armario, id_outfit)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
+  
+  
+  
+  
 
   /*drop table outfit;*/
   /*truncate table outfit;*/
@@ -72,6 +93,7 @@ Nombre varchar(50),
 descripcion varchar(120),
 fecha_cracion varchar(20)
 );
+
 INSERT INTO outfit (Nombre, descripcion, fecha_cracion)
 VALUES
     ('Verano Casual', 'Outfit ligero para días soleados', '2023-07-10'),
@@ -148,3 +170,38 @@ VALUES
     ('Verano'),
     ('Invierno');
  
+ 
+ --------------------------------------  CONSULTAS ---------------------
+ 
+ USE GOOD_CLOSET;
+/*CONSULTA QUE RECUPERA LOS OUTFITS DE LOS ARMARIOS Y TAMBIEN LAS PRENDAS*/
+SELECT * FROM armario a
+LEFT JOIN armario_outfit ao ON a.id = ao.id_armario
+LEFT JOIN outfit o ON ao.id_outfit = o.id
+LEFT JOIN prenda_outfit po ON o.id = po.id_outfit
+LEFT JOIN prenda p ON po.id_prenda = p.id
+WHERE a.id_propietario = 1;
+
+/*CONSULTA QUE RECUPERA LOS OUTFITS DE LOS ARMARIOS*/
+SELECT DISTINCT * FROM armario a 
+            LEFT JOIN armario_outfit ao ON a.id = ao.id_armario
+            LEFT JOIN outfit o ON ao.id_outfit = o.id
+            WHERE a.id_propietario = 1;
+            
+            
+
+
+----------------------------------------
+
+
+SELECT a FROM Armario a
+LEFT JOIN a.outfits o
+LEFT JOIN o.id
+WHERE a.id_propietario = 1;
+
+SELECT a FROM Armario a
+LEFT JOIN FETCH a.outfits o
+LEFT JOIN FETCH o.prendas
+WHERE a.propietario.id = 1;
+
+

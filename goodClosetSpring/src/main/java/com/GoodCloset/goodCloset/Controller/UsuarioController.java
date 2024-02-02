@@ -18,8 +18,10 @@ public class UsuarioController {
         return usuarioService.getAllUsuarios();
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/saveUser") //hace tanto la funcion de insert como de update
     public Usuario saveUser(@RequestBody Usuario usuario){
         return usuarioService.saveUser(usuario);
     }
+
+
 }

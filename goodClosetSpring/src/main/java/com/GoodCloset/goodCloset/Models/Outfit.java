@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Outfit")
 @NoArgsConstructor
@@ -20,5 +22,15 @@ public class Outfit {
     private String nombre;
     private String descripcion;
     private String fecha_cracion;
+    @ManyToMany(mappedBy = "outfits")
+    private List<Armario> armarios;
+
+    @ManyToMany
+    @JoinTable(
+            name = "prenda_outfit",
+            joinColumns = @JoinColumn(name = "id_outfit"),
+            inverseJoinColumns = @JoinColumn(name = "id_prenda"))
+    private List<Prenda> prendas;
+
 
 }

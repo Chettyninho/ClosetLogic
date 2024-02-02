@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "usuario")
 @NoArgsConstructor
@@ -30,4 +32,7 @@ public class Usuario {
     @Column(name = "hash_contrasena")
     private String hashContraseña;
     private byte[] salt;
+
+    @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Armario> armarios;
 }
