@@ -26,11 +26,11 @@ public class ArmarioController {
         return armarioService.getAllArmarios();
     }
 //no termina de funcionar ->  @GetMapping("/propietario/{idPropietario}")
-    @GetMapping("/propietario/{idPropietario}")
-    public List<Armario> getAllArmariosDe(@PathVariable Integer idPropietario){
-        List<Armario> armariosDelPropietario = armarioService.findAllArmariosByPropietario(idPropietario);
-        return armariosDelPropietario;
-    }
+   // @GetMapping("/propietario/{idPropietario}")
+  //  public List<Armario> getAllArmariosDe(@PathVariable Integer idPropietario){
+   //     List<Armario> armariosDelPropietario = armarioService.findAllArmariosByPropietario(idPropietario);
+    //    return armariosDelPropietario;
+    //}
 
 
 

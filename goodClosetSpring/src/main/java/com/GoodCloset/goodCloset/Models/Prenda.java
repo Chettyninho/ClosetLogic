@@ -33,7 +33,9 @@ public class Prenda {
 
     @Column(name = "enlace_web")
     private String enlaceWeb;
+    @Column(name = "foto_prenda")
+    private byte[] foto_prenda;
 
-    @ManyToMany(mappedBy = "prendas")
-    private List<Outfit> outfits;
+//    @ManyToMany(mappedBy = "prendas")
+//    private List<Outfit> outfits;
 }

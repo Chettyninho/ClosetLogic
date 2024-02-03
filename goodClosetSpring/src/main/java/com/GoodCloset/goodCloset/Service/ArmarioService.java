@@ -18,8 +18,8 @@ public class ArmarioService {
         return armarioRepository.findAll();
     }
 
-    public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
-        return armarioRepository.findAllByPropietario(idPropietario);
-    }
+   // public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
+     //   return armarioRepository.findAllByPropietario(idPropietario);
+    //}
 
 }

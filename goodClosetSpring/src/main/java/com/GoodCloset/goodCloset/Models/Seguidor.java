@@ -19,9 +19,9 @@ public class Seguidor {
 
     @ManyToOne
     @JoinColumn(name = "id_seguidor")
-    private Usuario id_seguidor;
+    private Usuario seguidor;
 
     @ManyToOne
     @JoinColumn(name = "id_seguido")
-    private Usuario id_seguido;
+    private Usuario seguido;
 }

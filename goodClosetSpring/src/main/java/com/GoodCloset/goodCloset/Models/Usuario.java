@@ -25,14 +25,15 @@ public class Usuario {
     @Column(name = "user_name")
     private String userName;
     @Column(name = "contador_seguidores")
-    private Integer contadorSeguidores;
+    private Integer contador_seguidores;
     private Boolean privado;
     @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
     @Column(name = "hash_contrasena")
     private String hashContraseña;
     private byte[] salt;
+    private byte[] foto_usuario;
 
-    @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Armario> armarios;
+    //@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Armario> armarios;
 }

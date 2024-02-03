@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface ArmarioRepository extends JpaRepository<Armario, Integer> {
 
-    @Query("SELECT DISTINCT a FROM Armario a " +
-            "LEFT JOIN FETCH a.outfits o " +
-            "WHERE a.propietario.id = :idPropietario")
-    List<Armario> findAllByPropietario(@Param("idPropietario") Integer idPropietario);
+    //@Query("SELECT DISTINCT a FROM Armario a " +
+      //      "LEFT JOIN FETCH a.outfits o " +
+        //    "WHERE a.propietario.id = :idPropietario")
+    //List<Armario> findAllByPropietario(@Param("idPropietario") Integer idPropietario);
 
 }

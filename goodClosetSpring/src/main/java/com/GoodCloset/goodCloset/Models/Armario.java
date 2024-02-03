@@ -21,16 +21,16 @@ public class Armario {
 
     private int contador_de_outfits;
     private int contador_de_likes;
+    private int id_propietario;
 
+    //@ManyToOne
+    //@JoinColumn(name = "id_propietario")
+    //private Usuario propietario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private Usuario propietario;
-
-    @ManyToMany
-    @JoinTable(
-            name = "armario_outfit",
-            joinColumns = @JoinColumn(name = "id_armario"),
-            inverseJoinColumns = @JoinColumn(name = "id_outfit"))
-    private List<Outfit> outfits;
+    //@ManyToMany
+    //@JoinTable(
+      //      name = "armario_outfit",
+        //    joinColumns = @JoinColumn(name = "id_armario"),
+          //  inverseJoinColumns = @JoinColumn(name = "id_outfit"))
+    //private List<Outfit> outfits;
 }
