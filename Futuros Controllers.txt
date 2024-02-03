@@ -10,7 +10,7 @@ Ordenado por pantallas de figma...
 Si devuelve alguno, y es igual a 1 los que ha devuelto  devuelvw null sino entra.
 
 -HomePage:
-@Get getById(usuarios que en tabla seguidor id_seguidor = id_app)
+@Get getById(usuarios que en tabla seguidor id_seguidor = id_app)   // Creo que la tengo bien 
 CrearOutfits:
 @Post postear las 3 prendas (en teoria se seleccionan con una foto, (no se si camara o galeria), se añaden a prendas y se relacionan con outfit, armario y user)
 		Tendra que saltar un popUp o algo asi para dar un nombre al outfit y tal y que lo añada a un armario. si no existe armario relacionado lo crea.
