@@ -18,6 +18,11 @@ public class UsuarioController {
         return usuarioService.getAllUsuarios();
     }
 
+    @GetMapping("/{id_usuario}") //obtiene un solo usuario. no una lista, lo usaremos para el perfil, editar perfil... por ejemplo
+    public Usuario obtenerSeguidor(@PathVariable Integer id_usuario) {
+        return usuarioService.getUsuarioById(id_usuario);
+    }
+
     @PostMapping("/saveUser") //hace tanto la funcion de insert como de update.
     public Usuario saveUser(@RequestBody Usuario usuario){
         return usuarioService.saveUser(usuario);

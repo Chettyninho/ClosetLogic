@@ -19,13 +19,13 @@ public class SeguidorController {
     @Autowired//para conectar directamente con el Repositoryç
     private SeguidorService seguidorService;
 
-    @GetMapping("/{id}/seguidos") //a quien sigue el id
+    @GetMapping("/{id}/seguidores") //quien sigue al id
     public List<Seguidor> obtenerSeguidores(@PathVariable Integer id) {
         return seguidorService.obtenerSeguidores(id);
     }
 
                     /// estas funciones vendran bien para mostrar tambien por ejkemplo las fotos en el home de los usuarios a los que sigues///
-    @GetMapping("/{id}/seguidores") //quien sigue al id
+    @GetMapping("/{id}/seguidos") //a quien sigue el id
     public List<Seguidor> obtenerSeguidos(@PathVariable Integer id) {
         return seguidorService.obtenerSeguidos(id);
     }
