@@ -1,12 +1,11 @@
 package com.GoodCloset.goodCloset.Service;
 
 import com.GoodCloset.goodCloset.Models.Armario;
-import com.GoodCloset.goodCloset.Models.Usuario;
 import com.GoodCloset.goodCloset.Repository.ArmarioRepository;
-import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +17,18 @@ public class ArmarioService {
         return armarioRepository.findAll();
     }
 
-   // public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
-     //   return armarioRepository.findAllByPropietario(idPropietario);
-    //}
+   public Armario saveArmario(Armario armario){
+       return armarioRepository.save(armario);
+   }
 
+    public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
+        List<Armario> armariosTotales= armarioRepository.findAll();
+        List<Armario> armarioPropietario =  new ArrayList<>();
+        for (Armario a : armariosTotales){
+            if (a.getId_propietario() == idPropietario) {
+                armarioPropietario.add(a);
+            }
+        }
+        return armarioPropietario;
+    }
 }

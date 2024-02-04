@@ -32,6 +32,9 @@ List<Usuaro>
 List<Armario>
 }
 
+@Post crear un nuevo armario.
+
+
 -Explorar:
 @Get allUsuarios(), usamos la foto de perfil para pintarla 
 @Get buscador
@@ -40,7 +43,7 @@ List<Armario>
 @Get PerfilById(id_app), recuperamos el objeto y pintamos en hint, 
 
 -Cambio Contrasñea:
-cambio de contraseña pasamos el objeto de usuario obtenido en EditarPerfil
+cambio de contraseña pasamos el objeto de usuario obtenido en EditarPerfil, tendremos que hacer un post despues de comprobar en android que el usuario y la contraseña coinciden, solo entonces se procede a sustituir la nueva salt y hash_contrasena 
 
 -OtherCloset:
 @Get armario(que contendria outfit y prendas) del id del usuario que estamos viendo, se enseñarian las prendas de ese oufit numeradas por oufit, como hay 3 prendas obligadas por outfit(limitado desde la app) al hacer scroll n unaas de las card para cambiar por ejemplo la parte de arriba entre los outfits de ese armario se tendria que cambiar la posicion del outfit que se esta mostrando (lista)

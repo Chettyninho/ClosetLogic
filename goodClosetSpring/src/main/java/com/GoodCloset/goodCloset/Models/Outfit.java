@@ -33,5 +33,5 @@ public class Outfit {
 //            inverseJoinColumns = @JoinColumn(name = "id_prenda"))
 //    private List<Prenda> prendas;
 
-
+//estas relaciones son muy impirtantes.
 }

@@ -33,4 +33,6 @@ public class Armario {
         //    joinColumns = @JoinColumn(name = "id_armario"),
           //  inverseJoinColumns = @JoinColumn(name = "id_outfit"))
     //private List<Outfit> outfits;
+//    @ManyToMany
+//    private List<Outfit> listaOutfits;
 }
