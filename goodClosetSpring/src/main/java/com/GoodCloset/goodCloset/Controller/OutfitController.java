@@ -19,4 +19,9 @@ public class OutfitController {
     public List<Outfit> getAllUsuarios(){
         return outfitService.getAllOutfits();
     }
+
+
+
+
+
 }
