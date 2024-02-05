@@ -7,4 +7,10 @@ import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     //List<Usuario> findAll(); este metodo realmene no hace fata porque viene predefinido en JpaRepository
+
+
+/*@Query("SELECT * FROM Usuario u JOIN Seguidor s ON u.id = s.idSeguido WHERE s.idSeguidor = 1") // HE PUESTO PARA COMPROBAR SI FUNCIONABA Y LOS SACABA
+    List<Usuario> findUsuariosSeguidosPorUsuario(@Param("idSeguidor") Integer idSeguidor);*/
+
+
 }
