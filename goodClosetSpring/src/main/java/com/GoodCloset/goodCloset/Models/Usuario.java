@@ -23,14 +23,14 @@ public class Usuario {
     private String surname;
     private String email;
     @Column(name = "user_name")
-    private String userName;
+    private String username;
     @Column(name = "contador_seguidores")
     private Integer contador_seguidores;
     private Boolean privado;
     @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
     @Column(name = "hash_contrasena")
-    private String hashContraseña;
+    private String password;
     private byte[] salt;
     private byte[] foto_usuario;
 
