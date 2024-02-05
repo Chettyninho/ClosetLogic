@@ -22,5 +22,10 @@ public class PrendaController {
     public List<Prenda> getAllPrendas() {
         return prendaService.getAllPrendas();
     }
+
+
+
+
+
 }
 

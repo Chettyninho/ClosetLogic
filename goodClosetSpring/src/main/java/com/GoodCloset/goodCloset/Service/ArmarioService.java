@@ -1,6 +1,7 @@
 package com.GoodCloset.goodCloset.Service;
 
 import com.GoodCloset.goodCloset.Models.Armario;
+import com.GoodCloset.goodCloset.Models.Outfit;
 import com.GoodCloset.goodCloset.Repository.ArmarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,9 @@ public class ArmarioService {
         }
         return armarioPropietario;
     }
+
+    public List<Outfit> findOutfitsByArmarioId(Integer armarioId) {
+        return armarioRepository.findOutfitsByArmarioId(armarioId);
+    }
+
 }

@@ -1,8 +1,12 @@
 package com.GoodCloset.goodCloset.Controller;
 
+import com.GoodCloset.goodCloset.Models.Outfit;
 import com.GoodCloset.goodCloset.Models.Usuario;
+import com.GoodCloset.goodCloset.Service.ArmarioService;
 import com.GoodCloset.goodCloset.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +16,11 @@ import java.util.List;
 public class UsuarioController {
 @Autowired//para conectar directamente con el Repository
     private UsuarioService usuarioService;
+    private final ArmarioService armarioService;
+
+    public UsuarioController(ArmarioService armarioService) {
+        this.armarioService = armarioService;
+    }
 
     @GetMapping("/all")
     public List<Usuario> getAllUsuarios(){
@@ -34,6 +43,22 @@ public class UsuarioController {
         return usuarioService.obtenerUsuariosSeguidosPorUsuario(idSeguidor);
  que carga la pantalla principal
 }*/
+
+
+    @GetMapping("/armario/{id_armario}/outfits")
+    public ResponseEntity<List<Outfit>> obtenerOutfitsDeArmario(@PathVariable Integer id_armario) {
+        List<Outfit> outfits = armarioService.findOutfitsByArmarioId(id_armario);
+
+        if (outfits.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(outfits, HttpStatus.OK);
+        }
+    }
+
+
+
+
 
 
 }

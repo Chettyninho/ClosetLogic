@@ -23,6 +23,7 @@ public class Armario {
     private int contador_de_likes;
     private int id_propietario;
 
+
     //@ManyToOne
     //@JoinColumn(name = "id_propietario")
     //private Usuario propietario;

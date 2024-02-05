@@ -16,4 +16,7 @@ public class OutfitService {
         return outfitRepository.findAll();
     }
 
+
+
+
 }
