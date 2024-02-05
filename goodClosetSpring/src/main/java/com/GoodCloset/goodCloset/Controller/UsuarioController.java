@@ -29,4 +29,11 @@ public class UsuarioController {
     }
 
 
+/*@GetMapping("/seguidos/{idSeguidor}")
+    public List<Usuario> obtenerUsuariosSeguidosPorUsuario(@PathVariable Integer idSeguidor) {
+        return usuarioService.obtenerUsuariosSeguidosPorUsuario(idSeguidor);
+ que carga la pantalla principal
+}*/
+
+
 }
