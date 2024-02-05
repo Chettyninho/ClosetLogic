@@ -7,7 +7,8 @@ Ordenado por pantallas de figma...
 
 -Login:
 @Post logIn, habria que comprobar si existe con ese nombre y esa contraseña, sino devuelve null.
-Si devuelve alguno, y es igual a 1 los que ha devuelto  devuelvw null sino entra.
+Si devuelve alguno, y es igual a 1 los que ha devuelto  devuelvw null sino entra.   
+//Lo tengo pero no se si hay una manera mas facil de hacerlo
 
 -HomePage:
 @Get getById(usuarios que en tabla seguidor id_seguidor = id_app)   // Creo que la tengo bien 
