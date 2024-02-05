@@ -7,9 +7,7 @@ import com.GoodCloset.goodCloset.Service.PrendaService;
 import com.GoodCloset.goodCloset.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -21,6 +19,13 @@ public class PrendaController {
     @GetMapping("/all")
     public List<Prenda> getAllPrendas() {
         return prendaService.getAllPrendas();
+    }
+
+
+//eliminar prenda
+    @DeleteMapping("/delete/{id}")
+    public Boolean deletePrenda(@PathVariable Integer id){
+        return prendaService.deletePrendaById(id);
     }
 }
 
