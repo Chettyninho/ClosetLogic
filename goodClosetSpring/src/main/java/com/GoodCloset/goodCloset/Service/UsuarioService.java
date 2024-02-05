@@ -23,6 +23,10 @@ public class UsuarioService {
     }
 
 
+    public boolean existsByUsername(String username) { return usuarioRepository.existsByUsername(username); }
+
+    public void createUser(Usuario user) { usuarioRepository.save(user); }
+
 /*public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
         return usuarioRepository.findUsuariosSeguidosPorUsuario(idSeguidor);
     }
