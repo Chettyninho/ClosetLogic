@@ -846,7 +846,7 @@ VALUES
 
     /*drop table tag;*/
   /*truncate table tag;*/
-  CREATE TABLE tag(
+ /* CREATE TABLE tag(
   id integer AUTO_INCREMENT PRIMARY KEY,
   tag varchar(31)
   );
@@ -862,7 +862,7 @@ VALUES
   
     /*drop table prenda_tags;*/
   /*truncate table prenda_tags;*/
-  CREATE TABLE prenda_tags(
+ /* CREATE TABLE prenda_tags(
   id integer AUTO_INCREMENT PRIMARY KEY,
   id_prenda integer,
   id_tag integer,
@@ -876,7 +876,7 @@ VALUES
     (2, 2),
     (3, 3),
     (4, 4),
-    (5, 5);
+    (5, 5);*/
 
 
  
@@ -901,16 +901,5 @@ SELECT DISTINCT * FROM armario a
 
 
 ----------------------------------------
-
-
-SELECT a FROM Armario a
-LEFT JOIN a.outfits o
-LEFT JOIN o.id
-WHERE a.id_propietario = 1;
-
-SELECT a FROM Armario a
-LEFT JOIN FETCH a.outfits o
-LEFT JOIN FETCH o.prendas
-WHERE a.propietario.id = 1;
 
 

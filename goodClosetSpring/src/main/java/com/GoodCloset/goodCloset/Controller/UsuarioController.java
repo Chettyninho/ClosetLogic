@@ -5,6 +5,7 @@ import com.GoodCloset.goodCloset.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,20 @@ public class UsuarioController {
     public Usuario saveUser(@RequestBody Usuario usuario){
         return usuarioService.saveUser(usuario);
     }
+
+    @GetMapping("/find-user-by-chain/{chain}")
+    public List<Usuario> findByName(@PathVariable("chain") String chain){
+        List<Usuario> allUsuarios = usuarioService.getAllUsuarios();
+        List<Usuario> usuarioShearched = new ArrayList<Usuario>();
+
+        for(Usuario user : allUsuarios){
+            if(user.getUserName().startsWith(chain)){
+                usuarioShearched.add(user);
+            }
+        }
+        return usuarioShearched;
+    }
+
 
 
 /*@GetMapping("/seguidos/{idSeguidor}")
