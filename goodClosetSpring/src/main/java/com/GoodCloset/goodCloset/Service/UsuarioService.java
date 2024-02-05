@@ -21,4 +21,11 @@ public class UsuarioService {
     public Usuario saveUser(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
+
+
+/*public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
+        return usuarioRepository.findUsuariosSeguidosPorUsuario(idSeguidor);
+    }
+*/
+
 }
