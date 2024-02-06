@@ -44,7 +44,7 @@ public class UsuarioController {
         List<Usuario> usuarioShearched = new ArrayList<Usuario>();
 
         for(Usuario user : allUsuarios){
-            if(user.getUserName().startsWith(chain)){
+            if(user.getUsername().startsWith(chain)){
                 usuarioShearched.add(user);
             }
         }
