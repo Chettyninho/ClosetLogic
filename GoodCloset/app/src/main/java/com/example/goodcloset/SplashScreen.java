@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -30,19 +29,11 @@ public class SplashScreen extends AppCompatActivity {
         lottieAnimationView = findViewById(R.id.lottie);
         powered = findViewById(R.id.powered);
 
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float density = displayMetrics.density;
-        int screenHeightPx = displayMetrics.heightPixels;
-
-        int translationBg = -(int)(density * 1000); // Ajuste de 1000dp
-        int translationAppName = -(int)(density * 700); // Ajuste de 700dp
-        int translationLottie = -(int)(density * 850); // Ajuste de 850dp
-        int translationPowered = -(int)(density * 950); // Ajuste de 950dp
-
-        imgbg.animate().translationY(translationBg).setDuration(800).setStartDelay(3000);
-        appname.animate().translationY(translationAppName).setDuration(800).setStartDelay(3000);
-        lottieAnimationView.animate().translationY(translationLottie).setDuration(800).setStartDelay(3000);
-        powered.animate().translationY(translationPowered).setDuration(800).setStartDelay(3000);
+        imgbg.animate().translationY(-2500).setDuration(1000).setStartDelay(3000);
+        //logo.animate().translationY(-1400).setDuration(1000).setStartDelay(4000);
+        appname.animate().translationY(-1400).setDuration(1000).setStartDelay(3000);
+        lottieAnimationView.animate().translationY(-1700).setDuration(1000).setStartDelay(3000);
+        powered.animate().translationY(-1900).setDuration(1000).setStartDelay(3000);
 
         final Animation animacion1 = AnimationUtils.loadAnimation(this, R.anim.slideleft);
         final Animation animacion2 = AnimationUtils.loadAnimation(this, R.anim.slideright);
@@ -58,7 +49,7 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(SplashScreen.this, Registro.class));
                 finish();
             }
-        }, 4100);
+        }, 4500);
 
     }
 }

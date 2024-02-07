@@ -2,21 +2,37 @@ package com.example.goodcloset;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.goodcloset.Entidades.Usuario;
+import com.example.goodcloset.Retrofit.ApiClient;
+import com.example.goodcloset.Retrofit.ApiService;
+import com.example.goodcloset.Retrofit.RespuestaInsertarUsuario;
+import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Registro extends AppCompatActivity {
 
     ImageView imgbg;
-    TextView txtView,name,surname,email,username,password, button;
+    EditText txtView,name,surname,email,username,password;
+    Button button;
     LinearLayout ly;
+
+    private Usuario usuarioAInsertar;
+    private ApiClient apiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +49,7 @@ public class Registro extends AppCompatActivity {
         password = findViewById(R.id.password);
         button = findViewById(R.id.enviar);
 
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float density = displayMetrics.density;
-        int screenHeightPx = displayMetrics.heightPixels;
-
-        int translationBg = -(int)(density * 800); // Ajuste de 1000dp
-
-
-        imgbg.animate().translationY(translationBg).setDuration(800).setStartDelay(0);
-
+        imgbg.animate().translationY(-2100).setDuration(1000).setStartDelay(500);
 
         Animation aniFade = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slideleft);
         txtView.startAnimation(aniFade);
@@ -64,13 +72,67 @@ public class Registro extends AppCompatActivity {
         Animation aniFade7 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
         button.startAnimation(aniFade7);
 
-        new Handler().postDelayed(new Runnable() {
+
+        // Inicializar ApiClient con la URL base de tu API (?)
+        apiClient = ApiClient.getInstance();
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                startActivity(new Intent(Registro.this, MainActivity.class));
-                finish();
+            public void onClick(View v) {
+                prepararYInsertarUsuario();
             }
-        }, 4500);
+        });
+
+    }
+
+    private void prepararYInsertarUsuario() {
+        //int idUsuario = Integer.parseInt(editTextid.getText().toString());
+        String nombre = name.getText().toString();
+        String aepllid = surname.getText().toString();
+        String Email = email.getText().toString();
+        String userName = username.getText().toString();
+        String contraseñaSinHassear = password.getText().toString();
+
+        usuarioAInsertar = new Usuario(nombre, aepllid, Email, userName, contraseñaSinHassear);
+        llamarRetrofitInsertarUsuario(usuarioAInsertar);
+    }
+    private void llamarRetrofitInsertarUsuario(Usuario usuarioAInsertar) {
+        ApiService apiService = ApiClient.getInstance().getApiService();
+        Log.e("NOMBRE:","VALOR:" + usuarioAInsertar.getNombre());
+        if (apiService != null) {
+            Call<RespuestaInsertarUsuario> call = apiService.insertarUsuario(usuarioAInsertar);
+            String url = call.request().url().toString();
+
+            Log.d("URL de la llamada", url);
+            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
+
+                @Override
+                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
+                    Log.e("antes del if de succesfull", "Código de error: " + response.code());
+
+                    if (response.isSuccessful()) {
+                        RespuestaInsertarUsuario respuesta = response.body();
+                        Log.d("JSON de la respuesta", new Gson().toJson(respuesta));
+
+                        Log.d("Respuesta Exitosa", String.valueOf(respuesta));
+                        Toast.makeText(Registro.this, "INSERTYADO", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.e("Respuesta Erronea", "Código de error: " + response.code());
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                   Log.e("Respuesta Erronea", "Código de error: " + t.getMessage());
+                }
+
+            });
+           // Toast.makeText(Registro.this,"INSERTYADO", Toast.LENGTH_SHORT).show();
+        } else {
+            // Mostrar un Toast indicando que apiService es null
+            Toast.makeText(Registro.this,"Error: apiService es null", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
