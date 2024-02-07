@@ -15,7 +15,7 @@ public class ApiClient {
 
         OkHttpClient okHttpClient = okHttpBuilder.build();
         retrofitClient =  new Retrofit.Builder()
-                .baseUrl("http://192.168.56.1:8086")//link de la url(seria el puerto de nuestro locahost o algo asi) que es tu ip
+                .baseUrl("http://192.168.56.1:8080")//link de la url(seria el puerto de nuestro locahost o algo asi) que es tu ip
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
