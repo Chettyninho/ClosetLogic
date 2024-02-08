@@ -1,0 +1,62 @@
+ @DeleteMapping("/{id_usuario}")
+public ResponseEntity<String> deleteUser(@PathVariable Integer id_usuario) {
+    boolean deleted = usuarioService.deleteUser(id_usuario);
+
+    if (deleted) {return ResponseEntity.ok("Usuario eliminado correctamente");
+   } else {return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+    }
+}
+
+
+  public boolean deleteUser(Integer idUsuario) {
+        if (usuarioRepository.existsById(idUsuario)) {
+            usuarioRepository.deleteById(idUsuario);
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+@GetMapping("/{id_usuario}/outfits")  
+    public List<Outfit> obtenerOutfitsUsuario(@PathVariable Integer id_usuario) {
+        return outfitService.obtenerOutfitsUsuario(id_usuario);
+    }
+
+
+List<Outfit> findByIdPropietario(Integer idPropietario);
+
+
+ public List<Outfit> obtenerOutfitsUsuario(Integer idUsuario) {
+        return outfitRepository.findByIdPropietario(idUsuario);}
+
+
+
+
+
+
+// todos los outfits de un usuario específico
+
+SELECT u.id AS id_usuario, o.*
+FROM usuario u
+LEFT JOIN armario a ON u.id = a.id
+LEFT JOIN outfit o ON a.id = o.id;
+
+
+
+
+
+
+
+
+
+
+
