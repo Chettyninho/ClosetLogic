@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -71,9 +72,12 @@ public class UsuarioController {
         }
     }
 
-
-
-
-
+    @GetMapping("/fotos")
+    public ResponseEntity<List<byte[]>> getAllUsuariosFotos() {
+        List<byte[]> fotos = usuarioService.getAllUsuarios().stream()
+                .map(Usuario::getFotoUsuario)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(fotos);
+    }
 
 }
