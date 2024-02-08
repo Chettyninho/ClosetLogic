@@ -71,17 +71,23 @@ public class LogIn extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
                         RespuestaInsertarUsuario respuesta = response.body();
-                        if(respuesta!=null){
-                            startActivity(new Intent(LogIn.this, MainActivity.class));
+                        if (respuesta != null) {
+                            //String userNameCheck = respuesta.getUserName(); // Obtén el usuario de la respuesta
+
+                            if (respuesta.getUserName() != null && respuesta.getEmail() != null && respuesta.getHashContraseña() != null) {
+                                // Si el usuario tiene valores no nulos en email y contraseña, inicia HomeFragment
+                                startActivity(new Intent(LogIn.this, HomeFragment.class));
+                                finish();
+                                Toast.makeText(LogIn.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Si alguno de los campos es nulo, muestra un Toast de usuario no registrado
+                                Toast.makeText(LogIn.this, "Usuario no registrado", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(LogIn.this, "En el else del éxito", Toast.LENGTH_SHORT).show();
                         }
-
-                            startActivity(new Intent(LogIn.this, HomeFragment.class));
-                            finish();
-                        Toast.makeText(LogIn.this,"dentro del succesful", Toast.LENGTH_SHORT).show();
-
-                    }else{
-                        Toast.makeText(LogIn.this,"en el else del succesful", Toast.LENGTH_SHORT).show();
-
+                    } else {
+                        Toast.makeText(LogIn.this, "En el else del éxito", Toast.LENGTH_SHORT).show();
                     }
 
                 }
