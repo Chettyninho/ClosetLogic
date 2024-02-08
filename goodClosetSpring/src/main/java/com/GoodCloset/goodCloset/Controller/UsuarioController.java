@@ -72,6 +72,21 @@ public class UsuarioController {
     }
 
 
+@DeleteMapping("/{idUsuario}")
+    public ResponseEntity<String> deleteUser(@PathVariable Integer idUsuario) {
+        try {
+            boolean deleted = usuarioService.deleteUser(idUsuario);
+            if (deleted) {
+                return ResponseEntity.ok("Usuario eliminado correctamente");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Usuario no encontrado");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al eliminar el usuario: " + e.getMessage());
+        }
+    }
 
 
 
