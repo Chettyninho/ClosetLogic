@@ -39,10 +39,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="PASWORD"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/loginbg"
         app:layout_constraintTop_toTopOf="@id/guideline8" />
 
     <Button
+        android:id="@+id/enviarLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ENVIAR"

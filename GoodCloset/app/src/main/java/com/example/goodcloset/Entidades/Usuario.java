@@ -16,17 +16,17 @@ public class Usuario {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("user_name")
-    private String user_name;
+    @SerializedName("username")
+    private String username;
+
+
 
     @SerializedName("fechaNacimiento")
     private String fechaNacimiento;
 
-    @SerializedName("contraseñaSinHassear")
-    private String contraseñaSinHassear;
+    @SerializedName("password")
+    private String password;
 
-    @SerializedName("salt")
-    private byte[] salt;
 
     public Integer getId() {
         return id;
@@ -61,11 +61,11 @@ public class Usuario {
     }
 
     public String getUserName() {
-        return user_name;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.user_name = userName;
+        this.username = userName;
     }
 
     public String getFechaNacimiento() {
@@ -77,30 +77,28 @@ public class Usuario {
     }
 
     public String getContraseñaSinHassear() {
-        return contraseñaSinHassear;
+        return password;
     }
 
     public void setContraseñaSinHassear(String contraseñaSinHassear) {
-        this.contraseñaSinHassear = contraseñaSinHassear;
+        this.password = contraseñaSinHassear;
     }
 
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
 
     public Usuario() {
+    }
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Usuario(String nombre, String surname, String email, String userName, String contraseñaSinHassear) {
         this.nombre = nombre;
         this.surname = surname;
         this.email = email;
-        this.user_name = userName;
+        this.username = userName;
 
-        this.contraseñaSinHassear = contraseñaSinHassear;
+        this.password = contraseñaSinHassear;
     }
 }

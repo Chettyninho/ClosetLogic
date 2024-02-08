@@ -21,6 +21,7 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String surname;
+    @Column(name = "email")
     private String email;
     @Column(name = "user_name")
     private String username;

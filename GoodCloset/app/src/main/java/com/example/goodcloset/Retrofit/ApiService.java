@@ -9,5 +9,7 @@ import retrofit2.http.POST;
 public interface ApiService {
     @POST("/usuarios/saveUser")
     Call<RespuestaInsertarUsuario> insertarUsuario(@Body Usuario usuario);
+@POST("/inicio/login")
+    Call<RespuestaInsertarUsuario> login(@Body Usuario usuario);
 }
 
