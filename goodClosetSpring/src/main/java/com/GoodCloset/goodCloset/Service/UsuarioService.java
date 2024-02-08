@@ -32,6 +32,12 @@ public class UsuarioService {
     }
 */
 
-
+  public boolean deleteUser(Integer idUsuario) {
+        if (usuarioRepository.existsById(idUsuario)) {
+            usuarioRepository.deleteById(idUsuario);
+            return true;
+        }
+        return false;
+    }
 
 }
