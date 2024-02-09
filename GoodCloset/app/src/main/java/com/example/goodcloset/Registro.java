@@ -2,6 +2,7 @@ package com.example.goodcloset;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -77,10 +78,13 @@ public class Registro extends AppCompatActivity {
         apiClient = ApiClient.getInstance();
 
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 prepararYInsertarUsuario();
+                startActivity(new Intent(new Intent(Registro.this, MainActivity.class)));
             }
+
         });
 
     }

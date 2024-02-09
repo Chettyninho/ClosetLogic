@@ -2,6 +2,7 @@ package com.GoodCloset.goodCloset.Service;
 
 import com.GoodCloset.goodCloset.Models.Outfit;
 import com.GoodCloset.goodCloset.Repository.OutfitRepository;
+import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class OutfitService {
     }
 
 
-
-
+    public Outfit nuevoOutfit(Outfit newOutfit) {
+        return outfitRepository.save(newOutfit);
+    }
 }

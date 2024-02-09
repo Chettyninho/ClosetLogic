@@ -23,6 +23,8 @@ public class Outfit {
     private String descripcion;
     private String fecha_cracion;
 
+    private List<Prenda> listaPrendas;
+
     //@ManyToMany(mappedBy = "outfits")
     //private List<Armario> armarios;
 
