@@ -10,15 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Foto de perfil -->
-
-        <!-- Contenedor de información del perfil -->
-
         <ImageView
             android:id="@+id/profileImageView"
             android:layout_width="120dp"
-            android:layout_height="120dp"
-
+            android:layout_height="142dp"
             android:layout_gravity="start"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -41,8 +36,14 @@
                 android:text="Nombre de Usuario"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
 
-            <!-- Número de seguidores -->
+
             <TextView
                 android:id="@+id/followersTextView"
                 android:layout_width="wrap_content"
@@ -52,13 +53,40 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp" />
 
-            <!-- Otros detalles del perfil (puedes agregar más TextViews según sea necesario) -->
-            <!-- Por ejemplo, puede ser la biografía, el número de publicaciones, etc. -->
+            <TextView
+                android:id="@+id/tvNumeroArmarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="0 armarios"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- TabLayout para las pestañas -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?attr/colorPrimary"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="@android:color/white"
+            />
+
     </FrameLayout>
-
-
-
 </FrameLayout>

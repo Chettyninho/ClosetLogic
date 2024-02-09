@@ -1,31 +1,27 @@
 package com.example.goodcloset;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import com.google.android.material.tabs.TabLayout;
 
-import java.lang.ref.WeakReference;
-
-
-public class ProfileFragment extends Fragment {
+public class  ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflar el diseño del fragmento, hay que inflarlo antes porque sino no sabe donde cargar los datos
+        // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        // Obtener referencia al TabLayout desde el diseño inflado
+        TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
+
+        // Agregar pestañas al TabLayout
+        tabLayout.addTab(tabLayout.newTab().setText("Sección 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sección 2"));
+
         return rootView;
-
     }
-
-
 }
