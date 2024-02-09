@@ -32,6 +32,7 @@ public class Usuario {
     private String fechaNacimiento;
     @Column(name = "hash_contrasena")
     private String password;
+    @Column(name = "salt")
     private byte[] salt;
     private byte[] foto_usuario;
 

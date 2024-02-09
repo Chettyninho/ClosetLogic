@@ -27,10 +27,6 @@ public class HomeController {
     public Usuario loguear(@RequestBody Usuario usuario) {
         System.out.println("usuario a la llegada: " +usuario);
 
-
-//aqui mejor obtener todo porque vamos a tener que hassear la contraseña que nos pase y compararla con la hasseada
-
-
         List<Usuario> usuarios = uRepo.findAll();
         //System.out.println("\nListaDeUsuarios: " + usuarios);
         Usuario usuario2 = null;
@@ -40,9 +36,9 @@ public class HomeController {
 //                System.out.println("username: " +u.getUsername() + "\nPswd: " + u.getPassword());
 //                System.out.println("Contraseña despues de hassear: " + comprobarContraseña(u,usuario.getPassword()));
                 if (u.getUsername().equals(usuario.getUsername()) && u.getPassword().equals(comprobarContraseña(u,usuario.getPassword()))) {
-
                     usuario2 = u;
                     System.out.println("\n\n\nEl usuario que se devuelve SI coincide es: " + usuario2);
+                    break;
                 }else{
                     usuario2 = new Usuario();
                     System.out.println("\n\n\nEl usuario que se devuelvesi NO coincide es: " + usuario2);
@@ -50,7 +46,7 @@ public class HomeController {
             }
 
         }
-
+        System.out.println("usuario que se devuelve" + usuario2);
         return usuario2;
     }
 

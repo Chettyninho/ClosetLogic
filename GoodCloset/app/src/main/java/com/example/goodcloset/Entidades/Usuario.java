@@ -27,7 +27,8 @@ public class Usuario {
     @SerializedName("password")
     private String password;
 
-
+    @SerializedName("salt")
+    private byte[] salt;
     public Integer getId() {
         return id;
     }
@@ -84,6 +85,21 @@ public class Usuario {
         this.password = contraseñaSinHassear;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
 
     public Usuario() {
     }

@@ -2,6 +2,9 @@ package com.example.goodcloset.Retrofit;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 public class RespuestaInsertarUsuario {
 
     @SerializedName("id")
@@ -32,7 +35,14 @@ public class RespuestaInsertarUsuario {
     private String hashContraseña;
 
     @SerializedName("salt")
-    private byte[] salt;
+    private String salt;
+
+    private byte[] saltReal;
+
+
+    public void setSaltReal(byte[] saltReal) {
+        this.saltReal = saltReal;
+    }
 
     @SerializedName("foto_usuario")
     private String fotoUsuario;  // Dependiendo del formato de tu API, ajusta el tipo de dato
@@ -76,7 +86,10 @@ public class RespuestaInsertarUsuario {
     }
 
     public byte[] getSalt() {
-        return salt;
+        if (salt != null) {
+            return Base64.getDecoder().decode(salt); //da fallo pero funciona y recoje el array de bytes correctamente.
+        }
+        return null;
     }
 
     public String getFotoUsuario() {
