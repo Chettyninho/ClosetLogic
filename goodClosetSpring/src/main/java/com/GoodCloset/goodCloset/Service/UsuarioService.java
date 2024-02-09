@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UsuarioService {
     @Autowired
@@ -21,8 +23,6 @@ public class UsuarioService {
     public Usuario saveUser(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
-
-
     public boolean existsByUsername(String username) { return usuarioRepository.existsByUsername(username); }
 
     public void createUser(Usuario user) { usuarioRepository.save(user); }
@@ -32,6 +32,7 @@ public class UsuarioService {
     }
 */
 
+
   public boolean deleteUser(Integer idUsuario) {
         if (usuarioRepository.existsById(idUsuario)) {
             usuarioRepository.deleteById(idUsuario);
@@ -39,5 +40,17 @@ public class UsuarioService {
         }
         return false;
     }
+
+    public byte[] getFotoUsuarioPorId(Integer id) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+
+        if (usuarioOptional.isPresent()) {
+            return usuarioOptional.get().getFotoUsuario();
+        } else {
+            return null;
+        }
+    }
+
+
 
 }

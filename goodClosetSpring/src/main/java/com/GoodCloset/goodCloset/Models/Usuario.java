@@ -32,7 +32,7 @@ public class Usuario {
     @Column(name = "hash_contrasena")
     private String password;
     private byte[] salt;
-    private byte[] foto_usuario;
+    private byte[] fotoUsuario;
 
     //@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Armario> armarios;
