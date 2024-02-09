@@ -98,6 +98,7 @@ public class Registro extends AppCompatActivity {
         String contraseñaSinHassear = password.getText().toString();
 
         usuarioAInsertar = new Usuario(nombre, aepllid, Email, userName, contraseñaSinHassear);
+        Log.d("!!!!!!!!!!!!nombre de usuario: " + usuarioAInsertar.getUserName(),"contraseña: " +usuarioAInsertar.getContraseñaSinHassear());
         llamarRetrofitInsertarUsuario(usuarioAInsertar);
     }
     private void llamarRetrofitInsertarUsuario(Usuario usuarioAInsertar) {

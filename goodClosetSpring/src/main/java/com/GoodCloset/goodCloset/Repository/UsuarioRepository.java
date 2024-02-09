@@ -8,9 +8,10 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     //List<Usuario> findAll(); este metodo realmene no hace fata porque viene predefinido en JpaRepository
 
-    public Usuario findByUsernameAndPassword(String username, String password);
+    public List<Usuario> findByUsernameAndPassword(String username, String password);
 
     boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 
     /*@Query("SELECT * FROM Usuario u JOIN Seguidor s ON u.id = s.idSeguido WHERE s.idSeguidor = 1") // HE PUESTO PARA COMPROBAR SI FUNCIONABA Y LOS SACABA
     List<Usuario> findUsuariosSeguidosPorUsuario(@Param("idSeguidor") Integer idSeguidor);*/

@@ -16,6 +16,7 @@ public interface ApiService {
     @GET("/usuarios/all")
     Call<List<Usuario>> obtenerUsuarios();
 
-   
+    @POST("/inicio/login")
+        Call<RespuestaInsertarUsuario> login(@Body Usuario usuario);
 }
 

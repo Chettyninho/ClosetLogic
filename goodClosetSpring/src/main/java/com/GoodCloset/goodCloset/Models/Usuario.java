@@ -21,6 +21,7 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String surname;
+    @Column(name = "email")
     private String email;
     @Column(name = "user_name")
     private String username;
@@ -31,6 +32,7 @@ public class Usuario {
     private String fechaNacimiento;
     @Column(name = "hash_contrasena")
     private String password;
+    @Column(name = "salt")
     private byte[] salt;
     private byte[] fotoUsuario;
 

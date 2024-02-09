@@ -36,7 +36,7 @@ public class UsuarioController {
 
     @PostMapping("/saveUser") //hace tanto la funcion de insert como de update.
     public Usuario saveUser(@RequestBody Usuario usuario){
-        return usuarioService.saveUser(usuario);
+        return usuarioService.comprobarYRegistrarUsuario(usuario);
     }
 
     @GetMapping("/find-user-by-chain/{chain}")
