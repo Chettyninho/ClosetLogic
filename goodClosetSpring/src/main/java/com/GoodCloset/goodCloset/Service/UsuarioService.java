@@ -32,6 +32,15 @@ public class UsuarioService {
     }
 */
 
+
+  public boolean deleteUser(Integer idUsuario) {
+        if (usuarioRepository.existsById(idUsuario)) {
+            usuarioRepository.deleteById(idUsuario);
+            return true;
+        }
+        return false;
+    }
+
     public byte[] getFotoUsuarioPorId(Integer id) {
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
 
@@ -41,6 +50,7 @@ public class UsuarioService {
             return null;
         }
     }
+
 
 
 }
