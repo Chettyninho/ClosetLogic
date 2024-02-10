@@ -17,8 +17,12 @@ public class OutfitService {
         return outfitRepository.findAll();
     }
 
-
+//añade un outfit
     public Outfit nuevoOutfit(Outfit newOutfit) {
         return outfitRepository.save(newOutfit);
+    }
+//añade un outfit pasandole la lista de imagenes
+    public Outfit nuevoOutfit(Integer idArmario, List<String> imagenesCapturadaBase64) {
+        //aqui habra que gestionar la creacion o no del armario en funcion des
     }
 }

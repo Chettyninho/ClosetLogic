@@ -1,8 +1,11 @@
 package com.GoodCloset.goodCloset.Controller;
 
 import com.GoodCloset.goodCloset.Models.Armario;
+import com.GoodCloset.goodCloset.Models.Outfit;
 import com.GoodCloset.goodCloset.Service.ArmarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -24,6 +27,9 @@ public class ArmarioController {
         return armarioService.saveArmario(armario);
     }
 
+
+
+
     //obtiene todos los armarios de un mismo prpietario
     @GetMapping("/propietario/{idPropietario}")
     public List<Armario> getAllArmariosDe(@PathVariable Integer idPropietario){
@@ -37,7 +43,16 @@ public class ArmarioController {
         }
     }
 
+    @GetMapping("/{id_armario}/outfits")
+    public ResponseEntity<List<Outfit>> obtenerOutfitsDeArmario(@PathVariable Integer id_armario) {
+        List<Outfit> outfits = armarioService.findOutfitsByArmarioId(id_armario);
 
+        if (outfits.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(outfits, HttpStatus.OK);
+        }
+    }
 
     }
 

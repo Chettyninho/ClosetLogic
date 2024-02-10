@@ -4,7 +4,7 @@ CREATE DATABASE GOOD_CLOSET;
 USE GOOD_CLOSET;
 
 	/*drop table usuario;*/
-  /*truncate table usuario;*/
+  truncate table usuario;
 CREATE TABLE usuario (
     id integer AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(30),
@@ -415,25 +415,25 @@ VALUES
     (4, 5),
     (5, 4);
 
-  /*drop table armario;*/
+  drop table armario;
   /*truncate table armario;*/
 CREATE TABLE armario(
 id integer auto_increment primary key,
-nombre_armario varchar(40),
+nombre varchar(40),
 contador_de_outfits integer,
 contador_de_likes integer,
 id_propietario integer,
 
 FOREIGN KEY (id_propietario) REFERENCES usuario(id)
 );
-INSERT INTO armario (contador_de_outfits, contador_de_likes, id_propietario)
+INSERT INTO armario (nombre, contador_de_outfits, contador_de_likes, id_propietario)
 VALUES
-    ("coleccion verano",10, 500, 1),
-    ("oversize shirts",5, 250, 2),
-    ("formal wedding options",8, 300, 3),
-    ("carnaval23k",15, 700, 4),
-    ("full nike options",12, 450, 5),
-    ("vinted full outfits",66, 66, 1);
+    ('primavera',10, 500, 1),
+    ('verano',5, 250, 2),
+    ('otoño',8, 300, 3),
+    ('invierno',15, 700, 4),
+    ('Party',12, 450, 5),
+    ('OldSchool',66, 66, 1);
     
   /*drop table outfit;*/
   /*truncate table outfit;*/
@@ -459,6 +459,7 @@ id integer auto_increment primary key,
   FOREIGN KEY(id_armario) REFERENCES armario(id),
   FOREIGN KEY(id_outfit) REFERENCES outfit(id)
   );
+ /* drop table  armario_outfit;*/
   
   
    INSERT INTO armario_outfit (id_armario, id_outfit)
@@ -845,6 +846,42 @@ VALUES
     (4, 4),
     (5, 5);
 
+    /*drop table tag;*/
+  /*truncate table tag;*/
+ /* CREATE TABLE tag(
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  tag varchar(31)
+  );
+  INSERT INTO tag (tag)
+VALUES
+    ('Deportivo'),
+    ('Casual'),
+    ('Formal'),
+    ('Verano'),
+    ('Invierno');
+ 
+
+  
+    /*drop table prenda_tags;*/
+  /*truncate table prenda_tags;*/
+ /* CREATE TABLE prenda_tags(
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  id_prenda integer,
+  id_tag integer,
+  
+  FOREIGN KEY(id_prenda) REFERENCES prenda(id),
+  FOREIGN KEY(id_tag) REFERENCES tag(id)
+  );
+  INSERT INTO prenda_tags (id_prenda, id_tag)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);*/
+
+
+ 
  --------------------------------------  CONSULTAS ---------------------
  
  USE GOOD_CLOSET;

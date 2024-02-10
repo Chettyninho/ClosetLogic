@@ -23,7 +23,7 @@ public class Outfit {
     private String descripcion;
     private String fecha_cracion;
 
-    //private List<Prenda> listaPrendas;
+    private List<String> listaPrendasBase64;
 
     //@ManyToMany(mappedBy = "outfits")
     //private List<Armario> armarios;

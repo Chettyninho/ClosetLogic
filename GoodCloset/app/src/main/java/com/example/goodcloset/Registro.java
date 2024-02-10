@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.goodcloset.Entidades.Usuario;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
-import com.example.goodcloset.Retrofit.RespuestaInsertarUsuario;
+import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.google.gson.Gson;
 
 import retrofit2.Call;

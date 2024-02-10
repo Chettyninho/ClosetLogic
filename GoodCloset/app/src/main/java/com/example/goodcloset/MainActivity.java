@@ -7,9 +7,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
+import com.example.goodcloset.Retrofit.SingletonUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,12 +20,29 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
+    //RespuestaInsertarUsuario usuarioRecibido;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadFragment(new HomeFragment(), true);
 
+        //Intent intent = getIntent();
+        //if(intent.hasExtra("usuarioRegistrado")){
+        //     usuarioRecibido = (RespuestaInsertarUsuario) intent.getSerializableExtra("usuarioRegistrado");
+//        }
+//Log.d("EN EL MAIN:", ""+usuarioRecibido.getEmail().toString());
+        ////////////////////////////////////////////////
+        //recuperacion de los datos del singleton creado al inicar sesion
+        RespuestaInsertarUsuario usuarioRecibido = SingletonUser.getInstance().getUsuario();
+        if (usuarioRecibido != null) {
+            Log.d("EN EL MAIN con singleton:", "El id es: "+usuarioRecibido.getId());
+        } else {
+            Log.d("EN EL MAIN con singleton:", "fallo al recuperar el singleton");
+        }
+
+        /////////////////////////////////////////////////
         bottomNavigationView = findViewById(R.id.bottomNavView);
         frameLayout = findViewById(R.id.frameLayout);
 

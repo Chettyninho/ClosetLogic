@@ -62,17 +62,6 @@ public class UsuarioController {
 }*/
 
 
-    @GetMapping("/armario/{id_armario}/outfits")
-    public ResponseEntity<List<Outfit>> obtenerOutfitsDeArmario(@PathVariable Integer id_armario) {
-        List<Outfit> outfits = armarioService.findOutfitsByArmarioId(id_armario);
-
-        if (outfits.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(outfits, HttpStatus.OK);
-        }
-    }
-
 
 
 @DeleteMapping("/{idUsuario}")
