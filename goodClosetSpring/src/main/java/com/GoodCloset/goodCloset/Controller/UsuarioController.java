@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -91,7 +92,18 @@ public class UsuarioController {
     }
 
 
+    @GetMapping(("/find-user-by-username/{username}"))
+    public Usuario findByUsername(@PathVariable("username") String username){
+        List<Usuario> allUsuarios = usuarioService.getAllUsuarios();
+        Usuario usuarioByUsername = new Usuario();
 
+        for(Usuario user : allUsuarios){
+            if(Objects.equals(user.getUsername(), username)){
+                usuarioByUsername = user;
+            }
+        }
+        return usuarioByUsername;
+    }
 
     @GetMapping("/fotos")
     public ResponseEntity<List<byte[]>> getAllUsuariosFotos() {

@@ -1,0 +1,15 @@
+COSAS QUE HAY QUE HACER:
+cuando inicias sesion o te registyras, hay q mandar el username a la actividad para que llame a la api y que saque toda la informacion del usuario.
+De esta manera se guarda un objeto de Usuario con toda la info y podemos sacar todo(seguidores, publicaciones, sus armarios)
+
+La llamada en el spring funciona, en el android con el retrofit no.
+
+PERFIL:
+ImageView y textviews de seguidores o likes estarian(falta pintarlos). Y debajo de eso faltan los dos tabs (los tiene mario montado la base) donde irian los dos recyclerviews(1 con los armarios y otro con los armarios likeados?¿).la fila de ese recycler esta medio montada(el rowArmario.xml).
+
+HomePage falta montar el recyclerView ()
+
+SQL-> tags a tomar por culo, y el nombre de amrario incluido(en las tablas e inserts)
+
+Imagenes: seguimos igual en cuanto a pintarlas o pèdirlas creo.
+

@@ -19,6 +19,7 @@ public class Armario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String nombre_armario;
     private int contador_de_outfits;
     private int contador_de_likes;
     private int id_propietario;
