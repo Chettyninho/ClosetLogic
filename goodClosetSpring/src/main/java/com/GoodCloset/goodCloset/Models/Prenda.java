@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "Prenda")
 @NoArgsConstructor
@@ -33,8 +31,8 @@ public class Prenda {
 
     @Column(name = "enlace_web")
     private String enlaceWeb;
-    @Column(name = "foto_prenda")
-    private byte[] foto_prenda;
+//    @Column(name = "foto_prenda")
+//    private byte[] foto_prenda;
 
 //    @ManyToMany(mappedBy = "prendas")
 //    private List<Outfit> outfits;

@@ -17,9 +17,9 @@ public class Prenda_Outfit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_prenda")
-    private Prenda prenda;
+//    @ManyToOne
+//    @JoinColumn(name = "id_prenda")
+//    private Prenda prenda;
 
     @ManyToOne
     @JoinColumn(name = "id_outfit")
