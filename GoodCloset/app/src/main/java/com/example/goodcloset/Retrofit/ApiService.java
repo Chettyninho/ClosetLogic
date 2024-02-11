@@ -22,10 +22,9 @@ public interface ApiService {
     @GET("armario/propietario/{idPropietario}")
     Call<RespuestaGetArmariosDeUsuario> getArmariosUser(@Path("idPropietario") Integer idPropietario);
 
-    @POST()
+    @GET("/usuarios/seguidos/{idUsr}")
+    Call<List<Usuario>> getUsersFollowedByMainUser(@Path("idUsr") Integer idPropietario);
     @GET("/usuarios/all")
     Call<List<Usuario>> obtenerUsuarios();
-
-
 }
 

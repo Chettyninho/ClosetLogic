@@ -55,11 +55,10 @@ public class UsuarioController {
 
 
 
-/*@GetMapping("/seguidos/{idSeguidor}")
+@GetMapping("/seguidos/{idSeguidor}")
     public List<Usuario> obtenerUsuariosSeguidosPorUsuario(@PathVariable Integer idSeguidor) {
         return usuarioService.obtenerUsuariosSeguidosPorUsuario(idSeguidor);
- que carga la pantalla principal
-}*/
+}
 
 
 
@@ -94,7 +93,7 @@ public class UsuarioController {
         return usuarioByUsername;
     }
 
-    @GetMapping("/fotos")
+    @GetMapping("/fotos")//creo que la lista debería de ser en String base 64, pero (?)
     public ResponseEntity<List<byte[]>> getAllUsuariosFotos() {
         List<byte[]> fotos = usuarioService.getAllUsuarios().stream()
                 .map(Usuario::getFotoUsuario)

@@ -100,10 +100,10 @@ public class UsuarioService {
 //
 //    public void createUser(Usuario user) { usuarioRepository.save(user); }
 
-/*public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
+public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
         return usuarioRepository.findUsuariosSeguidosPorUsuario(idSeguidor);
     }
-*/
+
 
 
   public boolean deleteUser(Integer idUsuario) {

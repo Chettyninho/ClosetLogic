@@ -9,15 +9,27 @@
     <!-- TODO: Update blank fragment layout -->
 
     <FrameLayout
+        android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#292D4E"></FrameLayout>
+        android:background="#292D4E">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CREAR OUTFIT"
-        android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="CREAR OUTFIT"
+            android:textColor="@color/white" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/recoger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REcoger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
