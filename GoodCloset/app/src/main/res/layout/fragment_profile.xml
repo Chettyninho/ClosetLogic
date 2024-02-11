@@ -74,7 +74,27 @@
             android:layout_marginStart="30dp"
             android:background="@android:color/darker_gray" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recicledView"
+            android:layout_marginTop="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="380dp" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <!-- TabLayout para las pestañas -->
+        <Button
+            android:id="@+id/NewArmarioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Closet"
+            android:layout_marginTop="600dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="150dp">
+
+        </Button>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"

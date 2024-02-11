@@ -7,7 +7,7 @@ public class ArmarioModelo {
     @SerializedName("id")
     private int id;
 
-    @SerializedName("nombre_armario")
+    @SerializedName("nombre")
     private String nombre_armario;
 
     @SerializedName("contador_de_outfits")
@@ -17,7 +17,11 @@ public class ArmarioModelo {
     private int contador_de_likes;
 
     @SerializedName("id_propietario")
-    private String id_propietario;
+    private Integer id_propietario;
+
+    public void setId_propietario(Integer id_propietario) {
+        this.id_propietario = id_propietario;
+    }
 
     public int getId() {
         return id;
@@ -25,6 +29,10 @@ public class ArmarioModelo {
 
     public String getNombre_armario() {
         return nombre_armario;
+    }
+
+    public void setNombre_armario(String nombre_armario) {
+        this.nombre_armario = nombre_armario;
     }
 
     public int getContador_de_outfits() {
@@ -35,7 +43,7 @@ public class ArmarioModelo {
         return contador_de_likes;
     }
 
-    public String getId_propietario() {
+    public Integer getId_propietario() {
         return id_propietario;
     }
 }

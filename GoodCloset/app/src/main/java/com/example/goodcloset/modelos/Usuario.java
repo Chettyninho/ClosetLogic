@@ -1,4 +1,4 @@
-package com.example.goodcloset.Entidades;
+package com.example.goodcloset.modelos;
 
 import com.google.gson.annotations.SerializedName;
 

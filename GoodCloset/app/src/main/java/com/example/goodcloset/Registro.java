@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.goodcloset.Entidades.Usuario;
+import com.example.goodcloset.modelos.Usuario;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;

@@ -35,8 +35,7 @@ public class ArmarioController {
     public List<Armario> getAllArmariosDe(@PathVariable Integer idPropietario){
         try {
             // Llama al servicio para obtener los armarios por propietario
-            List<Armario> armariosDelPropietario = armarioService.findAllArmariosByPropietario(idPropietario);
-            return armariosDelPropietario;
+            return armarioService.findAllArmariosByPropietario(idPropietario);
         } catch (Exception e) {
             // Maneja cualquier excepción y devuelve una lista vacía o manejo de errores según sea necesario
             return Collections.emptyList();
