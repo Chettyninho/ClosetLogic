@@ -13,9 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
@@ -27,6 +32,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,8 +43,14 @@ public class  ProfileFragment extends Fragment {
     TextView nombreUser, NumeroFollower, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
     ApiService apiService;
     Button newArmarioButton;
+<<<<<<< HEAD
     RecyclerView recyclerView;
     List<ArmarioModelo> armariosList;
+=======
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+>>>>>>> 9573c1effbcf0e8ddbb8a1ae337fbd63fbcefd15
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +72,7 @@ public class  ProfileFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Sección 2"));
 
         apiService = ApiClient.getInstance().getApiService();
+<<<<<<< HEAD
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
         Log.d("test",usuario.toString());
 
@@ -69,12 +82,24 @@ public class  ProfileFragment extends Fragment {
         rootView.findViewById(R.id.tabLayout);
         establecerDatosDelUsuarioEnLaVista(usuario);
         recuperarArmariosUsuario(apiService,usuario);
+=======
+        recuperarArmariosUsuario(apiService);
+
+        tabLayout = rootView.findViewById(R.id.tabLayout);
+        viewPager = rootView.findViewById(R.id.viewPager);
+
+        recyclerView = rootView.findViewById(R.id.recicledViewPerfil);
+
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+>>>>>>> 9573c1effbcf0e8ddbb8a1ae337fbd63fbcefd15
         //creo que tendremos que usar un live data para manejaar el tema de los armarios y eso. lo mismo pasara con los datos del home y de "par ti" en tal caso.
 
 
         return rootView;
     }
 
+<<<<<<< HEAD
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
        nombreUser.setText("@"+usuario.getUserName());
        NumeroFollower.setText("Seguidores: " + String.valueOf(usuario.getContadorSeguidores()));
@@ -83,6 +108,49 @@ public class  ProfileFragment extends Fragment {
 
     private void recuperarArmariosUsuario(ApiService apiService, RespuestaInsertarUsuario usuario) {
 
+=======
+    private void setupViewPager(ViewPager viewPager) {
+        MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new FragmentVerPerfil(), "Ver Perfil");
+        adapter.addFragment(new FragmentVerArmarios(), "Ver Armarios");
+        viewPager.setAdapter(adapter);
+    }
+
+    class MyPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> fragmentList = new ArrayList<>();
+        private final List<String> fragmentTitleList = new ArrayList<>();
+
+        public MyPagerAdapter(FragmentManager manager) {
+            super(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragmentList.add(fragment);
+            fragmentTitleList.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitleList.get(position);
+        }
+    }
+
+
+    private void recuperarArmariosUsuario(ApiService apiService) {
+        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+>>>>>>> 9573c1effbcf0e8ddbb8a1ae337fbd63fbcefd15
         if(apiService != null){
             Call<List<ArmarioModelo>> call = apiService.getArmariosUser(1);// 1, es para la prueba, en realidad hay que meter -> usuario.getId()
             call.enqueue(new Callback<List<ArmarioModelo>>() {
