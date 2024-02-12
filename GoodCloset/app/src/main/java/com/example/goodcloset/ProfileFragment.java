@@ -31,6 +31,7 @@ import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -55,7 +56,7 @@ public class  ProfileFragment extends Fragment {
 
         // Obtener referencia al TabLayout desde el diseño inflado
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
-        Button newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
+        FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
 
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +153,7 @@ public class  ProfileFragment extends Fragment {
                         RespuestaInsertarUsuario usuario = response.body();
                         if (usuario != null) { // Verificar que el objeto usuario no sea nulo
                             String fotoBase64 = usuario.getFotoUsuario();
-                            Log.d("FotoBase64", fotoBase64); // Agrega este log para ver la fotoBase64
+                            Log.d("FotoBase64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
                             if (fotoBase64 != null && !fotoBase64.isEmpty()) {
                                 // Decodificar la imagen desde Base64
                                 byte[] decodedBytes = Base64.decode(fotoBase64, Base64.DEFAULT);

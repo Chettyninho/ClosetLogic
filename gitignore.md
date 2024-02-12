@@ -106,3 +106,28 @@ logs/
 
 # Properties
 application.properties
+# Directorios
+.gradle/
+.idea/
+/.externalNativeBuild/
+/captures/
+
+# Archivos
+local.properties
+*.iml
+*.log
+*.pot
+*.tmp
+*.patch
+*.swp
+
+# Construcción de salida
+/build/
+/captured-local.properties
+/externalNativeBuild/
+
+# Archivos de configuración
+proguard-rules.pro
+
+# Archivos de despliegue
+release/
