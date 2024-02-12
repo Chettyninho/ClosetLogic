@@ -7,6 +7,7 @@ import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -35,6 +36,8 @@ public interface ApiService {
     Call<RespuestaInsertarUsuario> getUsuarioById(@Path("id_usuario") int idUsuario);
 
 
+    @GET("usuarios/fotos")
+    Call<ResponseBody> obtenerImagen();
 
 }
 
