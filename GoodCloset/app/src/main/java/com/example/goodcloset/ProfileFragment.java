@@ -1,16 +1,21 @@
 package com.example.goodcloset;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,12 +27,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaGetArmariosDeUsuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -55,6 +62,7 @@ public class  ProfileFragment extends Fragment {
         // Obtener referencia al TabLayout desde el diseño inflado
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
         Button newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
+
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,19 +74,27 @@ public class  ProfileFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Sección 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Sección 2"));
 
+
         apiService = ApiClient.getInstance().getApiService();
         recuperarArmariosUsuario(apiService);
 
         tabLayout = rootView.findViewById(R.id.tabLayout);
         viewPager = rootView.findViewById(R.id.viewPager);
 
-        recyclerView = rootView.findViewById(R.id.recicledViewPerfil);
+        //recyclerView = rootView.findViewById(R.id.recicledViewPerfil);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         //creo que tendremos que usar un live data para manejaar el tema de los armarios y eso. lo mismo pasara con los datos del home y de "par ti" en tal caso.
+
+        //imageview donde pinto la imagen del perfil
+        ImageView profileImageView = rootView.findViewById(R.id.profileImageView);
+        mostrarFotoPerfil(profileImageView);
+
         return rootView;
+
     }
+
 
     private void setupViewPager(ViewPager viewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
@@ -153,6 +169,47 @@ public class  ProfileFragment extends Fragment {
         }
 
     }
+    //mostrar foto de perfil
+    public void mostrarFotoPerfil(ImageView profileImageView) {
+        if (apiService != null) {
+            Call<RespuestaInsertarUsuario> call = apiService.getUsuarioById(1); // Cambia el 1 por el ID del usuario actual
+            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
+                @Override
+                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
+                    if (response.isSuccessful()) {
+                        RespuestaInsertarUsuario usuario = response.body();
+                        if (usuario != null) { // Verificar que el objeto usuario no sea nulo
+                            String fotoBase64 = usuario.getFotoUsuario();
+                            Log.d("FotoBase64", fotoBase64); // Agrega este log para ver la fotoBase64
+                            if (fotoBase64 != null && !fotoBase64.isEmpty()) {
+                                // Decodificar la imagen desde Base64
+                                byte[] decodedBytes = Base64.decode(fotoBase64, Base64.DEFAULT);
+                                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+                                // Mostrar la imagen decodificada en el ImageView
+                                profileImageView.setImageBitmap(decodedBitmap);
+                            }
+                        } else {
+                            Log.e("mostrarFotoPerfil", "El objeto usuario es nulo");
+                        }
+                    } else {
+                        // Manejar la respuesta de error
+                        Log.e("mostrarFotoPerfil", "Respuesta no exitosa: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                    // Manejar el fallo en la llamada a la API
+                    Log.e("mostrarFotoPerfil", "Error en la llamada a la API: " + t.getMessage());
+                }
+            });
+        }
+    }
+
+
+
+
     private void showNewArmarioDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Nuevo Armario");
@@ -233,4 +290,7 @@ public class  ProfileFragment extends Fragment {
 
         builder.show();
     }
+
+
+
 }

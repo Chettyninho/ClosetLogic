@@ -3,6 +3,7 @@ package com.example.goodcloset.Retrofit;
 import com.example.goodcloset.modelos.Usuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public interface ApiService {
 
     @POST("armario/saveArmario")
     Call <ArmarioModelo> postArmariosUser(@Body ArmarioModelo armarioModelo);
+
+    @GET("/usuarios/{id_usuario}")
+    Call<RespuestaInsertarUsuario> getUsuarioById(@Path("id_usuario") int idUsuario);
+
+
 
 }
 
