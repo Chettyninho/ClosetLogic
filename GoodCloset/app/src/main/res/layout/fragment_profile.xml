@@ -7,6 +7,7 @@
     tools:context=".ProfileFragment"
     android:background="#292D4E">
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -190,17 +191,7 @@
 
 
         <!-- TabLayout para las pestañas -->
-        <Button
-            android:id="@+id/NewArmarioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Closet"
-            android:layout_marginTop="600dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginStart="150dp">
 
-        </Button>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -234,6 +225,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout">
         </androidx.viewpager.widget.ViewPager>
+
+        <!-- Agrega al final del FrameLayout -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/NewArmarioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/addcloset" />
 
     </FrameLayout>
 

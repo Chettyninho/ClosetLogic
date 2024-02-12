@@ -84,7 +84,7 @@ nbactions.xml
 .nb-gradle-cache/
 
 # Gradle
-.gradle/
+gradle/
 build/
 
 # BlueJ
