@@ -3,7 +3,8 @@ CREATE DATABASE GOOD_CLOSET;
 
 USE GOOD_CLOSET;
 
-	/*drop table usuario;*/
+	drop table usuario;
+    drop table armario;
   truncate table usuario;
 CREATE TABLE usuario (
     id integer AUTO_INCREMENT PRIMARY KEY,
@@ -397,8 +398,8 @@ VALUES
 00000100010000111010010000110001110110110110010010101000010101001001001111111101011000011011000001101011000111101001010001001');
 
 
- /*drop table seguidor;*/
-  /*truncate table seguidores;*/
+ drop table seguidor;
+  truncate table seguidores;
 CREATE TABLE seguidor(
 id integer auto_increment primary key,
 id_seguidor integer,
@@ -407,13 +408,30 @@ id_seguido integer,
 FOREIGN KEY (id_seguidor) REFERENCES usuario(id),
 FOREIGN KEY (id_seguido) REFERENCES usuario(id)
 );
+Select * from seguidor;
 INSERT INTO seguidor (id_seguidor, id_seguido)
 VALUES
-    (1, 2),
-    (2, 3),
-    (3, 1),
+    (1, 3),
+    (2, 1),
+    (3, 2),
+    (3, 5),
     (4, 5),
-    (5, 4);
+    (3, 1),
+    (1, 2);
+    
+DELIMITER //
+CREATE TRIGGER actualizar_contador_seguidores
+AFTER INSERT ON seguidor
+FOR EACH ROW
+BEGIN
+    UPDATE usuario
+    SET contador_seguidores = (SELECT COUNT(*) FROM seguidor WHERE id_seguido = NEW.id_seguido)
+    WHERE id = NEW.id_seguido;
+END;
+//
+
+DELIMITER ;
+
 
   drop table armario;
   /*truncate table armario;*/

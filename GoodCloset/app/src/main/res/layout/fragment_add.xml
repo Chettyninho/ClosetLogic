@@ -3,33 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <FrameLayout
-        android:id="@+id/frameLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#292D4E">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="CREAR OUTFIT"
-            android:textColor="@color/white" />
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/recoger"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REcoger"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout3" />
+        android:text="HOME"
+        android:textColor="@color/black"/>
 
+    <Button
+        android:id="@+id/btnCamara"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Enviar"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/parteAriba"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/addclothe"
+            android:layout_marginTop="8dp"/> <!-- Ajusta la separación en la parte superior -->
+
+        <ImageView
+            android:id="@+id/parteMedia"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/addclothe"
+            android:layout_marginTop="8dp"/> <!-- Ajusta la separación entre ImageView -->
+
+        <ImageView
+            android:id="@+id/parteAbajo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/addclothe"
+            android:layout_marginTop="8dp"/> <!-- Ajusta la separación entre ImageView -->
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

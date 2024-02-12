@@ -25,10 +25,12 @@ import com.example.goodcloset.Retrofit.Respuestas.RespuestaGetArmariosDeUsuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,153 +41,78 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
-    Button btnCamara,selectCloset;
-    ImageView partearriba, partemedia, parteabajo;
-
-    private ArrayList<String> imagenesCapturadas;
+    Button recoger;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        imagenesCapturadas = new ArrayList<>();
-
-        partearriba = rootView.findViewById(R.id.parteAriba);
-        partemedia = rootView.findViewById(R.id.parteMedia);
-        parteabajo = rootView.findViewById(R.id.parteAbajo);
-
-        partearriba.setOnClickListener(new View.OnClickListener() {
+//rescatamos del singleton el id del usuario que ha iniciado sesion.
+        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+        Integer idUsr = usuario.getId();
+        recoger = rootView.findViewById(R.id.recoger);
+        recoger.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                camaraLauncher1.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+            public void onClick(View v) {
+                // Llamamos a la función para obtener los usuarios seguidos
+                obtenerAllSeguidos(idUsr);
             }
         });
-        partemedia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                camaraLauncher2.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
-            }
-        });
-        parteabajo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                camaraLauncher3.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
-            }
-        });
-        //selectCloset.findViewById(R.id.btnSelectArmario);
-        // Importa las clases necesarias
-
-// ...
-
-
-
-        //btn camera es para enviar el outfit. solo dejara enviar el outfit si se ha seleccionado un armario,
-        //ya veremos como lo hacemos
-        //btnCamara.findViewById(R.id.btnCamara);
-       // btnCamara.setOnClickListener(new View.OnClickListener() {
-           // @Override
-            //public void onClick(View view) {
-                //salta un pop up con los armarios que existen y un boton para crear otro si se quiere.
-                //ademas de otro boton dentro del popup que sea para enviar, enviando el armario con el que se asicoara el outfit que mandemos:
-
-            //    enviarOutfit(imagenesCapturadas);
-          //  }
-        //});
+        // aqui voy a hacer el home, luego habra que cabiarlo, hago aqui el get all users
+        // Devuelve la vista del fragmento
         return rootView;
     }
 
-    private void enviarOutfit(ArrayList<Bitmap> imagenesCapturadas) {
+    public void obtenerAllSeguidos(Integer idUsr){
+        //esta funcion se carga nada mas abrir la actividad, no se si deberia ser async(?)
         ApiService apiService = ApiClient.getInstance().getApiService();
-        if (apiService != null) {
-//aqui se aplica la logica para enviar el array de fotos
-            //en la API se usará el id del armario(que se seleccionará en un alertDialog del AndroidStudio)
-            //para relacionar el id del armario con el outfit, ademas habra que insertar las prendas en su tabla correspondiente
 
-        }else {
-            Log.d("ApiService", "= null en home Fragment");
+        if (apiService!=null){
+            Call<List<Usuario>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
+            //pasa es que siempre entro con user = s que el id es 30 y nadie le sigue :(
+            Log.d("TAG", "Llamada a la API iniciada");
+
+            call.enqueue(new Callback<List<Usuario>>() {
+                @Override
+                public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
+                    Log.d("TAG", "Código de respuesta: " + response.code());
+
+                    if (response.isSuccessful()) {
+                        List<Usuario> usuariosSeguidos = response.body();
+
+
+                        Log.d(".u.", "" + response.body().toString());
+
+                        if (!usuariosSeguidos.isEmpty()){
+                            for (Usuario u : usuariosSeguidos) {
+                                u.setSaltReal(Arrays.toString(u.getSalt()).getBytes());
+                                Log.e("Id usuario del get", " : " + u.getId());
+                            }
+                        }else {
+                            Log.e("....","LA LISTA ESTA VACIA");
+                        }
+
+                    } else {
+                        try {
+                            Log.e("Error en la respuesta", response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Usuario>> call, Throwable t) {
+                    Log.e("Error en la llamada", "Error: " + t.getMessage());
+                }
+            });
+
         }
+
     }
 
-    ActivityResultLauncher<Intent> camaraLauncher1 = registerForActivityResult(new
-            ActivityResultContracts.StartActivityForResult(), new
-            ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Bundle extras = result.getData().getExtras();
-                        Bitmap imgBitmap = (Bitmap) extras.get("data");
-                        partearriba.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
-                        imagenesCapturadas.add(imgEnBase64);
-                    }
-                }
-            });
-
-    ActivityResultLauncher<Intent> camaraLauncher2 = registerForActivityResult(new
-            ActivityResultContracts.StartActivityForResult(), new
-            ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Bundle extras = result.getData().getExtras();
-                        Bitmap imgBitmap = (Bitmap) extras.get("data");
-                        partemedia.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
-                        imagenesCapturadas.add(imgEnBase64);
-                    }
-                }
-            });
-
-    ActivityResultLauncher<Intent> camaraLauncher3 = registerForActivityResult(new
-            ActivityResultContracts.StartActivityForResult(), new
-            ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Bundle extras = result.getData().getExtras();
-                        Bitmap imgBitmap = (Bitmap) extras.get("data");
-                        parteabajo.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
-                        imagenesCapturadas.add(imgEnBase64);
-                    }
-                }
-            });
 
 
-    private String convertirBitmapABase64(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] byteArrayImage = baos.toByteArray();
-        return Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-    }
-
-   // private List<RespuestaGetArmariosDeUsuario> obtenerArmariosdeUsuario(Integer idUsuario){ //id usuario se obtendra del singletonuser y se pasara cuando se llame a la funcion
-     //   ApiService apiService = ApiClient.getInstance().getApiService();
-       // if (apiService != null) {
-         //   Call<RespuestaGetArmariosDeUsuario> call = apiService.getArmariosUser(idUsuario);
-          //  call.enqueue(new Callback<RespuestaGetArmariosDeUsuario>() {
-            //    RespuestaGetArmariosDeUsuario respuesta;
-              //  @Override
-                //public void onResponse(Call<RespuestaGetArmariosDeUsuario> call, Response<RespuestaGetArmariosDeUsuario> response) {
-                  //  if(response.isSuccessful()){
-                    //    RespuestaGetArmariosDeUsuario respuesta = response.body();
-                        //aqui habra que gestionaresta respuesta para establecer los recicledView dentro del alertDialog y seleccionar el armario
-                        //al que vamos a añadir el outfit
-
-                    //}
-
-                //}
-
-                //@Override
-                //public void onFailure(Call<RespuestaGetArmariosDeUsuario> call, Throwable t) {
-
-    //     }
-
-    //   });
-        //finn del if appi service != null
-    //    }
-    //  return
-    // }
+    ///////////////////////////////////////////////////////
 
 
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -34,9 +34,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class  ProfileFragment extends Fragment {
-    RecyclerView recyclerView;
+    TextView nombreUser, NumeroFollower, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
     ApiService apiService;
-   Button newArmarioButton;
+    Button newArmarioButton;
+    RecyclerView recyclerView;
+    List<ArmarioModelo> armariosList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,13 +60,29 @@ public class  ProfileFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Sección 2"));
 
         apiService = ApiClient.getInstance().getApiService();
-        recuperarArmariosUsuario(apiService);
+        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+        Log.d("test",usuario.toString());
+
+        Log.d("test","seguidores ->" + usuario.getContadorSeguidores() + "// usrname -> " +usuario.getUserName());
+        nombreUser = rootView.findViewById(R.id.usernameTextView);
+        NumeroFollower = rootView.findViewById(R.id.followersTextView);
+        rootView.findViewById(R.id.tabLayout);
+        establecerDatosDelUsuarioEnLaVista(usuario);
+        recuperarArmariosUsuario(apiService,usuario);
         //creo que tendremos que usar un live data para manejaar el tema de los armarios y eso. lo mismo pasara con los datos del home y de "par ti" en tal caso.
+
+
         return rootView;
     }
 
-    private void recuperarArmariosUsuario(ApiService apiService) {
-        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+    private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
+       nombreUser.setText("@"+usuario.getUserName());
+       NumeroFollower.setText("Seguidores: " + String.valueOf(usuario.getContadorSeguidores()));
+        //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
+    }
+
+    private void recuperarArmariosUsuario(ApiService apiService, RespuestaInsertarUsuario usuario) {
+
         if(apiService != null){
             Call<List<ArmarioModelo>> call = apiService.getArmariosUser(1);// 1, es para la prueba, en realidad hay que meter -> usuario.getId()
             call.enqueue(new Callback<List<ArmarioModelo>>() {
@@ -73,10 +91,11 @@ public class  ProfileFragment extends Fragment {
                     Log.d("TAG", "Código de respuesta: " + response.code());
 
                     if(response.isSuccessful()){
-                       List<ArmarioModelo> armariosList = response.body();
+                       armariosList = response.body();
                         for (ArmarioModelo armarioModelo: armariosList) {
                             Log.d("armario_" +armarioModelo.getId(),"el nombre del armario es: " + armarioModelo.getNombre_armario());
                         }
+                        //vamos a tener que trabajar con el Viewmodel y eso desde aqui.s
                     }else {
                         try {
                             Log.e("Error en la respuesta", response.errorBody().string());
@@ -84,7 +103,6 @@ public class  ProfileFragment extends Fragment {
                             e.printStackTrace();
                         }
                     }
-
                 }
 
                 @Override
@@ -92,10 +110,8 @@ public class  ProfileFragment extends Fragment {
 
                 }
 
-
             });
         }
-
     }
     private void showNewArmarioDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

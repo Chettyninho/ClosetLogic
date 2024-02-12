@@ -2,6 +2,8 @@ package com.example.goodcloset.modelos;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Base64;
+
 public class Usuario {
 
     @SerializedName("id")
@@ -19,7 +21,8 @@ public class Usuario {
     @SerializedName("username")
     private String username;
 
-
+    @SerializedName("contador_seguidores")
+    private Integer contador_seguidores;
 
     @SerializedName("fechaNacimiento")
     private String fechaNacimiento;
@@ -28,7 +31,14 @@ public class Usuario {
     private String password;
 
     @SerializedName("salt")
-    private byte[] salt;
+    private String salt;
+
+    private byte[] saltReal;
+    public void setSaltReal(byte[] saltReal) {
+        this.saltReal = saltReal;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -94,11 +104,22 @@ public class Usuario {
     }
 
     public byte[] getSalt() {
-        return salt;
+        if (salt != null) {
+            return Base64.getDecoder().decode(salt); //da fallo pero funciona y recoje el array de bytes correctamente.
+        }
+        return null;
     }
 
-    public void setSalt(byte[] salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public Integer getContador_seguidores() {
+        return contador_seguidores;
+    }
+
+    public void setContador_seguidores(Integer contador_seguidores) {
+        this.contador_seguidores = contador_seguidores;
     }
 
     public Usuario() {
@@ -117,4 +138,5 @@ public class Usuario {
 
         this.password = contraseñaSinHassear;
     }
+
 }

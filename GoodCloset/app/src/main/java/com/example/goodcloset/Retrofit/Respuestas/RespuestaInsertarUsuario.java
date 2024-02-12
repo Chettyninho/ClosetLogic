@@ -1,9 +1,11 @@
 package com.example.goodcloset.Retrofit.Respuestas;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Base64;
 
 public class RespuestaInsertarUsuario implements Serializable {
@@ -20,7 +22,7 @@ public class RespuestaInsertarUsuario implements Serializable {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("userName")
+    @SerializedName("username")
     private String userName;
 
     @SerializedName("contador_seguidores")
@@ -95,5 +97,24 @@ public class RespuestaInsertarUsuario implements Serializable {
 
     public String getFotoUsuario() {
         return fotoUsuario;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "RespuestaInsertarUsuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", contadorSeguidores=" + contadorSeguidores +
+                ", privado=" + privado +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", hashContraseña='" + hashContraseña + '\'' +
+                ", salt='" + salt + '\'' +
+                ", saltReal=" + Arrays.toString(saltReal) +
+                ", fotoUsuario='" + fotoUsuario + '\'' +
+                '}';
     }
 }
