@@ -152,7 +152,6 @@
                         <Button
                             android:id="@+id/editarPerfil"
                             android:layout_width="wrap_content"
-                            android:layout_margin="5dp"
                             android:layout_height="40dp"
                             android:backgroundTint="@color/defindedgray"
                             android:text="Editar perfil"
@@ -171,7 +170,6 @@
                             android:id="@+id/Seguido"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_margin="5dp"
                             android:text="Seguido"
                             android:backgroundTint="@color/defindedgray"
                             android:textColor="@color/firstcolor"/>
