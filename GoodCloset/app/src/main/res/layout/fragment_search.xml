@@ -14,11 +14,16 @@
         android:layout_height="match_parent"
         android:background="#292D4E"></FrameLayout>
 
-    <TextView
+   <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="BUSCADOR"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"/> -->
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

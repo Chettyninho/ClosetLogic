@@ -49,12 +49,14 @@ public class HomeFragment extends Fragment {
 //rescatamos del singleton el id del usuario que ha iniciado sesion.
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
         Integer idUsr = usuario.getId();
+
         recoger = rootView.findViewById(R.id.recoger);
         recoger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Llamamos a la función para obtener los usuarios seguidos
                 obtenerAllSeguidos(idUsr);
+
             }
         });
         // aqui voy a hacer el home, luego habra que cabiarlo, hago aqui el get all users
@@ -68,6 +70,7 @@ public class HomeFragment extends Fragment {
 
         if (apiService!=null){
             Call<List<Usuario>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
+
             //pasa es que siempre entro con user = s que el id es 30 y nadie le sigue :(
             Log.d("TAG", "Llamada a la API iniciada");
 
@@ -78,7 +81,6 @@ public class HomeFragment extends Fragment {
 
                     if (response.isSuccessful()) {
                         List<Usuario> usuariosSeguidos = response.body();
-
 
                         Log.d(".u.", "" + response.body().toString());
 
@@ -109,10 +111,6 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
-
-
-    ///////////////////////////////////////////////////////
 
 
 }
