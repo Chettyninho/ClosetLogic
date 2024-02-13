@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -34,6 +37,15 @@ public class LogIn extends AppCompatActivity {
     EditText username,paswordsinHassear;
     Button enviar;
 
+    private TextInputLayout textInputLayout;
+    private EditText passwordEditText;
+    private ImageButton visibilityButton;
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +62,26 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 prepararInserccion();
+            }
+        });
+
+        textInputLayout = findViewById(R.id.textInputLayout);
+        passwordEditText = findViewById(R.id.pswdLogin);
+        visibilityButton = findViewById(R.id.togglePasswordVisibility);
+
+        visibilityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar la visibilidad del campo de contraseña
+                if (passwordEditText.getTransformationMethod() != null) {
+                    // Si la contraseña es visible, la oculta
+                    passwordEditText.setTransformationMethod(null);
+                    visibilityButton.setImageResource(R.drawable.baseline_visibility_24);
+                } else {
+                    // Si la contraseña está oculta, la hace visible
+                    passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
+                    visibilityButton.setImageResource(R.drawable.baseline_visibility_off_24);
+                }
             }
         });
     }

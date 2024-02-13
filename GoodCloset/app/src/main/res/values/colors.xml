@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="defindedgray">#ECECEC</color>
     <color name="firstcolor">#292D4E</color>
+    <color name="SecondColor">#45517D</color>
 </resources>
