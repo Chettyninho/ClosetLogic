@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/firstcolor">
 
     <androidx.cardview.widget.CardView
         android:layout_width="238dp"
         android:layout_height="wrap_content"
+        android:background="@color/firstcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,19 +18,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/armarioImageView"
-                android:layout_width="199dp"
-                android:layout_height="162dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="225dp"
+                app:srcCompat="@drawable/armario" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/nombreArmariotv"
@@ -36,14 +39,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nombre Armario"
+                    android:textAlignment="center"
                     android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/botonCorazon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_corazon"
-                    android:background="?attr/selectableItemBackgroundBorderless" />
 
             </LinearLayout>
 
