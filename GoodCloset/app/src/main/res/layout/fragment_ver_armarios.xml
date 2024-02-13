@@ -13,4 +13,10 @@
         android:text="VER ARMARIOS"
         android:textColor="@color/white" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </FrameLayout>

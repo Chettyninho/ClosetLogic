@@ -1,6 +1,7 @@
 package com.example.goodcloset;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,18 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.methodLayer.ArmarioMethods;
+import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.example.goodcloset.modelos.OutfitModelo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,8 +41,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddFragment extends Fragment {
-
-    Button btnCamara,selectCloset;
+    private Integer idArmario;
+    Button btnCamara, selectCloset;
     ImageView partearriba, partemedia, parteabajo;
 
     private ArrayList<String> imagenesCapturadas;
@@ -50,6 +56,7 @@ public class AddFragment extends Fragment {
         partearriba = rootView.findViewById(R.id.parteAriba);
         partemedia = rootView.findViewById(R.id.parteMedia);
         parteabajo = rootView.findViewById(R.id.parteAbajo);
+
 
         partearriba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,36 +76,116 @@ public class AddFragment extends Fragment {
                 camaraLauncher3.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
             }
         });
-        //selectCloset.findViewById(R.id.btnSelectArmario);
+        selectCloset = rootView.findViewById(R.id.btnSelectArmario);
+        btnCamara = rootView.findViewById(R.id.enviarOutfitButton);
+
+        //BOTON PARA ENVIAR
+        btnCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiService apiService = ApiClient.getInstance().getApiService();
+                enviarOutfit(imagenesCapturadas,idArmario);
+            }
+        });
+//BOTON SELECCIONAR ARMARIO DONDE SE GUARDA EL OUTFIT
+        selectCloset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiService apiService = ApiClient.getInstance().getApiService();
+                RespuestaInsertarUsuario mainUsr = SingletonUser.getInstance().getUsuario();
+
+                // Inicializar la lista de nombres de armarios existentes
+                //List<String> nombresArmarios = new ArrayList<>();
+                //armariosList = new ArrayList<>();
+
+
+                if (apiService != null) {
+
+                    Call<List<ArmarioModelo>> call = apiService.getArmariosUser(mainUsr.getId());
+                    call.enqueue(new Callback<List<ArmarioModelo>>() {
+                        @Override
+                        public void onResponse(@NonNull Call<List<ArmarioModelo>> call, @NonNull Response<List<ArmarioModelo>> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                List<ArmarioModelo> armarioModeloList = response.body();
+                                Log.d("responseBody Mario", armarioModeloList.toString());
+                                List<String> nombresArmarios = ArmarioMethods.getNombresArmarios(armarioModeloList);
+                                CharSequence[] items = nombresArmarios.toArray(new CharSequence[nombresArmarios.size()]);
+
+                                // Crear el AlertDialog
+                                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                                builder.setTitle("Selecciona un armario o crea uno nuevo")
+
+                                        .setItems(items, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Acciones al hacer clic en un armario existente
+                                                String armarioSeleccionado = nombresArmarios.get(which);
+                                                idArmario=ArmarioMethods.devolverIdArmario(armarioSeleccionado,armarioModeloList);
+                                            Log.d("id armario debug", "" + idArmario);
+                                            }
+                                        })
+
+
+                                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                // Mostrar el AlertDialog
+                                builder.create().show();
+
+                            } else {
+                                try {
+                                    Log.e("Error en la respuesta", response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<ArmarioModelo>> call, Throwable t) {
+                            // Manejar error en la respuesta
+                        }
+
+                    });
+                    /////////////
+
+
+                }
+
+
+            }
+        });
         // Importa las clases necesarias
 
-// ...
-
-
-
-        //btn camera es para enviar el outfit. solo dejara enviar el outfit si se ha seleccionado un armario,
-        //ya veremos como lo hacemos
-        //btnCamara.findViewById(R.id.btnCamara);
-        // btnCamara.setOnClickListener(new View.OnClickListener() {
-        // @Override
-        //public void onClick(View view) {
-        //salta un pop up con los armarios que existen y un boton para crear otro si se quiere.
-        //ademas de otro boton dentro del popup que sea para enviar, enviando el armario con el que se asicoara el outfit que mandemos:
-
-        //    enviarOutfit(imagenesCapturadas);
-        //  }
-        //});
         return rootView;
     }
 
-    private void enviarOutfit(ArrayList<Bitmap> imagenesCapturadas) {
+    private void enviarOutfit(ArrayList<String> imagenesCapturadas, Integer idArmario) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService != null) {
-//aqui se aplica la logica para enviar el array de fotos
-            //en la API se usará el id del armario(que se seleccionará en un alertDialog del AndroidStudio)
+            //aqui se aplica la logica para enviar el array de fotos
+            Call<OutfitModelo> call = apiService.postOutfit(idArmario, imagenesCapturadas);
+
+            call.enqueue(new Callback<OutfitModelo>() {
+
+                             @Override
+                             public void onResponse(Call<OutfitModelo> call, Response<OutfitModelo> response) {
+                                 if (response.isSuccessful()) {
+                                     Log.d("en onResponse" , " respuesta :" +response.body().toString());
+                                 }
+                             }
+
+                             @Override
+                             public void onFailure(Call<OutfitModelo> call, Throwable t) {
+                                Log.d("Debug","estas en el onFailure");
+                             }
+                         });
             //para relacionar el id del armario con el outfit, ademas habra que insertar las prendas en su tabla correspondiente
 
-        }else {
+        } else {
             Log.d("ApiService", "= null en home Fragment");
         }
     }
@@ -156,32 +243,5 @@ public class AddFragment extends Fragment {
         return Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
     }
 
-    // private List<RespuestaGetArmariosDeUsuario> obtenerArmariosdeUsuario(Integer idUsuario){ //id usuario se obtendra del singletonuser y se pasara cuando se llame a la funcion
-    //   ApiService apiService = ApiClient.getInstance().getApiService();
-    // if (apiService != null) {
-    //   Call<RespuestaGetArmariosDeUsuario> call = apiService.getArmariosUser(idUsuario);
-    //  call.enqueue(new Callback<RespuestaGetArmariosDeUsuario>() {
-    //    RespuestaGetArmariosDeUsuario respuesta;
-    //  @Override
-    //public void onResponse(Call<RespuestaGetArmariosDeUsuario> call, Response<RespuestaGetArmariosDeUsuario> response) {
-    //  if(response.isSuccessful()){
-    //    RespuestaGetArmariosDeUsuario respuesta = response.body();
-    //aqui habra que gestionaresta respuesta para establecer los recicledView dentro del alertDialog y seleccionar el armario
-    //al que vamos a añadir el outfit
-
-    //}
-
-    //}
-
-    //@Override
-    //public void onFailure(Call<RespuestaGetArmariosDeUsuario> call, Throwable t) {
-
-    //     }
-
-    //   });
-    //finn del if appi service != null
-    //    }
-    //  return
-    // }
 
 }

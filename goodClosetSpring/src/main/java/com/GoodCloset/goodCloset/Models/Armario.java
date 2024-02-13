@@ -1,5 +1,6 @@
 package com.GoodCloset.goodCloset.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
+@JsonIgnoreProperties({"listaOutfits"})
 public class Armario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,16 +27,14 @@ public class Armario {
     private int id_propietario;
 
 
-    //@ManyToOne
-    //@JoinColumn(name = "id_propietario")
-    //private Usuario propietario;
+    @ManyToOne
+    @JoinColumn(name = "id_propietario", insertable = false, updatable = false)
+    private Usuario propietario;
 
-    //@ManyToMany
-    //@JoinTable(
-      //      name = "armario_outfit",
-        //    joinColumns = @JoinColumn(name = "id_armario"),
-          //  inverseJoinColumns = @JoinColumn(name = "id_outfit"))
-    //private List<Outfit> outfits;
-//    @ManyToMany
-//    private List<Outfit> listaOutfits;
+    @ManyToMany
+    @JoinTable(
+            name = "armario_outfit",
+            joinColumns = @JoinColumn(name = "id_armario"),
+            inverseJoinColumns = @JoinColumn(name = "id_outfit"))
+    private List<Outfit> listaOutfits;
 }

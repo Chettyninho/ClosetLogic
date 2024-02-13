@@ -23,17 +23,12 @@ public class Outfit {
     private String descripcion;
     private String fecha_cracion;
 
-    private List<String> listaPrendasBase64;
+    // Relación muchos a muchos con Prenda
+    @ManyToMany
+    @JoinTable(
+            name = "prenda_outfit",
+            joinColumns = @JoinColumn(name = "id_outfit"),
+            inverseJoinColumns = @JoinColumn(name = "id_prenda"))
+    private List<Prenda> prendas;
 
-    //@ManyToMany(mappedBy = "outfits")
-    //private List<Armario> armarios;
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "prenda_outfit",
-//            joinColumns = @JoinColumn(name = "id_outfit"),
-//            inverseJoinColumns = @JoinColumn(name = "id_prenda"))
-//    private List<Prenda> prendas;
-
-//estas relaciones son muy impirtantes.
 }

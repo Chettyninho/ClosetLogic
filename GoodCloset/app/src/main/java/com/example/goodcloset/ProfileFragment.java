@@ -100,7 +100,7 @@ public class  ProfileFragment extends Fragment {
 
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
         nombreUser.setText("@" + usuario.getUserName());
-        NumeroFollower.setText("Seguidores: " + String.valueOf(usuario.getContadorSeguidores()));
+        NumeroFollower.setText(String.valueOf(usuario.getContadorSeguidores()));
         //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 
@@ -110,7 +110,7 @@ public class  ProfileFragment extends Fragment {
        // viewPager.setAdapter(adapter);
     //}
 
-    private void recuperarArmariosUsuario(ApiService apiService, RespuestaInsertarUsuario usuario) {
+    public void recuperarArmariosUsuario(ApiService apiService, RespuestaInsertarUsuario usuario) {
 
         if(apiService != null){
             Call<List<ArmarioModelo>> call = apiService.getArmariosUser(1);// 1, es para la prueba, en realidad hay que meter -> usuario.getId()
