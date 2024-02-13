@@ -20,6 +20,8 @@
         <activity
             android:name=".LogIn"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,7 +41,10 @@
 
         <activity
             android:name=".SplashScreen"
-            android:exported="true"/>
+            android:exported="false">
+
+
+        </activity>
 
     </application>
 

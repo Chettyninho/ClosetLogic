@@ -6,12 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment"
     android:background="#292D4E">
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -35,7 +32,6 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
-                <!-- Nombre de usuario -->
                 <TextView
                     android:id="@+id/usernameTextView"
                     android:layout_width="match_parent"
@@ -184,11 +180,6 @@
             android:layout_marginBottom="8dp"
             android:background="@color/white" />
 
-
-
-        <!-- TabLayout para las pestañas -->
-
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -222,10 +213,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tabLayout">
         </androidx.viewpager.widget.ViewPager>
 
-        <!-- Agrega al final del FrameLayout -->
-
     </FrameLayout>
-
 
 </FrameLayout>
 
