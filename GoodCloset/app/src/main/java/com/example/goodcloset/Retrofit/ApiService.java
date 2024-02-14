@@ -1,6 +1,7 @@
 package com.example.goodcloset.Retrofit;
 
 import com.example.goodcloset.modelos.OutfitModelo;
+import com.example.goodcloset.modelos.PrendaModelo;
 import com.example.goodcloset.modelos.Usuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.modelos.ArmarioModelo;
@@ -44,6 +45,9 @@ public interface ApiService {
 
     @GET("usuarios/fotos")
     Call<ResponseBody> obtenerImagen();
+
+    @GET("/prenda/{idPrenda}")
+    Call<PrendaModelo> getImgB64(@Path("idPrenda") Integer idPrenda);
 
 }
 

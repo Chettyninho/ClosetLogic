@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -46,11 +47,15 @@ public class MainCliente {
 				    break;
 				case 3:
 				    dos.writeUTF(String.valueOf(option));
-				    DataInputStream disModificar = new DataInputStream(sk.getInputStream()); // Nuevo flujo de entrada para MODIFICAR MI USUARIO
+				    DataInputStream disModificar = new DataInputStream(sk.getInputStream());
 				    listarUsuarios(disModificar);
-				    disModificar.close();
+				    
+
 				    // Lógica para modificar usuario
+				    modificarUsuarioMainCliente(dos, sk);
+				    disModificar.close();
 				    break;
+
 				case 4:
 					dos.writeUTF(String.valueOf(option));
 					borrarUsuario(dos);
@@ -143,18 +148,25 @@ public class MainCliente {
 	}
 	
 	
-	/// hay qye acabar el update Usuario para modificarlo realmente
-	private static void updateUsuario(DataOutputStream dos) {
-		
-		Scanner sc = new Scanner(System.in);
-		try {
-			System.out.println("Introduzca el id del usuario que quiere eliminar:");
-			int idDelete = sc.nextInt();
-			dos.writeInt(idDelete);
+	private static void modificarUsuarioMainCliente(DataOutputStream dos, Socket sk) {
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("Introduce el id del ususario que quiera modificar");
+	    int id = sc.nextInt();
+	    
+	    System.out.println("Nuevo nombre:");
+	    String newName = sc.next();
+
+	    try {
+			dos.writeInt(id);
+			dos.flush();
+	        dos.writeUTF(newName);
+	        dos.flush();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			sc.close();
 		}
+        
+	    
 	}
+
 }

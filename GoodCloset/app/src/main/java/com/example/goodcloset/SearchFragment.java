@@ -1,5 +1,6 @@
 package com.example.goodcloset;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.goodcloset.PruebagetFoto.GetFotos;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 
@@ -27,14 +30,24 @@ public class SearchFragment extends Fragment {
 
     private ImageView imageView;
     private ApiService apiService;
-
+    private Button boton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
         obtenerAllUsers();
+        boton = rootView.findViewById(R.id.btnIrAGetFotos);
 
+        // Configura el onClickListener para el botón
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Utiliza getActivity() para obtener el contexto de la actividad actual
+                Intent intent = new Intent(getActivity(), GetFotos.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

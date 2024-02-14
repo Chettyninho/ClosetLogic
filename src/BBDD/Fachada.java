@@ -36,6 +36,17 @@ public class Fachada {
 		usersList = gestorUsuarios.leerBBDDUsuario();
 		return usersList;
 	}
+	
+	public Usuarios obtenerUsuarioPorId(int idUSuarioAModificar) {
+		Usuarios u = gestorUsuarios.buscaUsuarioPorId(idUSuarioAModificar);
+		return u;
+	}
+
+
+	public void modificarUsuarioFachada(Usuarios usuarioModificado) {
+		gestorUsuarios.modificarUsuario(usuarioModificado);
+		
+	}
 
 	
 

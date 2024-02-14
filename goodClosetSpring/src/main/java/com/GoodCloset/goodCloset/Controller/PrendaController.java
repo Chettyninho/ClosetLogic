@@ -1,12 +1,8 @@
 package com.GoodCloset.goodCloset.Controller;
 
 import com.GoodCloset.goodCloset.Models.Prenda;
-import com.GoodCloset.goodCloset.Models.Usuario;
-import com.GoodCloset.goodCloset.Repository.PrendaRepository;
 import com.GoodCloset.goodCloset.Service.PrendaService;
-import com.GoodCloset.goodCloset.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +18,13 @@ public class PrendaController {
     }
 
 
-//eliminar prenda
+    @GetMapping("/{idPrenda}")
+    public Prenda getPrendasById(@PathVariable Integer idPrenda) {
+        System.out.println(prendaService.getPrendaById(idPrenda));
+        return prendaService.getPrendaById(idPrenda);
+    }
+
+    //eliminar prenda
     @DeleteMapping("/delete/{id}")
     public Boolean deletePrenda(@PathVariable Integer id){
         return prendaService.deletePrendaById(id);

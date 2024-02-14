@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PrendaService {
@@ -26,5 +27,18 @@ public class PrendaService {
             // Si no existe, devolver false
             return false;
         }
+    }
+
+    public Prenda getPrendaById(Integer idPrenda) {
+        List<Prenda> listaPrendas = prendaRepository.findAll();
+        Prenda prenda = null;
+        for (Prenda p : listaPrendas){
+            if(Objects.equals(p.getId(), idPrenda)){
+                prenda = p;
+            }else{
+                prenda = null;
+            }
+        }
+        return prenda;
     }
 }

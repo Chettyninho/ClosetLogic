@@ -22,8 +22,8 @@ public class PrendaModelo {
     @SerializedName("enlace_web")
     private String enlace_web;
 
-    @SerializedName("foto_prenda")
-    private byte[] foto_prenda;
+    @SerializedName("fotoEnBase64")
+    private String foto_prenda;
 
     public int getId() {
         return id;
@@ -49,7 +49,19 @@ public class PrendaModelo {
         return enlace_web;
     }
 
-    public byte[] getFoto_prenda() {
+    public String getFoto_prenda() {
         return foto_prenda;
+    }
+    @Override
+    public String toString() {
+        return "PrendaModelo{" +
+                "id=" + id +
+                ", marca='" + marca + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", talla='" + talla + '\'' +
+                ", color='" + color + '\'' +
+                ", enlace_web='" + enlace_web + '\'' +
+                ", foto_prenda=" + foto_prenda +
+                '}';
     }
 }

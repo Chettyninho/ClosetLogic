@@ -2,6 +2,7 @@ package Servidor;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -57,7 +58,8 @@ public class MainServidor {
 	                break;
 	            case 3:
 	            	System.out.println("entra en 3");
-	            	 leerUsuariosDesdeBBDD(socketCliente);
+	            	leerUsuariosDesdeBBDD(socketCliente);
+	            	modificarUsuario(socketCliente);
 					break;
 				case 4:
 					System.out.println("entra en 4");
@@ -122,4 +124,29 @@ public class MainServidor {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void modificarUsuario(Socket socketCliente) {
+	    try {
+	        // Paso 1: Leer el ID del Usuario a Modificar desde el Cliente
+	        DataInputStream dis = new DataInputStream(socketCliente.getInputStream());
+	        int idUsuarioModificar = dis.readInt();
+
+	        String nuevoNombre = dis.readUTF();
+
+
+	        Fachada f = new Fachada();
+	        Usuarios usuario = f.obtenerUsuarioPorId(idUsuarioModificar);
+
+	       
+	        usuario.setNombre(nuevoNombre);
+
+	        // Aplicar las modificaciones en la base de datos
+	        f.modificarUsuarioFachada(usuario);
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+
 }

@@ -219,4 +219,69 @@ System.err.println("id usuario es en gestor usuarios = " +idUsuario);
 		}
 		
 	}
+	
+	public Usuarios buscaUsuarioPorId(int idUsr) {
+		 Usuarios usuario = null;
+		try (Conexion con = Conexion.getInstance()) {
+			String query = "SELECT * FROM USUARIO WHERE id = " + idUsr;
+			
+			 try (PreparedStatement ps = con.getConnection().prepareStatement(query);
+		             ResultSet rs = ps.executeQuery()) {
+				 while (rs.next()) {
+		                // Obtener datos del resultado y construir un objeto Usuarios
+		                int id = rs.getInt("id");
+		                String nombre = rs.getString("nombre");
+		                String surname = rs.getString("surname");
+		                String email = rs.getString("email");
+		                String userName = rs.getString("user_name");
+		                String fechaNacimiento = rs.getString("fecha_nacimiento");
+		                String hashContraseña = rs.getString("hash_contrasena");
+		                byte[] salt = rs.getBytes("salt");
+
+		                usuario = new Usuarios(id, nombre, surname, email, userName, fechaNacimiento, hashContraseña, salt);
+		                usersListRead.add(usuario);
+		            }
+				 //System.out.println("Se ha leído la base de datos de usuarios.");
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		            System.out.println("Error al leer la base de datos de usuarios.");
+		        }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return usuario;
+	}
+
+	public void modificarUsuario(Usuarios usuarioModificado) {
+		int idUsuario = usuarioModificado.getId();
+        try (Conexion con = Conexion.getInstance()) {
+            String sql = "UPDATE usuario SET nombre = ? WHERE id = ?";
+            try (PreparedStatement pstmt = con.getConnection().prepareStatement(sql)) {
+                // Establece los parámetros en la sentencia SQL
+                pstmt.setString(1, usuarioModificado.getNombre());
+//                pstmt.setString(2, usuarioModificado.getSurname());
+//                pstmt.setString(3, usuarioModificado.getEmail());
+//                pstmt.setString(4, usuarioModificado.getUserName());
+//                pstmt.setString(5, usuarioModificado.getFechaNacimiento());
+//                pstmt.setString(6, usuarioModificado.getHashContraseña());
+                pstmt.setInt(2, idUsuario);
+
+                // Ejecuta la actualización
+                pstmt.executeUpdate();
+            }
+        	
+        }catch(SQLException e) {
+            e.printStackTrace();
+            // Manejo de excepciones: puedes lanzar una excepción personalizada, loguear el error, etc.
+        } catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
+	
+	
 }

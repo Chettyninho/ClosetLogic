@@ -29,6 +29,10 @@ public class Usuarios implements Serializable{
 
 	// Getter && setter
 
+	public Usuarios() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
