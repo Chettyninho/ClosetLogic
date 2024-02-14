@@ -21,6 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".LogIn"
+<<<<<<< HEAD
             android:exported="false" />
         <activity
             android:name=".Registro"
@@ -33,6 +34,34 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+=======
+            android:exported="true">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".Registro"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".SplashScreen"
+            android:exported="false">
+
+
+        </activity>
+>>>>>>> 8aef9cc08bfb24e6ed70a91885000a305804e646
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

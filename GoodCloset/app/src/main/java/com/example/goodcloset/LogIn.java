@@ -1,14 +1,19 @@
 package com.example.goodcloset;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.goodcloset.modelos.Usuario;
@@ -16,6 +21,7 @@ import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -30,9 +36,13 @@ import retrofit2.Response;
 
 public class LogIn extends AppCompatActivity {
     ImageView imgbg;
-
     EditText username,paswordsinHassear;
     Button enviar;
+    private TextInputLayout textInputLayout;
+    private EditText passwordEditText;
+    private ImageButton visibilityButton;
+
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +53,40 @@ public class LogIn extends AppCompatActivity {
 
         username = findViewById(R.id.userLogin);
         paswordsinHassear = findViewById(R.id.pswdLogin);
-
+        forgotPassword = findViewById(R.id.forgotPassword);
         enviar = findViewById(R.id.enviarLogin);
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 prepararInserccion();
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showForgotPassword();
+            }
+        });
+
+        textInputLayout = findViewById(R.id.textInputLayout);
+        passwordEditText = findViewById(R.id.pswdLogin);
+        visibilityButton = findViewById(R.id.togglePasswordVisibility);
+
+        visibilityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar la visibilidad del campo de contraseña
+                if (passwordEditText.getTransformationMethod() != null) {
+                    // Si la contraseña es visible, la oculta
+                    passwordEditText.setTransformationMethod(null);
+                    visibilityButton.setImageResource(R.drawable.baseline_visibility_24);
+                } else {
+                    // Si la contraseña está oculta, la hace visible
+                    passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
+                    visibilityButton.setImageResource(R.drawable.baseline_visibility_off_24);
+                }
             }
         });
     }
@@ -144,5 +181,33 @@ public class LogIn extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    public void showForgotPassword() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //Cambia el texto que haya para clickar
+        builder.setTitle("¿Olvidaste tu contraseña?");
+        //Una vez clickas sale una alerta, pues te es el mensaje
+        builder.setMessage("Introduce tu dirección de correo electrónico para restablecer la contraseña:");
+
+        builder.setPositiveButton("Cambiar contraseña", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Aquí puedes manejar la lógica de enviar el correo electrónico o realizar cualquier otra acción necesaria
+                Intent intent = new Intent(LogIn.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

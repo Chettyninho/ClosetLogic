@@ -19,8 +19,12 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -36,6 +40,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -56,7 +61,7 @@ public class  ProfileFragment extends Fragment {
 
         // Obtener referencia al TabLayout desde el diseño inflado
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
-        FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
+        //FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
 
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +69,6 @@ public class  ProfileFragment extends Fragment {
                 showNewArmarioDialog();
             }
         });
-
-        // Agregar pestañas al TabLayout
-        tabLayout.addTab(tabLayout.newTab().setText("Sección 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sección 2"));
-
 
         apiService = ApiClient.getInstance().getApiService();
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
@@ -104,11 +104,43 @@ public class  ProfileFragment extends Fragment {
         //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 
-    //private void setupViewPager(ViewPager viewPager) {
-      //  MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
-        //adapter.addFragment(new FragmentVerArmarios(), "Ver Armarios");
-       // viewPager.setAdapter(adapter);
-    //}
+    private void setupViewPager(ViewPager viewPager) {
+        MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new FragmentVerPerfil(), "Ver Perfil");
+        adapter.addFragment(new FragmentVerArmarios(), "Ver Armarios");
+        viewPager.setAdapter(adapter);
+    }
+
+    class MyPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> fragmentList = new ArrayList<>();
+        private final List<String> fragmentTitleList = new ArrayList<>();
+
+        public MyPagerAdapter(FragmentManager manager) {
+            super(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragmentList.add(fragment);
+            fragmentTitleList.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitleList.get(position);
+        }
+    }
 
     public void recuperarArmariosUsuario(ApiService apiService, RespuestaInsertarUsuario usuario) {
 

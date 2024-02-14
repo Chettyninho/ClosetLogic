@@ -82,7 +82,7 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 prepararYInsertarUsuario();
-                startActivity(new Intent(new Intent(Registro.this, MainActivity.class)));
+                startActivity(new Intent(new Intent(Registro.this, LogIn.class)));
             }
 
         });
