@@ -16,27 +16,39 @@
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="#292D4E">
 
+        <TextView
+            android:id="@+id/tvUserNameHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="ercharlie_44"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="40dp"
+
+            />
+
         <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="40dp"
             android:background="#292D4E">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewArmarioUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/foto"
-                android:scaleType="fitXY"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
                 android:adjustViewBounds="true"
-                android:layout_alignParentTop="true"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/foto" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvPieDeFoto"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_alignBottom="@id/imageView"
+                android:layout_alignBottom="@id/imageViewArmarioUser"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="Olivia: Me encantan los outfit de inviernno!!"
