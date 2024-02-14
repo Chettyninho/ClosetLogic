@@ -16,10 +16,11 @@ public class MainCliente {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option;
+		boolean salir = false;
 
 		try (Socket sk = new Socket("localhost", 9995);
 				DataOutputStream dos = new DataOutputStream(sk.getOutputStream())) {
-
+			do {
 			System.out.println("+--------------------------------------------+");
 			System.out.println("|    BIENVENIDO A GOODCLOSET - EL ARMARIO    |");
 			System.out.println("|    DE LOS AUTÉNTICOS TITANES XD            |");
@@ -28,6 +29,7 @@ public class MainCliente {
 			System.out.println("|    2. LISTAR USUARIOS                      |");
 			System.out.println("|    3. MODIFICAR MI USUARIO                 |");
 			System.out.println("|    4. ELIMINAR USUARIO 		     |");
+			System.out.println("|    5. SALIR           		     |");
 			System.out.println("+--------------------------------------------+");
 
 			if (sc.hasNextInt()) {
@@ -60,10 +62,14 @@ public class MainCliente {
 					dos.writeUTF(String.valueOf(option));
 					borrarUsuario(dos);
 					break;
+				case 5:
+					salir=true;
+					break;
 				default:
 					System.out.println("Opción no válida. Introduzca un número del 1 al 4.");
 					break;
 				}
+				while(!salir); // ALBERTO NO ME ENTRA EN BUCLE Y NO SE POR QUÉ, TE LO MANDO UN POCO CON LAS PRISAS.
 			} else {
 				System.out.println("Entrada no válida. Debe ingresar un número.");
 			}
@@ -71,6 +77,10 @@ public class MainCliente {
 			// Cierre del cliente
 			dos.close();
 			sk.close();
+			
+			
+				
+			}while(!salir);
 
 		} catch (IOException e) {
 			e.printStackTrace();

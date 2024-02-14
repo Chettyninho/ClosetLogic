@@ -1,11 +1,9 @@
-package com.example.goodcloset;
+package com.example.goodcloset.Fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,64 +11,53 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
+import com.example.goodcloset.PruebagetFoto.GetFotos;
+import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
-import com.example.goodcloset.Retrofit.Respuestas.RespuestaGetArmariosDeUsuario;
-import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
-import com.example.goodcloset.Retrofit.SingletonUser;
-import com.example.goodcloset.modelos.ArmarioModelo;
-import com.example.goodcloset.modelos.Usuario;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
-import java.io.ByteArrayOutputStream;
+import com.example.goodcloset.modelos.Usuario;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
-    Button recoger;
+    private ImageView imageView;
+    private ApiService apiService;
+    private Button boton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-//rescatamos del singleton el id del usuario que ha iniciado sesion.
-        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
-        Integer idUsr = usuario.getId();
+        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        recoger = rootView.findViewById(R.id.recoger);
-        recoger.setOnClickListener(new View.OnClickListener() {
+        obtenerAllUsers();
+        boton = rootView.findViewById(R.id.btnIrAGetFotos);
+
+        // Configura el onClickListener para el botón
+        boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Llamamos a la función para obtener los usuarios seguidos
-                obtenerAllSeguidos(idUsr);
-
+                // Utiliza getActivity() para obtener el contexto de la actividad actual
+                Intent intent = new Intent(getActivity(), GetFotos.class);
+                startActivity(intent);
             }
         });
-        // aqui voy a hacer el home, luego habra que cabiarlo, hago aqui el get all users
-        // Devuelve la vista del fragmento
+
         return rootView;
     }
 
-    public void obtenerAllSeguidos(Integer idUsr){
-        //esta funcion se carga nada mas abrir la actividad, no se si deberia ser async(?)
+    private void obtenerAllUsers() {
+        //de nuevo aqui tendremos que gestionar toda interaccion con cada usuario desde el onResponse, encapsular lo maximo posible el codigo.
         ApiService apiService = ApiClient.getInstance().getApiService();
-
         if (apiService!=null){
-            Call<List<Usuario>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
-
+            Call<List<Usuario>> call = apiService.obtenerUsuarios(); // este 3 se sustituye por idUsr, lo que
             //pasa es que siempre entro con user = s que el id es 30 y nadie le sigue :(
             Log.d("TAG", "Llamada a la API iniciada");
 
@@ -80,13 +67,10 @@ public class HomeFragment extends Fragment {
                     Log.d("TAG", "Código de respuesta: " + response.code());
 
                     if (response.isSuccessful()) {
-                        List<Usuario> usuariosSeguidos = response.body();
+                        List<Usuario> allUsuarios = response.body();
+                        if (!allUsuarios.isEmpty()){
+                            for (Usuario u : allUsuarios) {
 
-                        Log.d(".u.", "" + response.body().toString());
-
-                        if (!usuariosSeguidos.isEmpty()){
-                            for (Usuario u : usuariosSeguidos) {
-                                u.setSaltReal(Arrays.toString(u.getSalt()).getBytes());
                                 Log.e("Id usuario del get", " : " + u.getId());
                             }
                         }else {
@@ -109,8 +93,8 @@ public class HomeFragment extends Fragment {
             });
 
         }
-
     }
+
 
 
 }

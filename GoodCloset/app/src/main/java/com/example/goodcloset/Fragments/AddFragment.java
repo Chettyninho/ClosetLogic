@@ -1,4 +1,4 @@
-package com.example.goodcloset;
+package com.example.goodcloset.Fragments;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.goodcloset.R;
 import com.example.goodcloset.methodLayer.ArmarioMethods;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.Retrofit.ApiClient;

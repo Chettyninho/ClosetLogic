@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.goodcloset.Fragments.AddFragment;
+import com.example.goodcloset.Fragments.HomeFragment;
+import com.example.goodcloset.Fragments.ProfileFragment;
+import com.example.goodcloset.Fragments.SearchFragment;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

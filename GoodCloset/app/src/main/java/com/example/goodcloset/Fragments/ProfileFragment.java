@@ -1,6 +1,5 @@
-package com.example.goodcloset;
+package com.example.goodcloset.Fragments;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,13 +26,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
-import com.example.goodcloset.Retrofit.Respuestas.RespuestaGetArmariosDeUsuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
-import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -59,9 +56,9 @@ public class  ProfileFragment extends Fragment {
         // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // Obtener referencia al TabLayout desde el diseño inflado
+        // Obtener referencia al TabLayout y el boton flotante desde el diseño inflado
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
-        //FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
+        FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
 
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
