@@ -213,7 +213,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tabLayout">
         </androidx.viewpager.widget.ViewPager>
 
-<<<<<<< HEAD
         <!-- Agrega al final del FrameLayout -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/NewArmarioButton"
@@ -224,8 +223,6 @@
             android:layout_marginBottom="89dp"
             android:src="@drawable/addcloset" />
 
-=======
->>>>>>> 8aef9cc08bfb24e6ed70a91885000a305804e646
     </FrameLayout>
 
 </FrameLayout>

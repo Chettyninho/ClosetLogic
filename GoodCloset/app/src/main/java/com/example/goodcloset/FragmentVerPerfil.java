@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentVerPerfil#newInstance} factory method to
+ * Use the {@link //FragmentVerPerfil#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class FragmentVerPerfil extends Fragment {
