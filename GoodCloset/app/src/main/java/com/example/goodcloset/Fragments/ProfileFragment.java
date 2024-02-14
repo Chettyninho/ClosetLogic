@@ -76,8 +76,6 @@ public class  ProfileFragment extends Fragment {
         rootView.findViewById(R.id.tabLayout);
         establecerDatosDelUsuarioEnLaVista(usuario);
         recuperarArmariosUsuario(apiService,usuario);
-        //creo que tendremos que usar un live data para manejaar el tema de los armarios y eso. lo mismo pasara con los datos del home y de "par ti" en tal caso.
-
         tabLayout = rootView.findViewById(R.id.tabLayout);
         //viewPager = rootView.findViewById(R.id.viewPager);
 

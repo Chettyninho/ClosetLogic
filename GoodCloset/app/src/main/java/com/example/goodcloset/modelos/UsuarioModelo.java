@@ -34,7 +34,7 @@ public class UsuarioModelo {
     @SerializedName("salt")
     private byte[] salt;
 
-    @SerializedName("foto_usuario")
+    @SerializedName("fotoEnBase64")
     private String fotoUsuario;  // Dependiendo del formato de tu API, ajusta el tipo de dato
 
     // Constructor, getters y setters

@@ -25,7 +25,7 @@ public class UsuarioController {
         this.armarioService = armarioService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/ccc")
     public List<Usuario> getAllUsuarios(){
         return usuarioService.getAllUsuarios();
     }
