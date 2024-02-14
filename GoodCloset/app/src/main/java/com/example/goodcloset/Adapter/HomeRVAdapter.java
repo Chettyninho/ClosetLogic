@@ -1,4 +1,4 @@
-package com.example.goodcloset.Recycler;
+package com.example.goodcloset.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
