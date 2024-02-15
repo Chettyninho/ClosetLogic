@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.EditUser"
+    android:background="#292D4E">
+
+    <ImageView
+        android:id="@+id/loginbg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/loginbg" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginStart="20dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:layout_margin="13dp"
+                android:hint="USERNAME"
+                android:textSize="18dp"
+                android:elevation="20dp"/>
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:layout_margin="13dp"
+                android:hint="NAME"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/apellido"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:layout_margin="13dp"
+                android:hint="APELLIDO"
+                android:textSize="18dp"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:layout_margin="13dp"
+                android:hint="CONTRASEÑA ACTUAL"
+                android:textSize="18dp" />
+
+
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:layout_margin="13dp"
+                android:hint="CONTRASEÑA NUEVA"
+                android:textSize="18dp"
+                android:elevation="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/Seguido"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Listoo!!"
+                android:backgroundTint="@color/SecondColor"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
+

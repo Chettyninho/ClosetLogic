@@ -33,6 +33,9 @@ public class Usuario {
     @SerializedName("salt")
     private String salt;
 
+    @SerializedName("fotoUsuario")
+    private String fotoUsuario;
+
     private byte[] saltReal;
     public void setSaltReal(byte[] saltReal) {
         this.saltReal = saltReal;
@@ -122,6 +125,14 @@ public class Usuario {
         this.contador_seguidores = contador_seguidores;
     }
 
+    public String getFotoUsuario() {
+        return fotoUsuario;
+    }
+
+    public void setFotoUsuario(String fotoUsuario) {
+        this.fotoUsuario = fotoUsuario;
+    }
+
     public Usuario() {
     }
 
@@ -138,5 +149,6 @@ public class Usuario {
 
         this.password = contraseñaSinHassear;
     }
+
 
 }

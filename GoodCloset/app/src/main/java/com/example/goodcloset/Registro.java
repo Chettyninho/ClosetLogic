@@ -121,6 +121,8 @@ public class Registro extends AppCompatActivity {
 
                         Log.d("Respuesta Exitosa", String.valueOf(respuesta));
                         Toast.makeText(Registro.this, "INSERTYADO", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Registro.this,LogIn.class);
+                        startActivity(i);
                     } else {
                         Log.e("Respuesta Erronea", "Código de error: " + response.code());
                     }

@@ -13,6 +13,7 @@ public class strangerProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_stranger_profile, container, false);
 
+
         //aqui habra que ajustar la lógica
         //para que cuando hayamos hecho click en algun perfil...
         //cargará esta vista trayendo los datos del usuario que hayamos clicado

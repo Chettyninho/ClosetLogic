@@ -20,7 +20,7 @@ public class PrendaController {
 
     @GetMapping("/{idPrenda}")
     public Prenda getPrendasById(@PathVariable Integer idPrenda) {
-        System.out.println(prendaService.getPrendaById(idPrenda));
+        System.out.println(prendaService.getPrendaById(idPrenda) +"soy la prenda");
         return prendaService.getPrendaById(idPrenda);
     }
 

@@ -1,5 +1,6 @@
 package com.GoodCloset.goodCloset.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +39,7 @@ public class Prenda {
     private String fotoEnBase64;
 
     // Relación muchos a muchos con Outfit
+    @JsonIgnore
     @ManyToMany(mappedBy = "prendas")
     private List<Outfit> outfits;
 }

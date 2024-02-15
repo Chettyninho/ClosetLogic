@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PrendaService {
@@ -30,7 +31,13 @@ public class PrendaService {
     }
 
     public Prenda getPrendaById(Integer idPrenda) {
-        List<Prenda> listaPrendas = prendaRepository.findAll();
+        Optional<Prenda> prenda = prendaRepository.findById(idPrenda);
+        if (prenda.isPresent()) {
+            return prenda.get();
+        } else {
+            return new Prenda();
+        }
+        /*List<Prenda> listaPrendas = prendaRepository.findAll();
         Prenda prenda = null;
         for (Prenda p : listaPrendas){
             if(Objects.equals(p.getId(), idPrenda)){
@@ -39,6 +46,6 @@ public class PrendaService {
                 prenda = null;
             }
         }
-        return prenda;
+        return prenda;*/
     }
 }
