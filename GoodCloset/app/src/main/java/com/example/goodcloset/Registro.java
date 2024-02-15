@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.goodcloset.modelos.Usuario;
@@ -49,6 +50,7 @@ public class Registro extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         button = findViewById(R.id.enviar);
+        TextView tvVolverLogIn = findViewById(R.id.tvVolverLogIn);
 
         imgbg.animate().translationY(-2100).setDuration(1000).setStartDelay(500);
 
@@ -73,6 +75,9 @@ public class Registro extends AppCompatActivity {
         Animation aniFade7 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
         button.startAnimation(aniFade7);
 
+        Animation aniFade8 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+        button.startAnimation(aniFade7);
+
 
         // Inicializar ApiClient con la URL base de tu API (?)
         apiClient = ApiClient.getInstance();
@@ -85,6 +90,16 @@ public class Registro extends AppCompatActivity {
                 startActivity(new Intent(new Intent(Registro.this, LogIn.class)));
             }
 
+        });
+
+
+        tvVolverLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar a la actividad de LogIn al hacer clic en el TextView "Volver al Log In"
+                Intent intent = new Intent(Registro.this, LogIn.class);
+                startActivity(intent);
+            }
         });
 
     }
