@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.goodcloset.Fragments.FragmentLogIn;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, LogIn.class));
+                startActivity(new Intent(SplashScreen.this, MainLoginRegistro.class));
                 finish();
             }
         }, 4500);

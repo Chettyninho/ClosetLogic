@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.GoodCloset" parent="Theme.Material3.DayNight.NoActionBar">
-       <item name="colorPrimary">#45517D</item>
+       <item name="colorPrimary">@color/firstcolor</item>
     </style>
 
     <style name="Theme.GoodCloset" parent="Base.Theme.GoodCloset" />

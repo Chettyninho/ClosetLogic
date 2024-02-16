@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="70dp">
 
 
     <androidx.cardview.widget.CardView
@@ -18,8 +18,8 @@
             android:background="@drawable/layout_search_style"
             android:layout_width="409dp"
             android:layout_height="729dp"
-            android:orientation="horizontal"
-            android:layout_margin="20dp">
+            android:padding="20dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageViewPrueba"
