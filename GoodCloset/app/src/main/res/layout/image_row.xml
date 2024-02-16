@@ -21,41 +21,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="ercharlie_44"
+            android:text="Valeria_Clothes"
             android:textSize="23sp"
             android:textStyle="bold"
             android:layout_marginLeft="40dp"
 
             />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="40dp"
-            android:background="#292D4E">
-
-            <ImageView
-                android:id="@+id/imageViewArmarioUser"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/foto" />
+                android:layout_height="match_parent"
+                android:layout_margin="40dp"
+                android:background="#292D4E">
 
-            <TextView
-                android:id="@+id/tvPieDeFoto"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_alignBottom="@id/imageViewArmarioUser"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:text="Olivia: Me encantan los outfit de inviernno!!"
-                android:textSize="20sp"
-                android:background="@drawable/background_image_row"
-                android:textColor="#FFFFFF"/>
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageViewArmarioUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/foto" />
+
+                <TextView
+                    android:id="@+id/tvPieDeFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_alignBottom="@id/imageViewArmarioUser"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Olivia: Me encantan los outfit de inviernno!!"
+                    android:textSize="20sp"
+                    android:background="@drawable/background_image_row"
+                    android:textColor="#FFFFFF"/>
+
+                <ImageView
+                    android:id="@+id/tvIconHeart"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignTop="@id/imageViewArmarioUser"
+                    android:layout_alignEnd="@id/imageViewArmarioUser"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/baseline_favorite_border_24"
+
+                    android:textSize="20sp" />
+                    <!--android:src="@drawable/baseline_favorite_24"-->
+            </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

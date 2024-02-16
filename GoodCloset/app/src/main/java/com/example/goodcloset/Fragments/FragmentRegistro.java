@@ -22,7 +22,8 @@ import com.example.goodcloset.Registro;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.Retrofit.SingletonUser;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -31,7 +32,7 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentRegistro#newInstance} factory method to
+ * Use the {@link FragmentRegistro# newInstance} factory method to
  * create an instance of this fragment.
  *
  */
@@ -42,7 +43,7 @@ public class FragmentRegistro extends Fragment {
     Button button;
     LinearLayout ly;
 
-    private Usuario usuarioAInsertar;
+    private UsuarioModelo usuarioAInsertar;
     private ApiClient apiClient;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,19 +63,10 @@ public class FragmentRegistro extends Fragment {
         apiClient = ApiClient.getInstance();
 
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 prepararYInsertarUsuario();
-
-                Intent i = new Intent(getContext(), MainActivity.class);
-                //de esta manera compartimos la respuesta(el usuario que entra) con la actividad main activity:
-                //i.putExtra("usuarioRegistrado",respuesta);//relacion clave-valor entre el String y el objeto
-                startActivity(i);
-                requireActivity().finish();
-
             }
-
         });
 
         return rootView;
@@ -88,11 +80,11 @@ public class FragmentRegistro extends Fragment {
         String userName = username.getText().toString();
         String contraseñaSinHassear = password.getText().toString();
 
-        usuarioAInsertar = new Usuario(nombre, aepllid, Email, userName, contraseñaSinHassear);
+        usuarioAInsertar = new UsuarioModelo(nombre, aepllid, Email, userName, contraseñaSinHassear);
         Log.d("!!!!!!!!!!!!nombre de usuario: " + usuarioAInsertar.getUserName(),"contraseña: " +usuarioAInsertar.getContraseñaSinHassear());
         llamarRetrofitInsertarUsuario(usuarioAInsertar);
     }
-    private void llamarRetrofitInsertarUsuario(Usuario usuarioAInsertar) {
+    private void llamarRetrofitInsertarUsuario(UsuarioModelo usuarioAInsertar) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         Log.e("NOMBRE:","VALOR:" + usuarioAInsertar.getNombre());
         if (apiService != null) {
@@ -112,6 +104,14 @@ public class FragmentRegistro extends Fragment {
 
                         Log.d("Respuesta Exitosa", String.valueOf(respuesta));
                         Toast.makeText(getContext(), "INSERTYADO", Toast.LENGTH_SHORT).show();
+                        SingletonUser.getInstance().setUsuario(respuesta);
+
+                        Intent i = new Intent(getContext(), MainActivity.class);
+                        //de esta manera compartimos la respuesta(el usuario que entra) con la actividad main activity:
+                        //i.putExtra("usuarioRegistrado",respuesta);//relacion clave-valor entre el String y el objeto
+                        startActivity(i);
+                        requireActivity().finish();
+
                     } else {
                         Log.e("Respuesta Erronea", "Código de error: " + response.code());
                     }

@@ -58,6 +58,8 @@ public class SearchFragment extends Fragment {
         searchView = rootView.findViewById(R.id.searchView);
         searchView.clearFocus(); itemList = new ArrayList<>();
 
+
+
         itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Mario", "Ten"));
         itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Miguel", "Eleven"));
         itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Carlos", "Twelve"));
@@ -71,6 +73,24 @@ public class SearchFragment extends Fragment {
         itemAdapter = new ExampleAdapter(getContext(), itemList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+
+        recyclerView.setVisibility(View.GONE);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                recyclerView.setVisibility(View.GONE);
+                return false;
+            }
+        });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -30,7 +30,7 @@ import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -131,11 +131,11 @@ public class FragmentLogIn extends Fragment {
         String contraseñaSinHassear = paswordsinHassear.getText().toString();
         //Log.d("contraseña: ","->" + contraseñaSinHassear);
 
-        Usuario usuarioAInsertar = new Usuario(userName, contraseñaSinHassear);
+        UsuarioModelo usuarioAInsertar = new UsuarioModelo(userName, contraseñaSinHassear);
         entrar(usuarioAInsertar);
     }
 
-    private void entrar(Usuario usuarioAInsertar) {
+    private void entrar(UsuarioModelo usuarioAInsertar) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService != null) {
             Call<RespuestaInsertarUsuario> call = apiService.login(usuarioAInsertar);
@@ -151,7 +151,7 @@ public class FragmentLogIn extends Fragment {
                         //Log.d("salt"," : " + Arrays.toString(respuesta.getSalt());
                         //String userNameCheck = respuesta.getUserName(); // Obtén el usuario de la respuesta
                         Log.e("ALL RESPUESTA", "username" + respuesta.getUserName() +
-                                ", // pswdd: " + respuesta.getHashContraseña());
+                                ", // pswdd: " + respuesta.getContraseñaSinHassear());
 
                         if (respuesta.getSalt() != null) {
                             Log.e("dentrodelIF:",": " + respuesta.getSalt());
