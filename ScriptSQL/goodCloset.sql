@@ -3,8 +3,7 @@ CREATE DATABASE GOOD_CLOSET;
 
 USE GOOD_CLOSET;
 
-	drop table usuario;
-   
+drop table usuario;
 truncate table usuario;
 CREATE TABLE usuario (
     id integer AUTO_INCREMENT PRIMARY KEY,
@@ -22,12 +21,16 @@ CREATE TABLE usuario (
 	foto_usuario LONGBLOB 
 );
 SELECT distinct * FROM good_closet.usuario;
-INSERT INTO usuario (nombre, surname, email, user_name, contador_seguidores, foto_usuario)
+INSERT INTO usuario (nombre, surname, email, user_name)
 VALUES 
-('Juan', 'Pérez', 'juan@example.com', 'juan_perez');
+('Juan', 'Pérez', 'juan@example.com', 'juanpEREzZ'),
+('Alvaro', 'Del Alamo', 'jn@exampfrle.com', 'EsCrotoLamo'),
+('Tomas', 'Turbao', 'juturan@eple.com', 'Turbante'),
+('Casas', 'Teno', 'jcasatn@exddele.com', 'TenoRiko'),
+('Elisa', 'Quiroga', 'jelisquin@extol.com', 'jElisarogaZ');
 
 drop table seguidor;
-truncate table seguidor;
+/*truncate table seguidor;*/
 CREATE TABLE seguidor(
 id integer auto_increment primary key,
 id_seguidor integer,
@@ -44,6 +47,7 @@ VALUES
     (3, 2),
     (3, 5),
     (4, 5),
+    (5, 4),
     (3, 1),
     (1, 2);
     
@@ -68,23 +72,22 @@ BEGIN
     SET contador_seguidos = (SELECT COUNT(*) FROM seguidor WHERE id_seguidor = NEW.id_seguidor)
     WHERE id = NEW.id_seguidor;
 END;
-DELIMITER //
-
+//DELIMITER ;
 
   drop table armario;
-  /*truncate table armario;*/
+  truncate table armario;
 CREATE TABLE armario(
 id integer auto_increment primary key,
 nombre varchar(40),
-contador_de_outfits integer,
-contador_de_likes integer,
+contador_de_outfits int,
+contador_de_likes int,
 id_propietario integer,
 
 FOREIGN KEY (id_propietario) REFERENCES usuario(id)
 );
 
-DELIMITER //
 
+DELIMITER //
 CREATE TRIGGER actualizar_contador_armarios
 AFTER INSERT ON armario
 FOR EACH ROW
@@ -93,24 +96,32 @@ BEGIN
     SET contador_armarios = (SELECT COUNT(*) FROM armario WHERE id_propietario = NEW.id_propietario)
     WHERE id = NEW.id_propietario;
 END;
-DELIMITER //
+//DELIMITER ;
 
-
-INSERT INTO armario (nombre, contador_de_outfits, contador_de_likes, id_propietario)
+INSERT INTO armario (nombre, contador_de_likes, id_propietario)
 VALUES
-    ('primavera',10, 500, 1),
-    ('verano',5, 250, 2),
-    ('otoño',8, 300, 3),
-    ('invierno',15, 700, 4),
-    ('Party',12, 450, 5),
-    ('OldSchool',66, 66, 1);
+    ('primavera', 500, 1),
+    ('verano', 250, 2),
+    ('otoño', 300, 3),
+    ('invierno', 700, 4),
+    ('Party', 450, 5),
+    ('OldSchool', 66, 1);
     
+DELIMITER //
+CREATE TRIGGER actualizar_contador_outfits
+AFTER INSERT ON armario_outfit
+FOR EACH ROW
+BEGIN
+    UPDATE armario
+    SET contador_de_outfits = (SELECT COUNT(*) FROM armario_outfit WHERE id_armario = NEW.id_armario)
+    WHERE id = NEW.id_armario;
+END;
 
+//DELIMITER ;
     
-  /*drop table outfit;*/
+  drop table outfit;
   /*truncate table outfit;*/
-
-    CREATE TABLE outfit(
+CREATE TABLE outfit(
 id integer auto_increment primary key,
 Nombre varchar(50),
 descripcion varchar(120),
@@ -131,7 +142,7 @@ id integer auto_increment primary key,
   FOREIGN KEY(id_armario) REFERENCES armario(id),
   FOREIGN KEY(id_outfit) REFERENCES outfit(id)
   );
- /* drop table  armario_outfit;*/
+  drop table  armario_outfit;
   
 INSERT INTO armario_outfit (id_armario, id_outfit)
 VALUES
@@ -140,7 +151,9 @@ VALUES
     (3, 3),
     (4, 4),
     (5, 5);
-    
+ 
+ 
+
     /*drop table prenda;*/
 /*truncate table prenda;*/
   CREATE TABLE prenda(
