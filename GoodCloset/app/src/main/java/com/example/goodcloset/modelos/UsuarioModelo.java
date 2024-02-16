@@ -160,4 +160,5 @@ public class UsuarioModelo {
     public void setContador_armarios(int contador_armarios) {
         this.contador_armarios = contador_armarios;
     }
+
 }

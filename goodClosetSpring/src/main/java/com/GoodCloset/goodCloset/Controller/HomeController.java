@@ -23,6 +23,7 @@ public class HomeController {
     @Autowired
     UsuarioRepository uRepo;
 
+
     @PostMapping("/login")
     public Usuario loguear(@RequestBody Usuario usuario) {
         System.out.println("usuario a la llegada: " +usuario);
