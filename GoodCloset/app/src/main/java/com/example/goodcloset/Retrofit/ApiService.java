@@ -47,6 +47,8 @@ public interface ApiService {
 
     @GET("/prenda/{idPrenda}")
     Call<PrendaModelo> getImgB64(@Path("idPrenda") Integer idPrenda);
+    @POST("/usuarios/seguir/{id_seguido}/{id_seguidor}")
+    Call<Void> follow4Follow(@Path("id_seguido") int idUsuarioExtraño, @Path("id_seguidor") int idUsuario);
 
 }
 
