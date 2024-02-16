@@ -1,10 +1,11 @@
 package com.GoodCloset.goodCloset.Service;
 
+import com.GoodCloset.goodCloset.Models.Seguidor;
 import com.GoodCloset.goodCloset.Models.Usuario;
+import com.GoodCloset.goodCloset.Repository.SeguidorRepository;
 import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private SeguidorRepository seguidorRepositorys;
 
     public List<Usuario> getAllUsuarios(){
         return usuarioRepository.findAll();
@@ -123,7 +126,11 @@ public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
             return null;
         }
     }
-
-
+    public void follow4Follow(Integer idSeguido, Integer idSeguidor) {
+        Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguido).get(),usuarioRepository.findById(idSeguidor).get());
+//        Seguidor usuarioSeguidor = new Usuario(idSeguidor);
+//        Seguidor ns = new Seguidor();
+        seguidorRepositorys.save(usuarioSeguido);
+    }
 
 }

@@ -1,6 +1,6 @@
 package com.GoodCloset.goodCloset.Controller;
 
-import com.GoodCloset.goodCloset.Models.Outfit;
+import com.GoodCloset.goodCloset.Models.Seguidor;
 import com.GoodCloset.goodCloset.Models.Usuario;
 import com.GoodCloset.goodCloset.Service.ArmarioService;
 import com.GoodCloset.goodCloset.Service.UsuarioService;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -93,13 +92,10 @@ public class UsuarioController {
         return usuarioByUsername;
     }
 
-    @GetMapping("/fotos")//creo que la lista debería de ser en String base 64, pero (?)
-    public ResponseEntity<List<byte[]>> getAllUsuariosFotos() {
-        List<byte[]> fotos = usuarioService.getAllUsuarios().stream()
-                .map(Usuario::getFotoUsuario)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok().body(fotos);
-    }
 
+ @PostMapping("seguir/{id_seguido}/{id_seguidor}")
+    public void follow4Follow(@PathVariable("id_seguido") Integer id_seguido, @PathVariable("id_seguidor")Integer id_seguidor){
+        usuarioService.follow4Follow(id_seguido,id_seguidor);
+    }
 
 }
