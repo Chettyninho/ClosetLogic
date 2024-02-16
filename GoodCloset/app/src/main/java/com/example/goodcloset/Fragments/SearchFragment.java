@@ -9,9 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.Adapter.ExampleAdapter;
+import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.PruebagetFoto.GetFotos;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
@@ -20,6 +27,7 @@ import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +40,13 @@ public class SearchFragment extends Fragment {
     private ApiService apiService;
     private Button boton;
 
+    private RecyclerView recyclerView;
+
+    private ArrayList<ExampleItem> itemList = new ArrayList<>();
+
+    private ExampleAdapter itemAdapter;
+
+    private SearchView searchView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
@@ -39,8 +54,40 @@ public class SearchFragment extends Fragment {
         obtenerAllUsers();
         boton = rootView.findViewById(R.id.btnIrAGetFotos);
 
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        searchView = rootView.findViewById(R.id.searchView);
+        searchView.clearFocus(); itemList = new ArrayList<>();
+
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Mario", "Ten"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Miguel", "Eleven"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Carlos", "Twelve"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Ruben", "Ten"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Paquito", "Eleven"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Paloma", "Twelve"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Carmen", "Ten"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Rudiguer", "Eleven"));
+        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Maria", "Twelve"));
+
+        itemAdapter = new ExampleAdapter(getContext(), itemList);
+        recyclerView.setAdapter(itemAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
         // Configura el onClickListener para el botón
-        boton.setOnClickListener(new View.OnClickListener() {
+       boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Utiliza getActivity() para obtener el contexto de la actividad actual
@@ -52,7 +99,23 @@ public class SearchFragment extends Fragment {
         return rootView;
     }
 
-    private void obtenerAllUsers() {
+    private void filterList(String text) {
+        ArrayList<ExampleItem> filterList = new ArrayList<>();
+        for (ExampleItem item : itemList){
+            if(item.getText1().toLowerCase().contains((text.toLowerCase()))){
+                filterList.add(item);
+            }
+        }
+
+        if(filterList.isEmpty()){
+            Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
+        } else {
+
+            itemAdapter.setFilteredLsit(filterList);
+
+        }
+    }
+   private void obtenerAllUsers() {
         //de nuevo aqui tendremos que gestionar toda interaccion con cada usuario desde el onResponse, encapsular lo maximo posible el codigo.
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService!=null){
@@ -93,7 +156,4 @@ public class SearchFragment extends Fragment {
 
         }
     }
-
-
-
 }

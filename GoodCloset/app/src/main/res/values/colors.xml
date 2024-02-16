@@ -5,4 +5,6 @@
     <color name="defindedgray">#ECECEC</color>
     <color name="firstcolor">#292D4E</color>
     <color name="SecondColor">#45517D</color>
+    <color name="secondColorMasClarito">#6A7299</color>
+
 </resources>

@@ -70,6 +70,17 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
+        //cambiar a registro cuando
+        TextView signUpTextView = findViewById(R.id.login_signuptv);
+        signUpTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Iniciar la actividad de SignUp al hacer clic en el TextView
+                Intent intent = new Intent(LogIn.this, Registro.class);
+                startActivity(intent);
+            }
+        });
+
         textInputLayout = findViewById(R.id.textInputLayout);
         passwordEditText = findViewById(R.id.pswdLogin);
         visibilityButton = findViewById(R.id.togglePasswordVisibility);
