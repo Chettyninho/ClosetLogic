@@ -38,6 +38,9 @@ public class Usuario {
     private byte[] salt;
     private byte[] fotoUsuario;
 
+    public Usuario(Integer idSeguido, Integer idSeguidor) {
+    }
+
     //@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Armario> armarios;
 }

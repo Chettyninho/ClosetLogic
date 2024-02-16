@@ -39,7 +39,7 @@ public class SearchFragment extends Fragment {
     private ImageView imageView;
     private ApiService apiService;
     private Button boton;
-
+    List<UsuarioModelo> allUsuarioModelos;
     private RecyclerView recyclerView;
 
     private ArrayList<ExampleItem> itemList = new ArrayList<>();
@@ -56,7 +56,8 @@ public class SearchFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
         searchView = rootView.findViewById(R.id.searchView);
-        searchView.clearFocus(); itemList = new ArrayList<>();
+        searchView.clearFocus();
+        itemList = new ArrayList<>();
 
 
 
@@ -149,7 +150,7 @@ public class SearchFragment extends Fragment {
                     Log.d("TAG", "Código de respuesta: " + response.code());
 
                     if (response.isSuccessful()) {
-                        List<UsuarioModelo> allUsuarioModelos = response.body();
+                        allUsuarioModelos = response.body();
                         if (!allUsuarioModelos.isEmpty()){
                             for (UsuarioModelo u : allUsuarioModelos) {
 

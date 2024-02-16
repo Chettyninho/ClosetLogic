@@ -1,6 +1,6 @@
 package com.example.goodcloset.Fragments;
 
-import static android.content.Context.BIND_ABOVE_CLIENT;
+
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -22,10 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.goodcloset.LogIn;
 import com.example.goodcloset.MainActivity;
 import com.example.goodcloset.R;
-import com.example.goodcloset.Registro;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;

@@ -1,7 +1,9 @@
 package com.GoodCloset.goodCloset.Repository;
 
+import com.GoodCloset.goodCloset.Models.Seguidor;
 import com.GoodCloset.goodCloset.Models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -17,8 +19,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 
     @Query("SELECT s.seguido FROM Seguidor s WHERE s.seguidor.id = :idSeguidor") //SACA TODOS LOS USUARIOS A LOS QUE SIGUE EL USUARIO.
     List<Usuario> findUsuariosSeguidosPorUsuario(@Param("idSeguidor") Integer idSeguidor);
-
-
 
 
 }
