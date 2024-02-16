@@ -21,6 +21,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".EditarUsuario.EditUser"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".PruebagetFoto.GetFotos"
             android:exported="false" />
         <activity

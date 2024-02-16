@@ -56,7 +56,7 @@ public class GetFotos extends AppCompatActivity {
                             Log.e("imagen", "Cuerpo de la respuesta vacío o nulo");
                         }
                     } else {
-                        Log.e("imagen", "Error en la respuesta: " + response.code());
+                        Log.e("imagen", "Error en la respuestauuu: " + response.code());
                         // Agrega más detalles del error si están disponibles
                         try {
                             Log.e("imagen", "Error body: " + response.errorBody().string());

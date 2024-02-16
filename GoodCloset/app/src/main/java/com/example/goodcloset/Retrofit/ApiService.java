@@ -2,10 +2,9 @@ package com.example.goodcloset.Retrofit;
 
 import com.example.goodcloset.modelos.OutfitModelo;
 import com.example.goodcloset.modelos.PrendaModelo;
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.modelos.ArmarioModelo;
-import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,15 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     @POST("/inicio/login")
-    Call<RespuestaInsertarUsuario> login(@Body Usuario usuario);
+    Call<RespuestaInsertarUsuario> login(@Body UsuarioModelo usuarioModelo);
 
     @POST("/usuarios/saveUser")
-    Call<RespuestaInsertarUsuario> insertarUsuario(@Body Usuario usuario);
+    Call<RespuestaInsertarUsuario> insertarUsuario(@Body UsuarioModelo usuarioModelo);
 
     @GET("/usuarios/seguidos/{idUsr}")
-    Call<List<Usuario>> getUsersFollowedByMainUser(@Path("idUsr") Integer idPropietario);
+    Call<List<UsuarioModelo>> getUsersFollowedByMainUser(@Path("idUsr") Integer idPropietario);
     @GET("/usuarios/all")
-    Call<List<Usuario>> obtenerUsuarios();
+    Call<List<UsuarioModelo>> obtenerUsuarios();
 
     @GET("armario/propietario/{idPropietario}")
     Call<List<ArmarioModelo>> getArmariosUser(@Path("idPropietario") Integer idPropietario);
