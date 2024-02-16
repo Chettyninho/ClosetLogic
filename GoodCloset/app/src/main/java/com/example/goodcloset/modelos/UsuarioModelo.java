@@ -145,5 +145,19 @@ public class UsuarioModelo {
         this.password = contraseñaSinHassear;
     }
 
+    public int getContador_seguidos() {
+        return contador_seguidos;
+    }
 
+    public void setContador_seguidos(int contador_seguidos) {
+        this.contador_seguidos = contador_seguidos;
+    }
+
+    public int getContador_armarios() {
+        return contador_armarios;
+    }
+
+    public void setContador_armarios(int contador_armarios) {
+        this.contador_armarios = contador_armarios;
+    }
 }

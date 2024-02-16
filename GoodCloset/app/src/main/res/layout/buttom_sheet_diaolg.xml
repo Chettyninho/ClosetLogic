@@ -7,7 +7,6 @@
 
     <ImageView
         android:id="@+id/imagenDialog"
-        android:background="@drawable/dialog_bg"
         android:layout_width="110dp"
         android:layout_height="142dp"
         android:layout_gravity="center"

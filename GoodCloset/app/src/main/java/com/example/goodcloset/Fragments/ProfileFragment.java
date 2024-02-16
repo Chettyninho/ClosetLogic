@@ -51,7 +51,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class  ProfileFragment extends Fragment {
-    TextView nombreUser, NumeroFollower, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
+    TextView nombreUser, NumeroFollower,NumeroFollow, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
     ApiService apiService;
     Button editarButton, siguiednoButton;
     RecyclerView recyclerView;
@@ -104,6 +104,8 @@ public class  ProfileFragment extends Fragment {
         Log.d("test","seguidores ->" + usuario.getContador_seguidores() + "// usrname -> " +usuario.getUserName());
         nombreUser = rootView.findViewById(R.id.usernameTextView);
         NumeroFollower = rootView.findViewById(R.id.followersTextView);
+        NumeroFollow = rootView.findViewById(R.id.tvNumeroSeguidos);
+        NumeroArmarios = rootView.findViewById(R.id.tvNumeroArmarios);
         rootView.findViewById(R.id.tabLayout);
         establecerDatosDelUsuarioEnLaVista(usuario);
         recuperarArmariosUsuario(apiService,usuario);
@@ -120,6 +122,8 @@ public class  ProfileFragment extends Fragment {
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
         nombreUser.setText("@" + usuario.getUserName());
         NumeroFollower.setText(String.valueOf(usuario.getContador_seguidores()));
+        NumeroFollow.setText(String.valueOf(usuario.getContador_seguidos()));
+        NumeroArmarios.setText(String.valueOf(usuario.getContador_armarios()));
         //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 

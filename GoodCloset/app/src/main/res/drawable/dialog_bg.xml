@@ -5,10 +5,14 @@
         android:color="@color/white"/>
 
     <corners
-        android:topLeftRadius="18dp"
-        android:topRightRadius="18dp"
+        android:topLeftRadius="80dp"
+        android:topRightRadius="80dp"
         />
+<stroke
+    android:color="@color/design_default_color_secondary"
+    android:width="2dp">
 
+</stroke>
     <padding
         android:left="18dp"
         android:right="18dp"
