@@ -56,11 +56,23 @@ public class  ProfileFragment extends Fragment {
     Button editarButton, siguiednoButton;
     RecyclerView recyclerView;
     List<ArmarioModelo> armariosList;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //tabs
+        tabLayout = rootView.findViewById(R.id.tabLayout);
+        viewPager = rootView.findViewById(R.id.viewPager);
+
+
+
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
 
         apiService = ApiClient.getInstance().getApiService();
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
@@ -118,6 +130,8 @@ public class  ProfileFragment extends Fragment {
         return rootView;
 
     }
+
+
 
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
         nombreUser.setText("@" + usuario.getUserName());
@@ -277,8 +291,11 @@ public class  ProfileFragment extends Fragment {
 
                 ApiService apiService = ApiClient.getInstance().getApiService();
                 if (apiService != null) {
+                    Log.d("test","callback");
                     Call<ArmarioModelo> call = apiService.postArmariosUser(armario);
                     call.enqueue(new Callback<ArmarioModelo>() {
+
+
 
                         @Override
                         public void onResponse(Call<ArmarioModelo> call, Response<ArmarioModelo> response) {

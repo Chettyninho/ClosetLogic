@@ -23,6 +23,10 @@ public class ArmarioService {
    }
 
     public List<Armario> findAllArmariosByPropietario(Integer idPropietario) {
+        System.out.println(armarioRepository.findAll());
+        System.out.println(armarioRepository.findArmariosByUserId(idPropietario));
+        return armarioRepository.findArmariosByUserId(idPropietario);
+        /*
         List<Armario> armariosTotales= armarioRepository.findAll();
         List<Armario> armarioPropietario =  new ArrayList<>();
         for (Armario a : armariosTotales){
@@ -31,6 +35,8 @@ public class ArmarioService {
             }
         }
         return armarioPropietario;
+
+         */
     }
 
     public List<Outfit> findOutfitsByArmarioId(Integer armarioId) {

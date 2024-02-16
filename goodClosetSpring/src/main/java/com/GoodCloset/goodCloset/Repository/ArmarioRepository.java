@@ -19,4 +19,6 @@ public interface ArmarioRepository extends JpaRepository<Armario, Integer> {
     @Query("SELECT ao.outfit FROM ArmarioOutfit ao WHERE ao.armario.id = :armarioId")
     List<Outfit> findOutfitsByArmarioId(@Param("armarioId") Integer armarioId);
 
+    @Query("SELECT a FROM Armario a WHERE a.propietario.id = :id")
+    List<Armario> findArmariosByUserId(@Param("id") Integer id);
 }

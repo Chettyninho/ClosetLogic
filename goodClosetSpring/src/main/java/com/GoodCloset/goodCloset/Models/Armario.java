@@ -20,10 +20,13 @@ public class Armario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name="nombre")
     private String nombre;
+    @Column(name="contador_de_outfits")
     private int contador_de_outfits;
+    @Column(name="contador_de_likes")
     private int contador_de_likes;
+    @Column(name="id_propietario")
     private int id_propietario;
 
 

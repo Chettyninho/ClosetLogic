@@ -38,6 +38,7 @@ public class ArmarioController {
             return armarioService.findAllArmariosByPropietario(idPropietario);
         } catch (Exception e) {
             // Maneja cualquier excepción y devuelve una lista vacía o manejo de errores según sea necesario
+            e.printStackTrace();
             return Collections.emptyList();
         }
     }
