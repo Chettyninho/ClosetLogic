@@ -17,7 +17,7 @@
         android:theme="@style/Theme.GoodCloset"
         tools:targetApi="31">
         <activity
-            android:name=".Fragments.EditUser"
+            android:name=".EditarUsuario.EditUser"
             android:exported="false" />
         <activity
             android:name=".PruebagetFoto.GetFotos"
@@ -27,19 +27,19 @@
             android:exported="false" />
         <activity
             android:name=".Registro"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

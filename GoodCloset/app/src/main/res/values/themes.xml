@@ -5,4 +5,11 @@
     </style>
 
     <style name="Theme.GoodCloset" parent="Base.Theme.GoodCloset" />
+    
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_button</item>
+    </style>
+    <style name="DialogAnimationExit">
+        <item name="android:windowExitAnimation">@anim/slide_in_button_exit</item>
+    </style>
 </resources>

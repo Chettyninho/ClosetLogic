@@ -1,38 +1,22 @@
 package com.example.goodcloset.Fragments;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
-import com.example.goodcloset.Retrofit.Respuestas.RespuestaGetArmariosDeUsuario;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
-import com.example.goodcloset.modelos.ArmarioModelo;
-import com.example.goodcloset.modelos.Usuario;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import com.example.goodcloset.modelos.UsuarioModelo;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -70,23 +54,23 @@ public class HomeFragment extends Fragment {
         ApiService apiService = ApiClient.getInstance().getApiService();
 
         if (apiService!=null){
-            Call<List<Usuario>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
+            Call<List<UsuarioModelo>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
 
             //pasa es que siempre entro con user = s que el id es 30 y nadie le sigue :(
             Log.d("TAG", "Llamada a la API iniciada");
 
-            call.enqueue(new Callback<List<Usuario>>() {
+            call.enqueue(new Callback<List<UsuarioModelo>>() {
                 @Override
-                public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
+                public void onResponse(Call<List<UsuarioModelo>> call, Response<List<UsuarioModelo>> response) {
                     Log.d("TAG", "Código de respuesta: " + response.code());
 
                     if (response.isSuccessful()) {
-                        List<Usuario> usuariosSeguidos = response.body();
+                        List<UsuarioModelo> usuariosSeguidos = response.body();
 
                         Log.d(".u.", "" + response.body().toString());
 
                         if (!usuariosSeguidos.isEmpty()){
-                            for (Usuario u : usuariosSeguidos) {
+                            for (UsuarioModelo u : usuariosSeguidos) {
                                 u.setSaltReal(Arrays.toString(u.getSalt()).getBytes());
                                 Log.e("Id usuario del get", " : " + u.getId());
                             }
@@ -104,7 +88,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<List<Usuario>> call, Throwable t) {
+                public void onFailure(Call<List<UsuarioModelo>> call, Throwable t) {
                     Log.e("Error en la llamada", "Error: " + t.getMessage());
                 }
             });

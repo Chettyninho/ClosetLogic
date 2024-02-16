@@ -35,7 +35,6 @@ public class OutfitService {
         for (String s : imagenesCapturadaBase64){
 
             Prenda prenda = new Prenda();
-            prenda.setMarca("testPrenda"+i);
             //prenda.setTipo("testPrenda");
             //prenda.setTalla("testPrenda");
             prenda.setFotoEnBase64(s);

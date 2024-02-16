@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
@@ -31,7 +31,7 @@ public class Registro extends AppCompatActivity {
     Button button;
     LinearLayout ly;
 
-    private Usuario usuarioAInsertar;
+    private UsuarioModelo usuarioModeloAInsertar;
     private ApiClient apiClient;
 
 
@@ -97,15 +97,15 @@ public class Registro extends AppCompatActivity {
         String userName = username.getText().toString();
         String contraseñaSinHassear = password.getText().toString();
 
-        usuarioAInsertar = new Usuario(nombre, aepllid, Email, userName, contraseñaSinHassear);
-        Log.d("!!!!!!!!!!!!nombre de usuario: " + usuarioAInsertar.getUserName(),"contraseña: " +usuarioAInsertar.getContraseñaSinHassear());
-        llamarRetrofitInsertarUsuario(usuarioAInsertar);
+        usuarioModeloAInsertar = new UsuarioModelo(nombre, aepllid, Email, userName, contraseñaSinHassear);
+        Log.d("!!!!!!!!!!!!nombre de usuario: " + usuarioModeloAInsertar.getUserName(),"contraseña: " + usuarioModeloAInsertar.getContraseñaSinHassear());
+        llamarRetrofitInsertarUsuario(usuarioModeloAInsertar);
     }
-    private void llamarRetrofitInsertarUsuario(Usuario usuarioAInsertar) {
+    private void llamarRetrofitInsertarUsuario(UsuarioModelo usuarioModeloAInsertar) {
         ApiService apiService = ApiClient.getInstance().getApiService();
-        Log.e("NOMBRE:","VALOR:" + usuarioAInsertar.getNombre());
+        Log.e("NOMBRE:","VALOR:" + usuarioModeloAInsertar.getNombre());
         if (apiService != null) {
-            Call<RespuestaInsertarUsuario> call = apiService.insertarUsuario(usuarioAInsertar);
+            Call<RespuestaInsertarUsuario> call = apiService.insertarUsuario(usuarioModeloAInsertar);
             String url = call.request().url().toString();
 
             Log.d("URL de la llamada", url);

@@ -11,81 +11,98 @@ import java.util.Base64;
 public class RespuestaInsertarUsuario implements Serializable {
 
     @SerializedName("id")
-    private int id;
-
+    private Integer id;
     @SerializedName("nombre")
     private String nombre;
-
     @SerializedName("surname")
     private String surname;
-
     @SerializedName("email")
     private String email;
-
     @SerializedName("username")
-    private String userName;
-
+    private String username;
     @SerializedName("contador_seguidores")
-    private int contadorSeguidores;
-
-    @SerializedName("privado")
-    private boolean privado;
-
+    private Integer contador_seguidores;
+    @SerializedName("contador_seguidos")
+    private int contador_seguidos;
+    @SerializedName("contador_armarios")
+    private int contador_armarios;
     @SerializedName("fechaNacimiento")
     private String fechaNacimiento;
-
     @SerializedName("hashContraseña")
-    private String hashContraseña;
-
+    private String password;
     @SerializedName("salt")
     private String salt;
+    @SerializedName("fotoUsuario")
+    private String fotoUsuario;
 
     private byte[] saltReal;
-
-
     public void setSaltReal(byte[] saltReal) {
         this.saltReal = saltReal;
     }
 
-    @SerializedName("foto_usuario")
-    private String fotoUsuario;  // Dependiendo del formato de tu API, ajusta el tipo de dato
 
-    // Constructor, getters y setters
-
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getSurname() {
         return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public int getContadorSeguidores() {
-        return contadorSeguidores;
-    }
-
-    public boolean isPrivado() {
-        return privado;
+    public void setUserName(String userName) {
+        this.username = userName;
     }
 
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public String getHashContraseña() {
-        return hashContraseña;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getContraseñaSinHassear() {
+        return password;
+    }
+
+    public void setContraseñaSinHassear(String contraseñaSinHassear) {
+        this.password = contraseñaSinHassear;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public byte[] getSalt() {
@@ -95,26 +112,25 @@ public class RespuestaInsertarUsuario implements Serializable {
         return null;
     }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Integer getContador_seguidores() {
+        return contador_seguidores;
+    }
+
+    public void setContador_seguidores(Integer contador_seguidores) {
+        this.contador_seguidores = contador_seguidores;
+    }
+
     public String getFotoUsuario() {
         return fotoUsuario;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "RespuestaInsertarUsuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
-                ", contadorSeguidores=" + contadorSeguidores +
-                ", privado=" + privado +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", hashContraseña='" + hashContraseña + '\'' +
-                ", salt='" + salt + '\'' +
-                ", saltReal=" + Arrays.toString(saltReal) +
-                ", fotoUsuario='" + fotoUsuario + '\'' +
-                '}';
+    public void setFotoUsuario(String fotoUsuario) {
+        this.fotoUsuario = fotoUsuario;
     }
+
+
 }

@@ -20,21 +20,6 @@ public class Prenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "marca")
-    private String marca;
-
-    @Column(name = "tipo")
-    private String tipo;
-
-    @Column(name = "talla")
-    private String talla;
-
-    @Column(name = "color")
-    private String color;
-
-    @Column(name = "enlace_web")
-    private String enlaceWeb;
-
     @Column(name = "foto_prenda")
     private String fotoEnBase64;
 

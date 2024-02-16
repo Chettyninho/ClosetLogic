@@ -1,6 +1,8 @@
 package com.example.goodcloset.Fragments;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,11 +11,14 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 
@@ -26,6 +31,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.goodcloset.EditarUsuario.EditUser;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
@@ -47,7 +53,7 @@ import retrofit2.Response;
 public class  ProfileFragment extends Fragment {
     TextView nombreUser, NumeroFollower, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
     ApiService apiService;
-    Button newArmarioButton;
+    Button editarButton, siguiednoButton;
     RecyclerView recyclerView;
     List<ArmarioModelo> armariosList;
 
@@ -56,9 +62,34 @@ public class  ProfileFragment extends Fragment {
         // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        apiService = ApiClient.getInstance().getApiService();
+        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+//obtenemos la referencia del boton de editar
+        editarButton = rootView.findViewById(R.id.editarPerfil);
+        siguiednoButton = rootView.findViewById(R.id.Seguido);
+
+
+        siguiednoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogs(usuario);
+            }
+
+
+        });
+
         // Obtener referencia al TabLayout y el boton flotante desde el diseño inflado
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
         FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
+
+        editarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), EditUser.class);
+                startActivity(i);
+
+            }
+        });
 
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,23 +98,16 @@ public class  ProfileFragment extends Fragment {
             }
         });
 
-        apiService = ApiClient.getInstance().getApiService();
-        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
 
-        Log.d("test","seguidores ->" + usuario.getContadorSeguidores() + "// usrname -> " +usuario.getUserName());
+
+
+        Log.d("test","seguidores ->" + usuario.getContador_seguidores() + "// usrname -> " +usuario.getUserName());
         nombreUser = rootView.findViewById(R.id.usernameTextView);
         NumeroFollower = rootView.findViewById(R.id.followersTextView);
         rootView.findViewById(R.id.tabLayout);
         establecerDatosDelUsuarioEnLaVista(usuario);
         recuperarArmariosUsuario(apiService,usuario);
         tabLayout = rootView.findViewById(R.id.tabLayout);
-        //viewPager = rootView.findViewById(R.id.viewPager);
-
-        //recyclerView = rootView.findViewById(R.id.recicledViewPerfil);
-
-        //setupViewPager(viewPager);
-       // tabLayout.setupWithViewPager(viewPager);
-        //creo que tendremos que usar un live data para manejaar el tema de los armarios y eso. lo mismo pasara con los datos del home y de "par ti" en tal caso.
 
         //imageview donde pinto la imagen del perfil
         ImageView profileImageView = rootView.findViewById(R.id.profileImageView);
@@ -95,7 +119,7 @@ public class  ProfileFragment extends Fragment {
 
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
         nombreUser.setText("@" + usuario.getUserName());
-        NumeroFollower.setText(String.valueOf(usuario.getContadorSeguidores()));
+        NumeroFollower.setText(String.valueOf(usuario.getContador_seguidores()));
         //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 
@@ -287,6 +311,46 @@ public class  ProfileFragment extends Fragment {
         });
 
         builder.show();
+    }
+
+    private void showDialogs(RespuestaInsertarUsuario usuario) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.buttom_sheet_diaolg);
+
+        ImageView profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+        EditText usernameDialog = dialog.findViewById(R.id.userDialog);
+        usernameDialog.setHint("@" + usuario.getUserName());
+        EditText nameDialog = dialog.findViewById(R.id.nameDialog);
+        nameDialog.setHint(usuario.getNombre());
+        Button seguirdoDialogButton = dialog.findViewById(R.id.contraseñaDialog);
+
+        //a ver como hacemos el tema de la foto, podemos poner
+        // que al darle a cambiar foto salte la camarao que seleccione
+        // una de galeria.
+        //por otro lado, el post se hará cuando se cierr el Dialog?
+        //ponemos un boton mas dentro del dialog?
+
+
+        // Mostrar el diálogo
+        dialog.show();
+
+        // Ajustar propiedades de la ventana para la animación y la posición
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setWindowAnimations(R.style.DialogAnimation);
+            window.setWindowAnimations(R.style.DialogAnimationExit);// Asigna la animación al diálogo
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            window.setGravity(Gravity.BOTTOM); // Alinea el diálogo en la parte inferior de la pantalla
+        }
+
+        seguirdoDialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), EditUser.class);
+                startActivity(i);
+            }
+        });
     }
 
 

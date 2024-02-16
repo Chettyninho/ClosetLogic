@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
@@ -96,14 +96,14 @@ public class LogIn extends AppCompatActivity {
         String contraseñaSinHassear = paswordsinHassear.getText().toString();
         //Log.d("contraseña: ","->" + contraseñaSinHassear);
 
-        Usuario usuarioAInsertar = new Usuario(userName, contraseñaSinHassear);
-        entrar(usuarioAInsertar);
+        UsuarioModelo usuarioModeloAInsertar = new UsuarioModelo(userName, contraseñaSinHassear);
+        entrar(usuarioModeloAInsertar);
     }
 
-    private void entrar(Usuario usuarioAInsertar) {
+    private void entrar(UsuarioModelo usuarioModeloAInsertar) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService != null) {
-            Call<RespuestaInsertarUsuario> call = apiService.login(usuarioAInsertar);
+            Call<RespuestaInsertarUsuario> call = apiService.login(usuarioModeloAInsertar);
 
             call.enqueue(new Callback<RespuestaInsertarUsuario>() {
 
@@ -116,10 +116,10 @@ public class LogIn extends AppCompatActivity {
                         //Log.d("salt"," : " + Arrays.toString(respuesta.getSalt());
                         //String userNameCheck = respuesta.getUserName(); // Obtén el usuario de la respuesta
                             Log.e("ALL RESPUESTA", "username" + respuesta.getUserName() +
-                                    ", // pswdd: " + respuesta.getHashContraseña());
+                                    ", // pswdd: " + respuesta.getContraseñaSinHassear());
 
                         if (respuesta.getSalt() != null) {
-                            Log.e("dentrodelIF:",": " + respuesta.getSalt());
+                            //Log.e("dentrodelIF:",": " + respuesta.getSalt());
                             respuesta.setSaltReal(Arrays.toString(respuesta.getSalt()).getBytes());
                             Log.d("salt", " : " + Arrays.toString(respuesta.getSalt()));
                             //crear el singleton del usuario recibido.

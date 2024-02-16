@@ -26,7 +26,9 @@ public class Usuario {
     @Column(name = "user_name")
     private String username;
     @Column(name = "contador_seguidores")
-    private Integer contador_seguidores;
+    private int contador_seguidores;
+    private int contador_seguidos;
+    private int contador_armarios;
     private Boolean privado;
     @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;

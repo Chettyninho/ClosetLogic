@@ -1,11 +1,9 @@
 package com.example.goodcloset.methodLayer;
 
-import android.hardware.biometrics.BiometricManager;
-
-import com.example.goodcloset.modelos.Usuario;
+import com.example.goodcloset.modelos.UsuarioModelo;
 
 public class UsuarioMethods {
-    public static String returnProfileImage(Usuario usuario){
-        return usuario.getFotoUsuario();
+    public static String returnProfileImage(UsuarioModelo usuarioModelo){
+        return usuarioModelo.getFotoUsuario();
     }
 }
