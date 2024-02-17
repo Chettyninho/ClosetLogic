@@ -38,7 +38,7 @@ public class OutfitService {
             //prenda.setTipo("testPrenda");
             //prenda.setTalla("testPrenda");
             prenda.setFotoEnBase64(s);
-            System.out.println(prenda.getFotoEnBase64());
+            System.out.println( "s " +i/*prenda.getFotoEnBase64()*/);
             prendaRepository.save(prenda);
             i++;
         }

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrouselArmario extends AppCompatActivity  {
+    private List<Integer> imageList = new ArrayList<>();
+    //esto debera ser una lista
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +22,9 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         Button button = findViewById(R.id.button3);
+        List<Integer> imageList = new ArrayList<>();
 
-
-
+/*
         // va la lista de las fotos de los outfits
        List<Integer> imageList = new ArrayList<>();
         imageList.add(R.drawable.camiseta);
@@ -37,7 +39,7 @@ public class CarrouselArmario extends AppCompatActivity  {
         imageList.add(R.drawable.camiseta);
         imageList.add(R.drawable.pantalon);
         imageList.add(R.drawable.zapas);
-
+*/
         CustomPagerAdapter adapter = new CustomPagerAdapter(this, imageList);
         viewPager.setAdapter(adapter);
 
