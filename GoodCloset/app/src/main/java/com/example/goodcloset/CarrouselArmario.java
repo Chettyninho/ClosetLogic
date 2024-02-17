@@ -1,6 +1,7 @@
 package com.example.goodcloset;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -8,10 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.goodcloset.Adapter.CustomPagerAdapter;
+import com.example.goodcloset.Retrofit.ApiClient;
+import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.OutfitModelo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CarrouselArmario extends AppCompatActivity  {
     private List<Integer> imageList = new ArrayList<>();
@@ -34,14 +42,39 @@ public class CarrouselArmario extends AppCompatActivity  {
         // Mostrar un Toast con el ID del armario
         Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
         //si sale -1 significa q no pilla bien el id
+        Integer idArmario = armarioRecibido.getId();
+        obtenerOutfits(imageList,armarioRecibido);
 
-
-        // Luego puedes utilizar este idArmario según tus necesidades en la actividad
-
-        // Aquí debes inicializar tu lista de imágenes o realizar cualquier otra lógica necesaria
-
+        //no se si imageList seria lo bueno,
+        //creo que obtenerOutfits() tendra que devolver una lista
+        //de tipoOutfitModel que contiene unalista de prendas
+        //esa lista de eOutfitModel creo que es la que deberia pasarse al
+        //adaptador y desde ahi seleccionar las imagenes para mostrar.
         CustomPagerAdapter adapter = new CustomPagerAdapter(this, imageList);
         viewPager.setAdapter(adapter);
+    }
+
+    private void obtenerOutfits(List<Integer> imageList, ArmarioModelo armarioRecibido){
+
+        ApiService apiService = ApiClient.getInstance().getApiService();
+        if (apiService!= null){
+            Call<List<OutfitModelo>> call = apiService.getOutfits_Armario(armarioRecibido.getId());
+        call.enqueue(new Callback<List<OutfitModelo>>() {
+            @Override
+            public void onResponse(Call<List<OutfitModelo>> call, Response<List<OutfitModelo>> response) {
+                if (response.isSuccessful()){
+                    List<OutfitModelo> listaOutfits =response.body();
+                    Log.d("responseBody Miguel Test", listaOutfits.toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<OutfitModelo>> call, Throwable t) {
+
+            }
+        });
+        }
     }
 }
 

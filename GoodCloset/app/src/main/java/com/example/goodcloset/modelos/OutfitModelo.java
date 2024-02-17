@@ -18,6 +18,8 @@ public class OutfitModelo implements Serializable {
 
     @SerializedName("fecha_creacion")
     private String fecha_creacion;
+    @SerializedName("prendas")
+    List<PrendaModelo> prendasDelOutfit;
 
     private List<String> imgsBase64; //contendra las img en base 64
 

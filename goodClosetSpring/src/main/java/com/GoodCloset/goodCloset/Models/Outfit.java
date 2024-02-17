@@ -31,4 +31,6 @@ public class Outfit {
             inverseJoinColumns = @JoinColumn(name = "id_prenda"))
     private List<Prenda> prendas;
 
+    public Outfit(Integer idMayor) {
+    }
 }

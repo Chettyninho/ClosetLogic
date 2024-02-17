@@ -50,5 +50,8 @@ public interface ApiService {
     @POST("/usuarios/seguir/{id_seguido}/{id_seguidor}")
     Call<Void> follow4Follow(@Path("id_seguido") int idUsuarioExtraño, @Path("id_seguidor") int idUsuario);
 
+    @GET("armario/{id_armario}/outfits")
+    Call<List<OutfitModelo>> getOutfits_Armario(@Path("id_armario") Integer id_armario);
+
 }
 

@@ -2,6 +2,8 @@ package com.GoodCloset.goodCloset.Models;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "armario_outfit")
 public class ArmarioOutfit {
@@ -19,4 +21,10 @@ public class ArmarioOutfit {
     private Outfit outfit;
 
 
+
+
+    public ArmarioOutfit(Armario armario, Outfit outFit) {
+        this.armario = armario;
+        this.outfit =outFit;
+    }
 }
