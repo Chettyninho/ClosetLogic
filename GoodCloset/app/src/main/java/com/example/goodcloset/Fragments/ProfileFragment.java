@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.goodcloset.CarrouselArmario;
 import com.example.goodcloset.EditarUsuario.EditUser;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
@@ -85,7 +86,7 @@ public class  ProfileFragment extends Fragment {
         editarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), EditUser.class);
+                Intent i = new Intent(getActivity(), CarrouselArmario.class);
                 startActivity(i);
 
             }

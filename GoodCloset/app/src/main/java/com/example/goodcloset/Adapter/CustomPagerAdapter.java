@@ -1,5 +1,5 @@
 package com.example.goodcloset.Adapter;
-/*
+
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -121,66 +121,7 @@ public class CustomPagerAdapter extends PagerAdapter {
     }
 }*/
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import androidx.viewpager.widget.PagerAdapter;
-
-import com.example.goodcloset.CarrouselArmario;
-import com.example.goodcloset.R;
-import com.example.goodcloset.YourImageModel;
-
-import java.util.List;
-
-public class CustomPagerAdapter extends PagerAdapter {
-    private final List<YourImageModel> imageList;
-    private final LayoutInflater layoutInflater;
-
-    public CustomPagerAdapter(CarrouselArmario context, List<YourImageModel> imageList) {
-        this.imageList = imageList;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
-
-    @Override
-    public int getCount() {
-        return imageList.size();
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        View view = layoutInflater.inflate(R.layout.item_image, container, false);
-
-        ImageView imageView1 = view.findViewById(R.id.imageView1);
-        imageView1.setImageBitmap(convertByteArrayToBitmap(imageList.get(position).getFotoArriba()));
-
-        ImageView imageView2 = view.findViewById(R.id.imageView2);
-        imageView2.setImageBitmap(convertByteArrayToBitmap(imageList.get(position).getFotoMedio()));
-
-        ImageView imageView3 = view.findViewById(R.id.imageView3);
-        imageView3.setImageBitmap(convertByteArrayToBitmap(imageList.get(position).getFotoAbajo()));
-
-        container.addView(view);
-        return view;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
-    }
-
-    private Bitmap convertByteArrayToBitmap(byte[] byteArray) {
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-    }
-}
 
 
 

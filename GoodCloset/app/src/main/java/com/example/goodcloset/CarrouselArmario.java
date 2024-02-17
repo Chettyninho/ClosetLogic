@@ -1,5 +1,5 @@
 package com.example.goodcloset;
-/*
+
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -44,7 +44,7 @@ public class CarrouselArmario extends AppCompatActivity  {
 
     }
 }
-*/
+
 /*
 import android.os.Bundle;
 import android.view.LayoutInflater;
