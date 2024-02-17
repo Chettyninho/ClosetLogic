@@ -33,6 +33,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.goodcloset.CarrouselArmario;
 import com.example.goodcloset.EditarUsuario.EditUser;
+import com.example.goodcloset.Fragments.FragmentVerArmarios;
+import com.example.goodcloset.Fragments.FragmentVerPerfil;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
@@ -57,15 +59,27 @@ public class  ProfileFragment extends Fragment {
     Button editarButton, siguiednoButton;
     RecyclerView recyclerView;
     List<ArmarioModelo> armariosList;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //tabs
+        tabLayout = rootView.findViewById(R.id.tabLayout);
+        viewPager = rootView.findViewById(R.id.viewPager);
+
+
+
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
+
         apiService = ApiClient.getInstance().getApiService();
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
-//obtenemos la referencia del boton de editar
+        //obtenemos la referencia del boton de editar
         editarButton = rootView.findViewById(R.id.editarPerfil);
         siguiednoButton = rootView.findViewById(R.id.Seguido);
 
@@ -87,7 +101,6 @@ public class  ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), CarrouselArmario.class);
-
                 startActivity(i);
 
             }
@@ -120,6 +133,8 @@ public class  ProfileFragment extends Fragment {
         return rootView;
 
     }
+
+
 
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
         nombreUser.setText("@" + usuario.getUserName());
@@ -279,8 +294,11 @@ public class  ProfileFragment extends Fragment {
 
                 ApiService apiService = ApiClient.getInstance().getApiService();
                 if (apiService != null) {
+                    Log.d("test","callback");
                     Call<ArmarioModelo> call = apiService.postArmariosUser(armario);
                     call.enqueue(new Callback<ArmarioModelo>() {
+
+
 
                         @Override
                         public void onResponse(Call<ArmarioModelo> call, Response<ArmarioModelo> response) {
