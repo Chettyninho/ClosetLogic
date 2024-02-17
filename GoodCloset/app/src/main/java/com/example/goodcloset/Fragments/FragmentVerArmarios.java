@@ -17,6 +17,7 @@ import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class FragmentVerArmarios extends Fragment {
     private ArrayList<ArmarioModelo> armariosList = new ArrayList<>();
 
     public List<ArmarioModelo> armarios;
+    private RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
 
 
     @Override
@@ -53,8 +55,8 @@ public class FragmentVerArmarios extends Fragment {
     //llamada a la api para obtener los amrarios del usuario
     private ArrayList<ArmarioModelo> obtenerListaDeArmarios() {
 
-        //int idPropietario = usuario.getId();
-        int idPropietario =1;
+        int idPropietario = usuario.getId();
+
         // Obtener la instancia de ApiClient
         ApiClient apiClient = ApiClient.getInstance();
 
