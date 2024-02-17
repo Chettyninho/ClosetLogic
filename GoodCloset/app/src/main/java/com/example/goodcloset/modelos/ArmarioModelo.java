@@ -2,7 +2,9 @@ package com.example.goodcloset.modelos;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ArmarioModelo {
+import java.io.Serializable;
+
+public class ArmarioModelo implements Serializable {
 
     @SerializedName("id")
     private int id;

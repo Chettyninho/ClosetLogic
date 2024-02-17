@@ -2,9 +2,10 @@ package com.example.goodcloset.modelos;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Base64;
 
-public class UsuarioModelo {
+public class UsuarioModelo implements Serializable {
 
     @SerializedName("id")
     private Integer id;

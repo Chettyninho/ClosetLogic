@@ -2,11 +2,13 @@ package com.example.goodcloset;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.goodcloset.Adapter.CustomPagerAdapter;
+import com.example.goodcloset.modelos.ArmarioModelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,9 @@ public class CarrouselArmario extends AppCompatActivity  {
     private List<Integer> imageList = new ArrayList<>();
     //esto debera ser una lista
 
+    //armario que recibe cuando tocas en alguno del perfil
+    ArmarioModelo armarioRecibido = new ArmarioModelo();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,28 +27,21 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         Button button = findViewById(R.id.button3);
-        List<Integer> imageList = new ArrayList<>();
 
-/*
-        // va la lista de las fotos de los outfits
-       List<Integer> imageList = new ArrayList<>();
-        imageList.add(R.drawable.camiseta);
-        imageList.add(R.drawable.pantalon);
-        imageList.add(R.drawable.zapas);
-        imageList.add(R.drawable.camiseta);
-        imageList.add(R.drawable.pantalon);
-        imageList.add(R.drawable.zapas);
-        imageList.add(R.drawable.camiseta);
-        imageList.add(R.drawable.pantalon);
-        imageList.add(R.drawable.zapas);
-        imageList.add(R.drawable.camiseta);
-        imageList.add(R.drawable.pantalon);
-        imageList.add(R.drawable.zapas);
-*/
+        // Recibir el ID del armario del intent
+        armarioRecibido = (ArmarioModelo) getIntent().getSerializableExtra("armario");
+
+        // Mostrar un Toast con el ID del armario
+        Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
+        //si sale -1 significa q no pilla bien el id
+
+
+        // Luego puedes utilizar este idArmario según tus necesidades en la actividad
+
+        // Aquí debes inicializar tu lista de imágenes o realizar cualquier otra lógica necesaria
+
         CustomPagerAdapter adapter = new CustomPagerAdapter(this, imageList);
         viewPager.setAdapter(adapter);
-
-
     }
 }
 

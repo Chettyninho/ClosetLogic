@@ -1,6 +1,7 @@
 package com.example.goodcloset.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.CarrouselArmario;
 import com.example.goodcloset.R;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
@@ -20,6 +22,7 @@ import java.util.List;
 public class ProfileArmarioRVadapter  extends RecyclerView.Adapter<ProfileArmarioRVadapter.MyViewHolder>{
     Context context;
     ArrayList<ArmarioModelo> armarios;
+
 
     public ProfileArmarioRVadapter(Context context, ArrayList<ArmarioModelo> armarios) {
         this.context = context;
@@ -38,6 +41,18 @@ public class ProfileArmarioRVadapter  extends RecyclerView.Adapter<ProfileArmari
         ArmarioModelo armario = armarios.get(position);
         holder.nombreArmarioTextView.setText(armario.getNombre_armario());
         holder.armarioIconImageView.setImageResource(R.drawable.armario);
+
+        // Agregar clic listener al elemento
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Iniciar la actividad CarrouselArmario
+                Intent intent = new Intent(context, CarrouselArmario.class);
+                // Puedes pasar datos adicionales si es necesario
+                intent.putExtra( "armario",  armario);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

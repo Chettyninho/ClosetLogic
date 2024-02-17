@@ -42,7 +42,11 @@ public class FragmentVerArmarios extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ver_armarios, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewVerArmarios);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        // Configura un LinearLayoutManager con orientación vertical
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
 
         adapter = new ProfileArmarioRVadapter(getContext(), armariosList);
         recyclerView.setAdapter(adapter);
