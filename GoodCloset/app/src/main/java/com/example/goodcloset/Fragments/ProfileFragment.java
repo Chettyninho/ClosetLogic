@@ -70,13 +70,8 @@ public class  ProfileFragment extends Fragment {
         //tabs
         tabLayout = rootView.findViewById(R.id.tabLayout);
         viewPager = rootView.findViewById(R.id.viewPager);
-
-
-
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-
-
         apiService = ApiClient.getInstance().getApiService();
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
         //obtenemos la referencia del boton de editar
@@ -225,7 +220,7 @@ public class  ProfileFragment extends Fragment {
                         RespuestaInsertarUsuario usuario = response.body();
                         if (usuario != null) { // Verificar que el objeto usuario no sea nulo
                             String fotoBase64 = usuario.getFotoUsuario();
-                            Log.d("FotoBase64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
+                            Log.d("FotoPerfil en Base64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
                             if (fotoBase64 != null && !fotoBase64.isEmpty()) {
                                 // Decodificar la imagen desde Base64
                                 byte[] decodedBytes = Base64.decode(fotoBase64, Base64.DEFAULT);

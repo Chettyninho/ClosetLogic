@@ -10,26 +10,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.R;
+import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<ExampleItem> itemArray;
+    ArrayList<UsuarioModelo> itemArray;
 
-    public LupaAdapter(Context context, ArrayList<ExampleItem> itemArray) {
+
+    public LupaAdapter(Context context, ArrayList<UsuarioModelo> itemArray) {
         this.context = context;
         this.itemArray = itemArray;
     }
 
-    public void setFilteredLsit(ArrayList<ExampleItem> filteredList){
+    public void setFilteredLsit(ArrayList<UsuarioModelo> filteredList){
 
         this.itemArray = filteredList;
         notifyDataSetChanged();
 
+    }
+
+    public void actualizarLista(List<UsuarioModelo> nuevaLista) {
+        itemArray.clear();
+        itemArray.addAll(nuevaLista);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -42,8 +50,8 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.img.setImageDrawable(itemArray.get(position).getImageResource());
-        holder.text.setText(itemArray.get(position).getText1());
+        //holder.img.setImageDrawable(itemArray.get(position).getFotoUsuario());
+        holder.text.setText(itemArray.get(position).getUserName());
         //holder.text.setText(itemArray.get(position).getText2());
     }
 

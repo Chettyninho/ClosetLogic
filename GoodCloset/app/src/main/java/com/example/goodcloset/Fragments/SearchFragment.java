@@ -24,6 +24,7 @@ import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 
+import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class SearchFragment extends Fragment {
     List<UsuarioModelo> allUsuarioModelos;
     private RecyclerView recyclerView;
 
-    private ArrayList<ExampleItem> itemList = new ArrayList<>();
+    private ArrayList<UsuarioModelo> itemList = new ArrayList<>();
 
     private LupaAdapter itemAdapter;
 
@@ -59,18 +60,41 @@ public class SearchFragment extends Fragment {
         searchView.clearFocus();
         itemList = new ArrayList<>();
 
+        ApiClient apiClient = ApiClient.getInstance();
 
+        // Obtener el servicio ApiInterface
+        ApiService apiService = apiClient.getApiService();
 
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Mario", "Ten"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Miguel", "Eleven"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Carlos", "Twelve"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Ruben", "Ten"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Paquito", "Eleven"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Paloma", "Twelve"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Carmen", "Ten"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Rudiguer", "Eleven"));
-        itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Maria", "Twelve"));
+        // Realizar la llamada a la API para obtener la lista de armarios
+        Call<List<UsuarioModelo>> call = apiService.obtenerUsuarios();
 
+        itemAdapter = new LupaAdapter(getContext(), itemList);
+        // Ejecutar la llamada asíncrona
+        call.enqueue(new Callback<List<UsuarioModelo>>() {
+
+            @Override
+            public void onResponse(Call<List<UsuarioModelo>> call, Response<List<UsuarioModelo>> response) {
+
+                if (response.isSuccessful()) {
+                    // Obtener la lista de armarios del cuerpo de la respuesta
+                    allUsuarioModelos = response.body();
+                    // Imprimir el array de armarios en el registro
+                    Log.d("Usuarios", "Lista de Usuarios: " + allUsuarioModelos.toString());
+
+                    // Actualizar el adaptador con la lista de armarios
+                    itemAdapter.actualizarLista(allUsuarioModelos);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UsuarioModelo>> call, Throwable t) {
+
+            }
+
+        });
+
+        ArrayList<UsuarioModelo> listaArmarios = new ArrayList<>();
         itemAdapter = new LupaAdapter(getContext(), itemList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -121,9 +145,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void filterList(String text) {
-        ArrayList<ExampleItem> filterList = new ArrayList<>();
-        for (ExampleItem item : itemList){
-            if(item.getText1().toLowerCase().contains((text.toLowerCase()))){
+        ArrayList<UsuarioModelo> filterList = new ArrayList<>();
+        for (UsuarioModelo item : itemList){
+            if(item.getUserName().toLowerCase().contains((text.toLowerCase()))){
                 filterList.add(item);
             }
         }

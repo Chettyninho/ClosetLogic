@@ -31,7 +31,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return outfitsDeArmario.size() / 3; // Muestra tres imágenes a la vez
+        return outfitsDeArmario.size() / 4; // Muestra tres imágenes a la vez
     }
 
     @Override
@@ -46,24 +46,15 @@ public class CustomPagerAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.item_image, container, false);
 
         for (int i = 0; i < outfitsDeArmario.size(); i++) {
+
             List<PrendaModelo> prendasDeOutfit = outfitsDeArmario.get(i).getPrendasDelOutfit();
             ImageView imageView1 = view.findViewById(R.id.imageView1);
-            ImageView imageView2 = view.findViewById(R.id.imageView2);
-            ImageView imageView3 = view.findViewById(R.id.imageView3);
-
             imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-            Log.d("IMagen1", ""+prendasDeOutfit.get(i).getFoto_prenda());
-            imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-            imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-
-
-/*
             ImageView imageView2 = view.findViewById(R.id.imageView2);
-            imageView2.setImageResource(outfitsDeArmario.get(position * 3 + 1));
-
+            imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
             ImageView imageView3 = view.findViewById(R.id.imageView3);
-            imageView3.setImageResource(outfitsDeArmario.get(position * 3 + 2));
-*/
+            imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
+            Log.d("IMagen1", ""+prendasDeOutfit.get(i).getFoto_prenda());
         }
 
         container.addView(view);
