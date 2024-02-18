@@ -8,15 +8,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.Adapter.HomeRVAdapter;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +31,12 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+    List<UsuarioModelo> allUsuarioModelos;
+    private RecyclerView recyclerView;
+
+    private ArrayList<UsuarioModelo> itemList = new ArrayList<>();
+
+    private HomeRVAdapter adapter;
     Button recoger;
 
     @Override
@@ -35,7 +46,50 @@ public class HomeFragment extends Fragment {
         RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
         Integer idUsr = usuario.getId();
 
-        recoger = rootView.findViewById(R.id.recoger);
+
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        itemList = new ArrayList<>();
+
+        adapter = new HomeRVAdapter(getContext(), itemList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ApiClient apiClient = ApiClient.getInstance();
+
+        // Obtener el servicio ApiInterface
+        ApiService apiService = apiClient.getApiService();
+
+        // Realizar la llamada a la API para obtener la lista de armarios
+        Call<List<UsuarioModelo>> call = apiService.getUsersFollowedByMainUser(1);
+
+        // Ejecutar la llamada asíncrona
+        call.enqueue(new Callback<List<UsuarioModelo>>() {
+
+            @Override
+            public void onResponse(Call<List<UsuarioModelo>> call, Response<List<UsuarioModelo>> response) {
+
+                if (response.isSuccessful()) {
+                    // Obtener la lista de armarios del cuerpo de la respuesta
+                    allUsuarioModelos = response.body();
+                    // Imprimir el array de armarios en el registro
+                    Log.d("Usuarios", "Lista de Usuarios: " + allUsuarioModelos.toString());
+
+                    // Actualizar el adaptador con la lista de armarios
+                    adapter.actualizarLista(allUsuarioModelos);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UsuarioModelo>> call, Throwable t) {
+
+            }
+
+        });
+
+        ArrayList<ArmarioModelo> listaArmarios = new ArrayList<>();
+
+        /*recoger = rootView.findViewById(R.id.recoger);
         recoger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,13 +97,13 @@ public class HomeFragment extends Fragment {
                 obtenerAllSeguidos(idUsr);
 
             }
-        });
+        });*/
         // aqui voy a hacer el home, luego habra que cabiarlo, hago aqui el get all users
         // Devuelve la vista del fragmento
         return rootView;
     }
 
-    public void obtenerAllSeguidos(Integer idUsr){
+   /* public void obtenerAllSeguidos(Integer idUsr){
         //esta funcion se carga nada mas abrir la actividad, no se si deberia ser async(?)
         ApiService apiService = ApiClient.getInstance().getApiService();
 
@@ -96,6 +150,6 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
+*/
 
 }
