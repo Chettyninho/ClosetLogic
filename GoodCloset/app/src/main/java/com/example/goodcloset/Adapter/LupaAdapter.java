@@ -15,12 +15,12 @@ import com.example.goodcloset.R;
 
 import java.util.ArrayList;
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.MyViewHolder> {
+public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<ExampleItem> itemArray;
 
-    public ExampleAdapter(Context context, ArrayList<ExampleItem> itemArray) {
+    public LupaAdapter(Context context, ArrayList<ExampleItem> itemArray) {
         this.context = context;
         this.itemArray = itemArray;
     }

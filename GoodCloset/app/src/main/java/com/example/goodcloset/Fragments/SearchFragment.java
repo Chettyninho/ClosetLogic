@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.goodcloset.Adapter.ExampleAdapter;
+import com.example.goodcloset.Adapter.LupaAdapter;
 import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.PruebagetFoto.GetFotos;
 import com.example.goodcloset.R;
@@ -44,7 +44,7 @@ public class SearchFragment extends Fragment {
 
     private ArrayList<ExampleItem> itemList = new ArrayList<>();
 
-    private ExampleAdapter itemAdapter;
+    private LupaAdapter itemAdapter;
 
     private SearchView searchView;
     @Override
@@ -71,7 +71,7 @@ public class SearchFragment extends Fragment {
         itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Rudiguer", "Eleven"));
         itemList.add(new ExampleItem(ContextCompat.getDrawable(getContext(),R.drawable.baseline_person_24), "Maria", "Twelve"));
 
-        itemAdapter = new ExampleAdapter(getContext(), itemList);
+        itemAdapter = new LupaAdapter(getContext(), itemList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
