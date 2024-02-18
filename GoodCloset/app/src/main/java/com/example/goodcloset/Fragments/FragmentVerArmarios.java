@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.goodcloset.Adapter.ProfileArmarioRVadapter;
@@ -26,8 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
 public class FragmentVerArmarios extends Fragment {
 
     private ProfileArmarioRVadapter adapter;
@@ -36,16 +34,14 @@ public class FragmentVerArmarios extends Fragment {
     public List<ArmarioModelo> armarios;
     private RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ver_armarios, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewVerArmarios);
 
-
-        // Configura un LinearLayoutManager con orientación vertical
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        // Configurar un GridLayoutManager con 3 columnas
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new ProfileArmarioRVadapter(getContext(), armariosList);
@@ -56,9 +52,8 @@ public class FragmentVerArmarios extends Fragment {
         return view;
     }
 
-    //llamada a la api para obtener los amrarios del usuario
-    private ArrayList<ArmarioModelo> obtenerListaDeArmarios() {
-
+    // Llamada a la API para obtener los armarios del usuario
+    private void obtenerListaDeArmarios() {
         int idPropietario = usuario.getId();
 
         // Obtener la instancia de ApiClient
@@ -72,7 +67,6 @@ public class FragmentVerArmarios extends Fragment {
 
         // Ejecutar la llamada asíncrona
         call.enqueue(new Callback<List<ArmarioModelo>>() {
-
             @Override
             public void onResponse(Call<List<ArmarioModelo>> call, Response<List<ArmarioModelo>> response) {
                 if (response.isSuccessful()) {
@@ -82,23 +76,18 @@ public class FragmentVerArmarios extends Fragment {
                     Log.d("Armarios", "Lista de armarios: " + armarios.toString());
 
                     // Actualizar el adaptador con la lista de armarios
-                        adapter.actualizarLista(armarios);
-
+                    adapter.actualizarLista(armarios);
                 } else {
-
                     // Manejar la respuesta no exitosa
                     Log.e("Armarios", "Error al obtener la lista de armarios: " + response.message());
-
                 }
             }
 
             @Override
             public void onFailure(Call<List<ArmarioModelo>> call, Throwable t) {
                 // Manejar el fallo en la llamada
+                Log.e("Armarios", "Error al obtener la lista de armarios", t);
             }
         });
-        ArrayList<ArmarioModelo> listaArmarios = new ArrayList<>();
-
-        return listaArmarios;
     }
 }
