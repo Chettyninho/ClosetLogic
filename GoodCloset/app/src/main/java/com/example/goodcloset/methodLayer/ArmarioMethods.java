@@ -1,5 +1,8 @@
 package com.example.goodcloset.methodLayer;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import com.example.goodcloset.modelos.ArmarioModelo;
@@ -30,5 +33,10 @@ public class ArmarioMethods {
             }
         }
         return idArmario;
+    }
+
+    public static Bitmap convertirBase64ABitmap(String imgB64) {
+        byte[] decodedBytes = Base64.decode(imgB64, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 }

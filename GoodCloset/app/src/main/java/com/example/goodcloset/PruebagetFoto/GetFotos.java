@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
+import com.example.goodcloset.methodLayer.ArmarioMethods;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.PrendaModelo;
 
@@ -50,7 +51,8 @@ public class GetFotos extends AppCompatActivity {
                         PrendaModelo Prenda_imgB64 = response.body();
                         if (Prenda_imgB64 != null ) {
                             Log.d("DEBUG, USUARIO DE LA IMAGEN", ":" + Prenda_imgB64);
-                            Bitmap foto = convertirBase64ABitmap(Prenda_imgB64.getFoto_prenda());
+
+                            Bitmap foto = ArmarioMethods.convertirBase64ABitmap(Prenda_imgB64.getFoto_prenda());
                             imageViewFoto.setImageBitmap(foto);
                         } else {
                             Log.e("imagen", "Cuerpo de la respuesta vacío o nulo");
@@ -78,9 +80,4 @@ public class GetFotos extends AppCompatActivity {
         }
     }
 
-
-    private Bitmap convertirBase64ABitmap(String imgB64) {
-        byte[] decodedBytes = Base64.decode(imgB64, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-    }
 }

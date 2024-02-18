@@ -39,7 +39,7 @@ public class OutfitModelo implements Serializable {
         return fecha_creacion;
     }
 
-    public List<PrendaModelo> getPrendasDelOutfit(){
+    public List<PrendaModelo> getPrendasDelOutfit() {
         return prendasDelOutfit;
     }
 }
