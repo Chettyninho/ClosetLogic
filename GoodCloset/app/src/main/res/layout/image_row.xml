@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
     android:background="#292D4E">
 
     <androidx.cardview.widget.CardView
@@ -23,6 +24,7 @@
             android:textColor="@color/white"
             android:text="Valeria_Clothes"
             android:textSize="23sp"
+
             android:textStyle="bold"
             android:layout_marginLeft="40dp"
 
@@ -30,7 +32,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="40dp"
                 android:background="#292D4E">
 
@@ -67,9 +69,9 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/baseline_favorite_border_24"
-
                     android:textSize="20sp" />
                     <!--android:src="@drawable/baseline_favorite_24"-->
+
             </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
