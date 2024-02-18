@@ -172,3 +172,22 @@ VALUES
     (3, 3),  -- Asociar la prenda 3 con el outfit 3
     (4, 4),  -- Asociar la prenda 4 con el outfit 4
     (5, 5);  -- Asociar la prenda 5 con el outfit 5
+DELIMITER //
+CREATE TRIGGER after_insert_prenda
+AFTER INSERT ON prenda
+FOR EACH ROW
+BEGIN
+    INSERT INTO prenda_outfit (id_prenda, id_outfit)
+    VALUES (NEW.id, (SELECT MAX(id) FROM outfit));
+END;
+//
+
+CREATE TRIGGER after_insert_outfit
+AFTER INSERT ON outfit
+FOR EACH ROW
+BEGIN
+    INSERT INTO prenda_outfit (id_prenda, id_outfit)
+    VALUES ((SELECT MAX(id) FROM prenda), NEW.id);
+END;
+//
+DELIMITER ;
