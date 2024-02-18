@@ -2,6 +2,7 @@ package com.example.goodcloset.Adapter;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.goodcloset.R;
+import com.example.goodcloset.methodLayer.ArmarioMethods;
+import com.example.goodcloset.modelos.OutfitModelo;
+import com.example.goodcloset.modelos.PrendaModelo;
 
 import java.util.List;
 
@@ -18,16 +22,16 @@ import androidx.annotation.NonNull;
 
 public class CustomPagerAdapter extends PagerAdapter {
     private Context context;
-    private List<Integer> imageList;
+    private List<OutfitModelo> outfitsDeArmario;
 
-    public CustomPagerAdapter(Context context, List<Integer> imageList) {
+    public CustomPagerAdapter(Context context, List<OutfitModelo> outfitsDeArmario) {
         this.context = context;
-        this.imageList = imageList;
+        this.outfitsDeArmario = outfitsDeArmario;
     }
 
     @Override
     public int getCount() {
-        return imageList.size() / 3; // Muestra tres imágenes a la vez
+        return outfitsDeArmario.size() / 3; // Muestra tres imágenes a la vez
     }
 
     @Override
@@ -41,14 +45,29 @@ public class CustomPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_image, container, false);
 
-        ImageView imageView1 = view.findViewById(R.id.imageView1);
-        imageView1.setImageResource(imageList.get(position * 3));
+        for (int i = 0; i < outfitsDeArmario.size(); i++) {
 
-        ImageView imageView2 = view.findViewById(R.id.imageView2);
-        imageView2.setImageResource(imageList.get(position * 3 + 1));
+            List<PrendaModelo> prendasDeOutfit = outfitsDeArmario.get(i).getPrendasDelOutfit();
+            ImageView imageView1 = view.findViewById(R.id.imageView1);
+            ImageView imageView2 = view.findViewById(R.id.imageView2);
+            ImageView imageView3 = view.findViewById(R.id.imageView3);
 
-        ImageView imageView3 = view.findViewById(R.id.imageView3);
-        imageView3.setImageResource(imageList.get(position * 3 + 2));
+
+
+            imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
+            Log.d("IMagen1", ""+prendasDeOutfit.get(i).getFoto_prenda());
+            imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
+            imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
+
+
+/*
+            ImageView imageView2 = view.findViewById(R.id.imageView2);
+            imageView2.setImageResource(outfitsDeArmario.get(position * 3 + 1));
+
+            ImageView imageView3 = view.findViewById(R.id.imageView3);
+            imageView3.setImageResource(outfitsDeArmario.get(position * 3 + 2));
+*/
+        }
 
         container.addView(view);
         return view;
