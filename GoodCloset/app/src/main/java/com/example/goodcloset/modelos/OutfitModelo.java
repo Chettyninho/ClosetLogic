@@ -38,4 +38,8 @@ public class OutfitModelo implements Serializable {
     public String getFecha_creacion() {
         return fecha_creacion;
     }
+
+    public List<PrendaModelo> getPrendasDelOutfit() {
+        return prendasDelOutfit;
+    }
 }

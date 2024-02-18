@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CarrouselArmario extends AppCompatActivity  {
-    private List<Integer> imageList = new ArrayList<>();
+    private List<OutfitModelo> outfitsDeArmario = new ArrayList<>();
     //esto debera ser una lista
 
     //armario que recibe cuando tocas en alguno del perfil
@@ -43,18 +43,18 @@ public class CarrouselArmario extends AppCompatActivity  {
         Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
         //si sale -1 significa q no pilla bien el id
         Integer idArmario = armarioRecibido.getId();
-        obtenerOutfits(imageList,armarioRecibido);
+        obtenerOutfits(outfitsDeArmario,armarioRecibido);
 
         //no se si imageList seria lo bueno,
         //creo que obtenerOutfits() tendra que devolver una lista
         //de tipoOutfitModel que contiene unalista de prendas
         //esa lista de eOutfitModel creo que es la que deberia pasarse al
         //adaptador y desde ahi seleccionar las imagenes para mostrar.
-        CustomPagerAdapter adapter = new CustomPagerAdapter(this, imageList);
+        CustomPagerAdapter adapter = new CustomPagerAdapter(this, outfitsDeArmario);
         viewPager.setAdapter(adapter);
     }
 
-    private void obtenerOutfits(List<Integer> imageList, ArmarioModelo armarioRecibido){
+    private void obtenerOutfits(List<OutfitModelo> outfitsDeArmario, ArmarioModelo armarioRecibido){
 
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService!= null){
