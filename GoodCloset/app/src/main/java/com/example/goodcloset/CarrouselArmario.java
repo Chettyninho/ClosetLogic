@@ -27,13 +27,14 @@ public class CarrouselArmario extends AppCompatActivity  {
 
     //armario que recibe cuando tocas en alguno del perfil
     ArmarioModelo armarioRecibido = new ArmarioModelo();
-
+    private ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_outfits_armarios);
 
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager); // Inicializa viewPager aquí
+
         Button button = findViewById(R.id.button3);
 
         // Recibir el ID del armario del intent
@@ -41,51 +42,40 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         // Mostrar un Toast con el ID del armario
         Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
-        //si sale -1 significa q no pilla bien el id
-        Integer idArmario = armarioRecibido.getId();
-        List<OutfitModelo> arMARIOSoUTFIT =obtenerOutfits(armarioRecibido);
+ obtenerOutfits(armarioRecibido);
 
-        //no se si imageList seria lo bueno,
-        //creo que obtenerOutfits() tendra que devolver una lista
-        //de tipoOutfitModel que contiene unalista de prendas
-        //esa lista de eOutfitModel creo que es la que deberia pasarse al
-        //adaptador y desde ahi seleccionar las imagenes para mostrar.
-        CustomPagerAdapter adapter = new CustomPagerAdapter(this, arMARIOSoUTFIT);
-        viewPager.setAdapter(adapter);
     }
 
-    private List<OutfitModelo> obtenerOutfits(ArmarioModelo armarioRecibido){
+    private void obtenerOutfits(ArmarioModelo armarioRecibido){
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService!= null){
             Call<List<OutfitModelo>> call = apiService.getOutfits_Armario(armarioRecibido.getId());
-        call.enqueue(new Callback<List<OutfitModelo>>() {
-            @Override
-            public void onResponse(Call<List<OutfitModelo>> call, Response<List<OutfitModelo>> response) {
-                if (response.isSuccessful()){
-                     outfitsDeArmario =response.body();
-                     if (outfitsDeArmario==null){
-                            //mostrar una img que pusiese armario vacio o ALGO ASI
-                     }else{
-                         for (int i = 0; i < outfitsDeArmario.size(); i++) {
-                             Log.d("ARAMRIO","RESPONSE");
-                             for (int j = 0; j < outfitsDeArmario.get(i).getPrendasDelOutfit().size(); j++) {
-                                 Log.d("testeoQTeveo_"+j,""+ outfitsDeArmario.get(i).getPrendasDelOutfit().toString());
+            call.enqueue(new Callback<List<OutfitModelo>>() {
+                @Override
+                public void onResponse(Call<List<OutfitModelo>> call, Response<List<OutfitModelo>> response) {
+                    if (response.isSuccessful()){
+                        outfitsDeArmario =response.body();
+                        if (outfitsDeArmario==null){
 
-                             }
-                         }
-                     }
+                        }else{
+                            CustomPagerAdapter adapter = new CustomPagerAdapter(CarrouselArmario.this, outfitsDeArmario);
+                            Log.d("testeoQTeveo_",""+ outfitsDeArmario.get(0).getPrendasDelOutfit());
+                            viewPager.setAdapter(adapter);
+                                }
+                            }
+                        }
+
+
+
+
+
+                @Override
+                public void onFailure(Call<List<OutfitModelo>> call, Throwable t) {
 
                 }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<OutfitModelo>> call, Throwable t) {
-
-            }
-        });
+            });
         }
-        return outfitsDeArmario;
+
     }
 }
 

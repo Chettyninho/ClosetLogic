@@ -3,6 +3,7 @@ package com.example.goodcloset.modelos;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Base64;
 
 public class UsuarioModelo implements Serializable {
@@ -33,6 +34,10 @@ public class UsuarioModelo implements Serializable {
     private String fotoUsuario;
 
     private byte[] saltReal;
+
+    public UsuarioModelo(Serializable user) {
+    }
+
     public void setSaltReal(byte[] saltReal) {
         this.saltReal = saltReal;
     }
@@ -161,5 +166,21 @@ public class UsuarioModelo implements Serializable {
     public void setContador_armarios(int contador_armarios) {
         this.contador_armarios = contador_armarios;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioModelo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", contador_seguidores=" + contador_seguidores +
+                ", contador_seguidos=" + contador_seguidos +
+                ", contador_armarios=" + contador_armarios +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                '}';
+    }
+
 
 }

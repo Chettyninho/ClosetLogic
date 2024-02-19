@@ -21,8 +21,8 @@
         android:id="@+id/navSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Add"
-        android:icon="@drawable/baseline_connect_without_contact_24"/>
+        android:title="Search"
+        android:icon="@drawable/baseline_search_24"/>
 
     <item
         android:id="@+id/navProfile"

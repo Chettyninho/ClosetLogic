@@ -1,6 +1,8 @@
 package com.example.goodcloset.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.strangerProfileFragment;
 import com.example.goodcloset.R;
 import com.example.goodcloset.modelos.UsuarioModelo;
 
@@ -50,9 +55,18 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //holder.img.setImageDrawable(itemArray.get(position).getFotoUsuario());
-        holder.text.setText(itemArray.get(position).getUserName());
-        //holder.text.setText(itemArray.get(position).getText2());
+
+          holder.text.setText(itemArray.get(position).getUserName());
+          holder.card.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  UsuarioModelo usernameSeleccionado = itemArray.get(position);
+                  Intent intent = new Intent(view.getContext(), strangerProfileFragment.class);
+                  Log.d("AAAAAAAAAA", "AAAAAAAAA: " + usernameSeleccionado);
+                  intent.putExtra("usuario",usernameSeleccionado);
+                  view.getContext().startActivity(intent);
+              }
+          });
     }
 
     @Override
@@ -62,13 +76,15 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView text;
 
+        CardView card;
+        TextView text;
         ImageView img;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            card = itemView.findViewById(R.id.cardSearch);
             text = itemView.findViewById(R.id.textViewPrueba);
             img = itemView.findViewById(R.id.imageViewPrueba);
         }

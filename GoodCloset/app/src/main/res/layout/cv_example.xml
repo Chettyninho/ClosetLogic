@@ -7,6 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardSearch"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:src="@drawable/baseline_youtube_searched_for_24"/>
+                android:src="@drawable/baseline_search_dark"/>
 
             <TextView
                 android:id="@+id/textViewPrueba"

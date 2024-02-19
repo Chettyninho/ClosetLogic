@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.goodcloset.Adapter.ExampleAdapter;
+import com.example.goodcloset.Adapter.LupaAdapter;
 import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.PruebagetFoto.GetFotos;
 import com.example.goodcloset.R;
@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
 
     private ArrayList<UsuarioModelo> itemList = new ArrayList<>();
 
-    private ExampleAdapter itemAdapter;
+    private LupaAdapter itemAdapter;
 
     private SearchView searchView;
     @Override
@@ -68,6 +68,7 @@ public class SearchFragment extends Fragment {
         // Realizar la llamada a la API para obtener la lista de armarios
         Call<List<UsuarioModelo>> call = apiService.obtenerUsuarios();
 
+        itemAdapter = new LupaAdapter(getContext(), itemList);
         // Ejecutar la llamada asíncrona
         call.enqueue(new Callback<List<UsuarioModelo>>() {
 
@@ -94,7 +95,7 @@ public class SearchFragment extends Fragment {
         });
 
         ArrayList<UsuarioModelo> listaArmarios = new ArrayList<>();
-        itemAdapter = new ExampleAdapter(getContext(), itemList);
+        itemAdapter = new LupaAdapter(getContext(), itemList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -200,4 +201,5 @@ public class SearchFragment extends Fragment {
 
         }
     }
+
 }

@@ -17,29 +17,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoodCloset"
         tools:targetApi="31">
+
         <activity
             android:name=".MainLoginRegistro"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false">
         </activity>
         <activity
             android:name=".EditarUsuario.EditUser"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".strangerProfileFragment"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false">
         </activity>
         <activity
             android:name=".CarrouselArmario"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false">
         </activity>
         <activity
             android:name=".PruebagetFoto.GetFotos"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".LogIn"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".Registro"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
