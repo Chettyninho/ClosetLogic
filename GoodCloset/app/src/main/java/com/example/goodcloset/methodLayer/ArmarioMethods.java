@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.goodcloset.modelos.ArmarioModelo;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,13 @@ public class ArmarioMethods {
             }
         }
         return idArmario;
+    }
+
+    public static String convertirBitmapABase64(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] byteArrayImage = baos.toByteArray();
+        return Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
     }
 
     public static Bitmap convertirBase64ABitmap(String imgB64) {

@@ -43,19 +43,18 @@ public class CarrouselArmario extends AppCompatActivity  {
         Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
         //si sale -1 significa q no pilla bien el id
         Integer idArmario = armarioRecibido.getId();
-        obtenerOutfits(outfitsDeArmario,armarioRecibido);
+        List<OutfitModelo> arMARIOSoUTFIT =obtenerOutfits(armarioRecibido);
 
         //no se si imageList seria lo bueno,
         //creo que obtenerOutfits() tendra que devolver una lista
         //de tipoOutfitModel que contiene unalista de prendas
         //esa lista de eOutfitModel creo que es la que deberia pasarse al
         //adaptador y desde ahi seleccionar las imagenes para mostrar.
-        CustomPagerAdapter adapter = new CustomPagerAdapter(this, outfitsDeArmario);
+        CustomPagerAdapter adapter = new CustomPagerAdapter(this, arMARIOSoUTFIT);
         viewPager.setAdapter(adapter);
     }
 
-    private void obtenerOutfits(List<OutfitModelo> outfitsDeArmario, ArmarioModelo armarioRecibido){
-
+    private List<OutfitModelo> obtenerOutfits(ArmarioModelo armarioRecibido){
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService!= null){
             Call<List<OutfitModelo>> call = apiService.getOutfits_Armario(armarioRecibido.getId());
@@ -63,11 +62,21 @@ public class CarrouselArmario extends AppCompatActivity  {
             @Override
             public void onResponse(Call<List<OutfitModelo>> call, Response<List<OutfitModelo>> response) {
                 if (response.isSuccessful()){
-                    List<OutfitModelo> listaOutfits =response.body();
-                    for (OutfitModelo o : listaOutfits){
-                        Log.d("responseBody Miguel Test", o.getPrendasDelOutfit().toString());
-                    }
+                     outfitsDeArmario =response.body();
+                     if (outfitsDeArmario==null){
+                            //mostrar una img que pusiese armario vacio o ALGO ASI
+                     }else{
+                         for (int i = 0; i < outfitsDeArmario.size(); i++) {
+                             Log.d("ARAMRIO","RESPONSE");
+                             for (int j = 0; j < outfitsDeArmario.get(i).getPrendasDelOutfit().size(); j++) {
+                                 Log.d("testeoQTeveo_"+j,""+ outfitsDeArmario.get(i).getPrendasDelOutfit().toString());
+
+                             }
+                         }
+                     }
+
                 }
+
             }
 
             @Override
@@ -76,6 +85,7 @@ public class CarrouselArmario extends AppCompatActivity  {
             }
         });
         }
+        return outfitsDeArmario;
     }
 }
 

@@ -1,11 +1,13 @@
 package com.example.goodcloset.Fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -22,6 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -40,7 +46,9 @@ import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.example.goodcloset.methodLayer.ArmarioMethods;
 import com.example.goodcloset.modelos.ArmarioModelo;
+import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -61,6 +69,13 @@ public class  ProfileFragment extends Fragment {
     List<ArmarioModelo> armariosList;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private  RespuestaInsertarUsuario usuario;
+    RespuestaInsertarUsuario usuarioModifyProfileImage;
+    ImageView profileImageDialog;
+    TextView cambiarFotoButton;
+    Button btnEnviarImgProfile;
+    Button seguirdoDialogButton;
+    ImageView profileImageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,15 +85,11 @@ public class  ProfileFragment extends Fragment {
         //tabs
         tabLayout = rootView.findViewById(R.id.tabLayout);
         viewPager = rootView.findViewById(R.id.viewPager);
-
-
-
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-
-
         apiService = ApiClient.getInstance().getApiService();
-        RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+        usuario = SingletonUser.getInstance().getUsuario();
+        Log.e("Usuario que llega al Perfil de Fragments" , " " + usuario.toString());
         //obtenemos la referencia del boton de editar
         editarButton = rootView.findViewById(R.id.editarPerfil);
         siguiednoButton = rootView.findViewById(R.id.Seguido);
@@ -127,8 +138,8 @@ public class  ProfileFragment extends Fragment {
         tabLayout = rootView.findViewById(R.id.tabLayout);
 
         //imageview donde pinto la imagen del perfil
-        ImageView profileImageView = rootView.findViewById(R.id.profileImageView);
-        mostrarFotoPerfil(profileImageView);
+        profileImageView = rootView.findViewById(R.id.profileImageView);
+        //mostrarFotoPerfil(profileImageView);
 
         return rootView;
 
@@ -137,10 +148,19 @@ public class  ProfileFragment extends Fragment {
 
 
     private void establecerDatosDelUsuarioEnLaVista(RespuestaInsertarUsuario usuario) {
+        Log.e("USUARIO EN PROFILE", "VALUE: " + usuario.toString());
         nombreUser.setText("@" + usuario.getUserName());
         NumeroFollower.setText(String.valueOf(usuario.getContador_seguidores()));
         NumeroFollow.setText(String.valueOf(usuario.getContador_seguidos()));
         NumeroArmarios.setText(String.valueOf(usuario.getContador_armarios()));
+
+        Log.d("","IMAGEN DE PERFIL ANTES DE BITMAP " + usuario.getFotoUsuario());
+
+            //profileImageView.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario()));
+
+
+        //profileImageView.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario()));
+
         //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 
@@ -215,6 +235,7 @@ public class  ProfileFragment extends Fragment {
         }
     }
     //mostrar foto de perfil
+    /*
     public void mostrarFotoPerfil(ImageView profileImageView) {
         if (apiService != null) {
             Call<RespuestaInsertarUsuario> call = apiService.getUsuarioById(1); // Cambia el 1 por el ID del usuario actual
@@ -225,7 +246,7 @@ public class  ProfileFragment extends Fragment {
                         RespuestaInsertarUsuario usuario = response.body();
                         if (usuario != null) { // Verificar que el objeto usuario no sea nulo
                             String fotoBase64 = usuario.getFotoUsuario();
-                            Log.d("FotoBase64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
+                            Log.d("FotoPerfil en Base64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
                             if (fotoBase64 != null && !fotoBase64.isEmpty()) {
                                 // Decodificar la imagen desde Base64
                                 byte[] decodedBytes = Base64.decode(fotoBase64, Base64.DEFAULT);
@@ -251,10 +272,7 @@ public class  ProfileFragment extends Fragment {
             });
         }
     }
-
-
-
-
+*/
     private void showNewArmarioDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Nuevo Armario");
@@ -298,8 +316,6 @@ public class  ProfileFragment extends Fragment {
                     Call<ArmarioModelo> call = apiService.postArmariosUser(armario);
                     call.enqueue(new Callback<ArmarioModelo>() {
 
-
-
                         @Override
                         public void onResponse(Call<ArmarioModelo> call, Response<ArmarioModelo> response) {
                             Log.e("antes del if de succesfull", "Código de error: " + response.code());
@@ -321,9 +337,7 @@ public class  ProfileFragment extends Fragment {
                         }
 
                     });
-                    // Toast.makeText(Registro.this,"INSERTYADO", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -342,19 +356,10 @@ public class  ProfileFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.buttom_sheet_diaolg);
 
-        ImageView profileImageDialog = dialog.findViewById(R.id.imagenDialog);
-        EditText usernameDialog = dialog.findViewById(R.id.userDialog);
-        usernameDialog.setHint("@" + usuario.getUserName());
-        EditText nameDialog = dialog.findViewById(R.id.nameDialog);
-        nameDialog.setHint(usuario.getNombre());
-        Button seguirdoDialogButton = dialog.findViewById(R.id.contraseñaDialog);
-
-        //a ver como hacemos el tema de la foto, podemos poner
-        // que al darle a cambiar foto salte la camarao que seleccione
-        // una de galeria.
-        //por otro lado, el post se hará cuando se cierr el Dialog?
-        //ponemos un boton mas dentro del dialog?
-
+        //profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+        cambiarFotoButton = dialog.findViewById(R.id.CambiarFotoButton);
+        btnEnviarImgProfile = dialog.findViewById(R.id.btnEnviarImgProfile);
+        seguirdoDialogButton = dialog.findViewById(R.id.btnGoToEdit);
 
         // Mostrar el diálogo
         dialog.show();
@@ -367,7 +372,22 @@ public class  ProfileFragment extends Fragment {
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             window.setGravity(Gravity.BOTTOM); // Alinea el diálogo en la parte inferior de la pantalla
         }
+        cambiarFotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                camaraLauncherIMG.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
+                btnEnviarImgProfile.setVisibility(View.VISIBLE);
 
+            }
+        });
+        btnEnviarImgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postToBBDDFotoPerfil(usuarioModifyProfileImage);
+                Log.e("BOTON ENVIAR FOTO" , "OK");
+                btnEnviarImgProfile.setVisibility(View.GONE);
+            }
+        });
         seguirdoDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -377,6 +397,37 @@ public class  ProfileFragment extends Fragment {
         });
     }
 
+    ActivityResultLauncher<Intent> camaraLauncherIMG = registerForActivityResult(new
+            ActivityResultContracts.StartActivityForResult(), new
+            ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Bundle extras = result.getData().getExtras();
+                        Bitmap imgBitmap = (Bitmap) extras.get("data");
+                        profileImageDialog.setImageBitmap(imgBitmap);
+                        String imgEnBase64 = ArmarioMethods.convertirBitmapABase64(imgBitmap);
+                        usuarioModifyProfileImage = new RespuestaInsertarUsuario(usuario.getId(), usuario.getNombre(), usuario.getSurname(), usuario.getEmail(), usuario.getUsername(), usuario.getContador_seguidores(), usuario.getContador_seguidos(), usuario.getContador_armarios(), usuario.getFotoUsuario());
+                        usuarioModifyProfileImage.setFotoUsuario(imgEnBase64);
+                        Log.e("Log de Fotoperfil", "Usuario que inertamos a la bbdd: " + usuario.toString());
+                    }
+                }
+            });
 
+    private void postToBBDDFotoPerfil(RespuestaInsertarUsuario usuarioModifyProfileImage) {
+        if(apiService != null){
+            Log.e("BOTON ENVIAR " , "DENTR DE LA FUNCION POST");
+            Call<RespuestaInsertarUsuario> call = apiService.insertarImagenAUsuario(usuarioModifyProfileImage);
+            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
 
+                @Override
+                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
+                    Log.d("en onResponse" , " respuesta : de la foto añadida" +response.body().toString());
+                }
+                @Override
+                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                }
+            });
+        }
+    }
 }

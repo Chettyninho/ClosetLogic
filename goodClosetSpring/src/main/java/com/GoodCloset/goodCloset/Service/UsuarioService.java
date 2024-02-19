@@ -21,7 +21,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private SeguidorRepository seguidorRepositorys;
-
+    public Usuario postImageProfile(Usuario usuario){return usuarioRepository.save(usuario);}
     public List<Usuario> getAllUsuarios(){
         return usuarioRepository.findAll();
     }
@@ -77,39 +77,11 @@ public class UsuarioService {
         }
     }
 
-//    private static Boolean checkLogin(Usuario usuario){
-//        boolean existe = false;
-//
-//        List<Usuario> usuariosEncontrados = (List<Usuario>) usuarioRepository.findByUsernameAndPassword(usuario.getUsername(), usuario.getPassword());
-//
-//        for (Usuario u : usuariosEncontrados){
-//            //para comparar
-//            String saltedPassword = u.getPassword() ;
-//            //para hassear la que ha metido y ver si coincide
-//            byte[]salt = u.getSalt();
-//
-//            String nwPswdLgIn = hashPassword(usuario.getPassword(),salt);
-//
-//            if (u.getUsername()==usuario.getUsername() && nwPswdLgIn==saltedPassword) {
-//                existe=true;
-//            }
-//
-//        }
-//        return existe;
-//
-//    }
-
-//    public boolean existsByUsername(String username) { return usuarioRepository.existsByUsername(username); }
-//
-//    public void createUser(Usuario user) { usuarioRepository.save(user); }
-
-public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
+    public List<Usuario> obtenerUsuariosSeguidosPorUsuario(Integer idSeguidor) {
         return usuarioRepository.findUsuariosSeguidosPorUsuario(idSeguidor);
     }
 
-
-
-  public boolean deleteUser(Integer idUsuario) {
+    public boolean deleteUser(Integer idUsuario) {
         if (usuarioRepository.existsById(idUsuario)) {
             usuarioRepository.deleteById(idUsuario);
             return true;

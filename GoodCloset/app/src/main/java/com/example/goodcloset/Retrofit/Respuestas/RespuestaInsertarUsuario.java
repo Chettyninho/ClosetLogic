@@ -147,4 +147,35 @@ public class RespuestaInsertarUsuario implements Serializable {
     public void setContador_armarios(int contador_armarios) {
         this.contador_armarios = contador_armarios;
     }
+
+    public RespuestaInsertarUsuario(Integer id, String nombre, String surname, String email, String username, Integer contador_seguidores, int contador_seguidos, int contador_armarios, String fotoUsuario) {
+        this.id = id;
+        this.nombre = nombre;
+        this.surname = surname;
+        this.email = email;
+        this.username = username;
+        this.contador_seguidores = contador_seguidores;
+        this.contador_seguidos = contador_seguidos;
+        this.contador_armarios = contador_armarios;
+        this.fotoUsuario = fotoUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "RespuestaInsertarUsuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", contador_seguidores=" + contador_seguidores +
+                ", contador_seguidos=" + contador_seguidos +
+                ", contador_armarios=" + contador_armarios +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", fotoUsuario='" + fotoUsuario + '\'' +
+                '}';
+    }
+
 }

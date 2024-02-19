@@ -47,22 +47,39 @@ import retrofit2.Response;
 
 public class EditUser extends AppCompatActivity {
     RespuestaInsertarUsuario usuarioSingleton = SingletonUser.getInstance().getUsuario();
-    RespuestaInsertarUsuario getUsuarioSingleton;
-    EditText nombre,apellido,contraseñaActual,ContraseñaNueva;
-    TextView userName;
+    EditText userName,nombre,email,contraseñaActual,ContraseñaNueva;
+    Button enviarUsuarioModificado;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        enviarUsuarioModificado = findViewById(R.id.sendModifyUser);
         setContentView(R.layout.activity_edit_user); // Asegúrate de que el nombre del layout sea correcto
 
-        // Recogemos los datos del usuario que ha iniciado sesión
-        usuarioSingleton = SingletonUser.getInstance().getUsuario();
-
         userName = findViewById(R.id.username);
+        userName.setHint("@ " + usuarioSingleton.getUserName());
 
-        userName.setText("@ " + usuarioSingleton.getUserName());
+        nombre = findViewById(R.id.name);
+        nombre.setHint(usuarioSingleton.getNombre());
+
+        email = findViewById(R.id.emailDialog);
+        email.setHint(usuarioSingleton.getEmail());
+        //esto lo pasaremos y lo gestionaremos en service para ver si se cambian o no los datos,
+        //si la contraseña actual es correcta se cambiaran. sino alerta de que contraseña incorrecta.
+        contraseñaActual = findViewById(R.id.contraseñaActual);
+        contraseñaActual.setHint("********");
+
+        ContraseñaNueva = findViewById(R.id.password);
+
+        enviarUsuarioModificado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviar();
+            }
+        });
     }
+private void enviar(){
 
+}
     //falta la logica para hacer la peticion con la nueva contraseña, lo haremos pasando el id del usuario ya que lo tenemos.
     //creo que lo mejor seria meterlo en home controller
 

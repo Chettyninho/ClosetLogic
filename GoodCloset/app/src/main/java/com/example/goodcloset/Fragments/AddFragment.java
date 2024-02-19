@@ -200,7 +200,7 @@ public class AddFragment extends Fragment {
                         Bundle extras = result.getData().getExtras();
                         Bitmap imgBitmap = (Bitmap) extras.get("data");
                         partearriba.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
+                        String imgEnBase64 = ArmarioMethods.convertirBitmapABase64(imgBitmap);
                         imagenesCapturadas.add(imgEnBase64);
                     }
                 }
@@ -215,7 +215,7 @@ public class AddFragment extends Fragment {
                         Bundle extras = result.getData().getExtras();
                         Bitmap imgBitmap = (Bitmap) extras.get("data");
                         partemedia.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
+                        String imgEnBase64 = ArmarioMethods.convertirBitmapABase64(imgBitmap);
                         imagenesCapturadas.add(imgEnBase64);
                     }
                 }
@@ -230,19 +230,14 @@ public class AddFragment extends Fragment {
                         Bundle extras = result.getData().getExtras();
                         Bitmap imgBitmap = (Bitmap) extras.get("data");
                         parteabajo.setImageBitmap(imgBitmap);
-                        String imgEnBase64 = convertirBitmapABase64(imgBitmap);
+                        String imgEnBase64 = ArmarioMethods.convertirBitmapABase64(imgBitmap);
                         imagenesCapturadas.add(imgEnBase64);
                     }
                 }
             });
 
 
-    private String convertirBitmapABase64(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] byteArrayImage = baos.toByteArray();
-        return Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-    }
+
 
 
 }

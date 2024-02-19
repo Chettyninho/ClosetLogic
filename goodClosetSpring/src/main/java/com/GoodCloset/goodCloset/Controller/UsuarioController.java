@@ -39,6 +39,11 @@ public class UsuarioController {
         return usuarioService.comprobarYRegistrarUsuario(usuario);
     }
 
+    @PostMapping("/saveUserProfileImage") //hace tanto la funcion de insert como de update.
+    public Usuario saveUserImage(@RequestBody Usuario usuario){
+        return usuarioService.comprobarYRegistrarUsuario(usuario);
+    }
+
     @GetMapping("/find-user-by-chain/{chain}")
     public List<Usuario> findByName(@PathVariable("chain") String chain){
         List<Usuario> allUsuarios = usuarioService.getAllUsuarios();

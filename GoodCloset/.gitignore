@@ -1,5 +1,6 @@
 *.iml
-.gradle/
+.idea/
+.gradle/buildOutputCleanup/
 build/
 /local.properties
 /.idea/caches
