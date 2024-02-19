@@ -177,6 +177,14 @@ VALUES
     (3, 3),
     (4, 4),
     (5, 5);
+    
+    
+/*-- Borrar el trigger after_insert_outfit
+DROP TRIGGER IF EXISTS after_insert_outfit;
+DROP TRIGGER IF EXISTS after_insert_prenda;
+*/
+
+
  
  --------------------------------------  CONSULTAS ---------------------
  
