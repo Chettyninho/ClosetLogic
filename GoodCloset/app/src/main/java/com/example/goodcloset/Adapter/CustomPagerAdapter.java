@@ -31,7 +31,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return outfitsDeArmario.size() / 4; // Muestra tres imágenes a la vez
+        return outfitsDeArmario.size() ; // Muestra tres imágenes a la vez
     }
 
     @Override
@@ -45,19 +45,25 @@ public class CustomPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_image, container, false);
 
-        for (int i = 0; i < outfitsDeArmario.size(); i++) {
+        List<PrendaModelo> prendasDeOutfit = outfitsDeArmario.get(position).getPrendasDelOutfit();
 
-            List<PrendaModelo> prendasDeOutfit = outfitsDeArmario.get(i).getPrendasDelOutfit();
-            ImageView imageView1 = view.findViewById(R.id.imageView1);
-            imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-            ImageView imageView2 = view.findViewById(R.id.imageView2);
-            imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-            ImageView imageView3 = view.findViewById(R.id.imageView3);
-            imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(i).getFoto_prenda()));
-            Log.d("IMagen1", ""+prendasDeOutfit.get(i).getFoto_prenda());
-        }
+        ImageView imageView1 = view.findViewById(R.id.imageView1);
+     Log.d("0oooo","" + prendasDeOutfit.get(0).getFoto_prenda().toString());
 
-        container.addView(view);
+        imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(0).getFoto_prenda()));
+
+        ImageView imageView2 = view.findViewById(R.id.imageView2);
+        Log.d("111110oooo","" + prendasDeOutfit.get(1).getFoto_prenda().toString());
+        imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(1).getFoto_prenda()));
+
+        ImageView imageView3 = view.findViewById(R.id.imageView3);
+        Log.d("22220oooo","" + prendasDeOutfit.get(2).getFoto_prenda().toString());
+        imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(2).getFoto_prenda()));
+
+
+
+
+
         return view;
     }
 
