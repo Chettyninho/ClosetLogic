@@ -5,50 +5,58 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:gravity="center"
-    android:background="#292D4E"
+android:gravity="center" android:background="#292D4E"
 tools:context=".MainActivity">
 
-<Button
-    android:id="@+id/enviarOutfitButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:text="Enviar"/>
-<Button
-    android:id="@+id/btnSelectArmario"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:text="Seleccionar Armario"/>
+
 
 <LinearLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:paddingBottom="50dp"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnSelectArmario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Seleccionar Armario"/>
 
     <ImageView
         android:id="@+id/parteAriba"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:background="@drawable/baseline_camera_alt_24"
-        android:layout_marginTop="8dp"
+        android:src="@drawable/camara"
         /> <!-- Ajusta la separación en la parte superior -->
 
     <ImageView
         android:id="@+id/parteMedia"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:background="@drawable/baseline_camera_alt_24"
+        android:src="@drawable/camara"
         android:layout_marginTop="8dp"/> <!-- Ajusta la separación entre ImageView -->
 
     <ImageView
         android:id="@+id/parteAbajo"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:background="@drawable/baseline_camera_alt_24"
+        android:src="@drawable/camara"
         android:layout_marginTop="8dp"/> <!-- Ajusta la separación entre ImageView -->
+
+    <Button
+        android:id="@+id/enviarOutfitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#7CC625"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="Enviar"/>
+
 </LinearLayout>
+
+
+
 
 </LinearLayout>

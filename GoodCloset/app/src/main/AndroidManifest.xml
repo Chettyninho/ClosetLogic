@@ -25,6 +25,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".strangerProfileFragment"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".CarrouselArmario"
             android:exported="false">
         </activity>

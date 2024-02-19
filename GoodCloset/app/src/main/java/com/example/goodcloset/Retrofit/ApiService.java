@@ -37,7 +37,8 @@ public interface ApiService {
     @POST("outfit/{idArmario}/newOutfit")
     Call<OutfitModelo> postOutfit(@Path("idArmario") Integer idArmario, @Body ArrayList<String> imagenesCapturadas);
 
-
+    @GET("/find-user-by-username/{username}")
+    Call<UsuarioModelo> getUserByUsername(@Path("id_usuario") String username);
     @GET("/usuarios/{id_usuario}")
     Call<RespuestaInsertarUsuario> getUsuarioById(@Path("id_usuario") int idUsuario);
 
