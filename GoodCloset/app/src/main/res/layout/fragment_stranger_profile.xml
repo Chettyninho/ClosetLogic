@@ -20,6 +20,7 @@
                 android:id="@+id/profileImageViewProfileExtraño"
                 android:layout_width="110dp"
                 android:layout_height="142dp"
+                android:visibility="visible"
                 android:layout_gravity="start"
                 android:layout_marginStart="10dp"
                 android:src="@color/white" />

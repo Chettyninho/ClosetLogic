@@ -179,6 +179,7 @@ public class UsuarioModelo implements Serializable {
                 ", contador_seguidos=" + contador_seguidos +
                 ", contador_armarios=" + contador_armarios +
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", fotoUsuario='" + fotoUsuario + '\'' +
                 '}';
     }
 
