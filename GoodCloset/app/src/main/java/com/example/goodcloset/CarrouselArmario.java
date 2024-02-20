@@ -42,7 +42,7 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         // Mostrar un Toast con el ID del armario
         Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
- obtenerOutfits(armarioRecibido);
+        obtenerOutfits(armarioRecibido);
 
     }
 
@@ -63,11 +63,6 @@ public class CarrouselArmario extends AppCompatActivity  {
                                 }
                             }
                         }
-
-
-
-
-
                 @Override
                 public void onFailure(Call<List<OutfitModelo>> call, Throwable t) {
 

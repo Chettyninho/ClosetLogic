@@ -1,7 +1,9 @@
 package com.example.goodcloset.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,19 +49,26 @@ public class CustomPagerAdapter extends PagerAdapter {
 
         List<PrendaModelo> prendasDeOutfit = outfitsDeArmario.get(position).getPrendasDelOutfit();
 
-
         ImageView imageView1 = view.findViewById(R.id.imageView1);
-     Log.d("0oooo","" + prendasDeOutfit.get(0).getFoto_prenda().toString());
-
-        imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(0).getFoto_prenda()));
+        Log.d("0oooo","" + prendasDeOutfit.get(0).getFoto_prenda().toString());
+        byte[] imagenBytes = Base64.decode(prendasDeOutfit.get(0).getFoto_prenda(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+        imageView1.setImageBitmap(bitmap);
+        //imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(0).getFoto_prenda()));
 
         ImageView imageView2 = view.findViewById(R.id.imageView2);
         Log.d("111110oooo","" + prendasDeOutfit.get(1).getFoto_prenda().toString());
-        imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(1).getFoto_prenda()));
+        byte[] imagenBytes2 = Base64.decode(prendasDeOutfit.get(1).getFoto_prenda(), Base64.DEFAULT);
+        Bitmap bitmap2 = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+        imageView2.setImageBitmap(bitmap2);
+        //imageView2.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(1).getFoto_prenda()));
 
         ImageView imageView3 = view.findViewById(R.id.imageView3);
         Log.d("22220oooo","" + prendasDeOutfit.get(2).getFoto_prenda().toString());
-        imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(2).getFoto_prenda()));
+        byte[] imagenBytes3 = Base64.decode(prendasDeOutfit.get(2).getFoto_prenda(), Base64.DEFAULT);
+        Bitmap bitmap3 = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+        imageView3.setImageBitmap(bitmap3);
+        //imageView3.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(2).getFoto_prenda()));
 
 
         return view;

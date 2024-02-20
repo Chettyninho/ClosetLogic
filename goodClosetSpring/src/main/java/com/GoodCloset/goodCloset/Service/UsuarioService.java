@@ -21,10 +21,8 @@ public class UsuarioService {
     @Autowired
     private SeguidorRepository seguidorRepositorys;
     public Usuario postImageProfile(Usuario usuario){
-        System.out.println("usuario al post imagen: \n " + usuarioRepository.findById(usuario.getId()));
         usuario.setPassword(usuarioRepository.findById(usuario.getId()).get().getPassword());
         usuario.setSalt(usuarioRepository.findById(usuario.getId()).get().getSalt());
-        System.out.println("usuario justo antes de insertar: " + usuario);
         return usuarioRepository.save(usuario);
     }
     public List<Usuario> getAllUsuarios(){
@@ -104,9 +102,7 @@ public class UsuarioService {
         }
     }
     public void follow4Follow(Integer idSeguido, Integer idSeguidor) {
-        Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguido).get(),usuarioRepository.findById(idSeguidor).get());
-//        Seguidor usuarioSeguidor = new Usuario(idSeguidor);
-//        Seguidor ns = new Seguidor();
+        Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguidor).get(),usuarioRepository.findById(idSeguido).get());
         seguidorRepositorys.save(usuarioSeguido);
     }
 
