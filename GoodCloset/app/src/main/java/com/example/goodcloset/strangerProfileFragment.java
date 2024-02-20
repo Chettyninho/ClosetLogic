@@ -24,9 +24,13 @@ import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.tabs.TabLayout;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class strangerProfileFragment extends AppCompatActivity {
     TextView nombreUser, NumeroFollower,NumeroFollow, NumeroArmarios;
-    Button seguirButton;
+    static Button seguirButton;
     private RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -55,6 +59,12 @@ public class strangerProfileFragment extends AppCompatActivity {
         NumeroArmarios = findViewById(R.id.tvNumeroArmarios);
         establecerDatosDelUsuarioEnLaVista(usuarioRecibido);
 
+
+        //////////////////
+        ApiService apiService = ApiClient.getInstance().getApiService();
+        RespuestaInsertarUsuario usuarioSingleton = SingletonUser.getInstance().getUsuario();
+
+
         //HAY QUE TENER UN USUARIO PARA RECOGER LOS DATOS QUE SE LE PASARAN DESDE LA OTRA ACTIVIADA
         //POR EJEMPLO:
         //USUARIOMODELO USUAROeXTRAÑO = /*USUAARIO QUE SE RECIBA DE LA OTRA VISTA*/
@@ -65,20 +75,20 @@ public class strangerProfileFragment extends AppCompatActivity {
 
         //COSAS POR HACER EN ESTA CLASE:
         //Endopoint para seguir a un usuario (post a tabla seguidor)
-       // seguirButton = rootView.findViewById(R.id.seguirButton);
-       // seguirButton.setOnClickListener(new View.OnClickListener() {
-           // @Override
-         //   public void onClick(View v) {
-                //follow(apiService,usuarioSingleton/*,usuarioExtraño*/);
-           // }
-       //});
+
         //llamada para recuperar armarios de un id(en este caso del que hayamos clickado)
         //ver si se puede aprovechar profileArmarioAdapter y su vista para pintar los datos (imagino q si pq no se usan a la vez...)
 
         //opcional:
         //poner boton dentro de los armarios para añadir un outfit al tuyo (nuestros armarios los tenemos, los de la persona tambien seria solo añador un outfit a nuestro armario)
 
-
+        seguirButton = findViewById(R.id.seguirButton);
+        seguirButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                follow(apiService,usuarioSingleton,usuarioRecibido);
+            }
+        });
     }
 
 
@@ -90,9 +100,20 @@ public class strangerProfileFragment extends AppCompatActivity {
         //los armarios se restablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
     }
 
-    private static void follow(ApiService apiService,RespuestaInsertarUsuario usuarioSingleton/*,UsuarioModel usuarioExtraño*/){
-        //aqui hay fallo porque usuaro extraño see obtienen al hacer click en la vista anterior
-        //apiService.follow4Follow(usuarioExtraño.getID,usuarioSingleton.getId());
+    private static void follow(ApiService apiService,RespuestaInsertarUsuario usuarioSingleton,UsuarioModelo usuarioExtraño){
+        Call<Void> follow = apiService.follow4Follow(usuarioExtraño.getId(),usuarioSingleton.getId());
+        follow.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                seguirButton.setText("Seguido");
+                seguirButton.setBackgroundColor(R.color.seguidoButton);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
 

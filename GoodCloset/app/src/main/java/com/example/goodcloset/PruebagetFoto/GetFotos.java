@@ -42,7 +42,7 @@ public class GetFotos extends AppCompatActivity {
         ApiService apiService = ApiClient.getInstance().getApiService();
 
         if(apiService!= null){
-            Call<PrendaModelo> call = apiService.getImgB64(8);// 1, es para la prueba, en realidad hay que meter -> usuario.getId()
+            Call<PrendaModelo> call = apiService.getImgB64(1);// 1, es para la prueba, en realidad hay que meter -> usuario.getId()
             call.enqueue(new Callback<PrendaModelo>() {
 
                 @Override

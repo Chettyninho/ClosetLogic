@@ -59,7 +59,6 @@ public class CarrouselArmario extends AppCompatActivity  {
 
                         }else{
                             CustomPagerAdapter adapter = new CustomPagerAdapter(CarrouselArmario.this, outfitsDeArmario);
-                            Log.d("testeoQTeveo_",""+ outfitsDeArmario.get(0).getPrendasDelOutfit());
                             viewPager.setAdapter(adapter);
                                 }
                             }
