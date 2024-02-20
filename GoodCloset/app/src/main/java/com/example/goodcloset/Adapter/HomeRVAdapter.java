@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +43,25 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
     public void onBindViewHolder(@NonNull HomeRVAdapter.MyViewHolder holder, int position) {
 
         UsuarioModelo user = usuarios.get(position);
-        //String imagenCodificada = user.getFotoUsuario();
-        //byte[] decodedString = Base64.decode(imagenCodificada, Base64.DEFAULT);
-        //Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-       // holder.imageView.setImageBitmap(bitmap);
-        holder.tvUserName.setText(user.getUserName());
+        if (user.getFotoUsuario() != null) {
+            Log.d("foto", user.getFotoUsuario().toString());
+            try {
+                // Decodificar la cadena Base64 en un array de bytes
+                byte[] imagenBytes = Base64.decode(user.getFotoUsuario(), Base64.DEFAULT);
 
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+
+                // Establecer el Bitmap en el ImageViewç
+                holder.imageView.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Manejar el error, por ejemplo, establecer una imagen predeterminada
+                // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
+            }
+        } else {
+            holder.imageView.setImageResource(R.drawable.defaultimg);
+        }
+        holder.tvUserName.setText("@"+user.getUserName());
         //holder..setText(user.getUserName());
 
     }

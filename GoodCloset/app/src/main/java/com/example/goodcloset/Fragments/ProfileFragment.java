@@ -64,7 +64,7 @@ import retrofit2.Response;
 public class  ProfileFragment extends Fragment {
     TextView nombreUser, NumeroFollower,NumeroFollow, NumeroArmarios;//numero armarios se tendria que cargar en el onResponse.con un .size() de la lista recuperada.
     ApiService apiService;
-    Button editarButton, siguiednoButton;
+    Button editarButton;
     RecyclerView recyclerView;
     List<ArmarioModelo> armariosList;
     private TabLayout tabLayout;
@@ -82,6 +82,7 @@ public class  ProfileFragment extends Fragment {
         // Inflar el diseño del fragmento
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        profileImageDialog =rootView.findViewById(R.id.profileImageView);
         //tabs
         tabLayout = rootView.findViewById(R.id.tabLayout);
         viewPager = rootView.findViewById(R.id.viewPager);
@@ -92,10 +93,9 @@ public class  ProfileFragment extends Fragment {
         Log.e("Usuario que llega al Perfil de Fragments" , " " + usuario.toString());
         //obtenemos la referencia del boton de editar
         editarButton = rootView.findViewById(R.id.editarPerfil);
-        siguiednoButton = rootView.findViewById(R.id.Seguido);
 
 
-        siguiednoButton.setOnClickListener(new View.OnClickListener() {
+        editarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialogs(usuario);
@@ -108,14 +108,6 @@ public class  ProfileFragment extends Fragment {
         TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
         FloatingActionButton newArmarioButton = rootView.findViewById(R.id.NewArmarioButton);
 
-        editarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), CarrouselArmario.class);
-                startActivity(i);
-
-            }
-        });
 
         newArmarioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,8 +115,6 @@ public class  ProfileFragment extends Fragment {
                 showNewArmarioDialog();
             }
         });
-
-
 
 
         Log.d("test","seguidores ->" + usuario.getContador_seguidores() + "// usrname -> " +usuario.getUserName());
@@ -153,15 +143,27 @@ public class  ProfileFragment extends Fragment {
         NumeroFollower.setText(String.valueOf(usuario.getContador_seguidores()));
         NumeroFollow.setText(String.valueOf(usuario.getContador_seguidos()));
         NumeroArmarios.setText(String.valueOf(usuario.getContador_armarios()));
+// Decodificar la cadena de la imagen en un array de bytes
+        if (usuario.getFotoUsuario() != null) {
+            Log.d("foto", usuario.getFotoUsuario().toString());
+            try {
+                // Decodificar la cadena Base64 en un array de bytes
+                byte[] imagenBytes = Base64.decode(usuario.getFotoUsuario(), Base64.DEFAULT);
 
-        Log.d("","IMAGEN DE PERFIL ANTES DE BITMAP " + usuario.getFotoUsuario());
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
-            //profileImageView.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario()));
-
-
-        //profileImageView.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario()));
-
-        //los armarios sed erstablecen en funcion de la lista que se obtiene en recuperarArmariosUsuario()
+                // Establecer el Bitmap en el ImageView
+                profileImageDialog.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Manejar el error, por ejemplo, establecer una imagen predeterminada
+                // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
+            }
+        } else {
+            // Manejar el caso en que la cadena de la imagen sea nula
+            // Por ejemplo, puedes establecer una imagen predeterminada o hacer alguna otra acción
+            // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -234,45 +236,7 @@ public class  ProfileFragment extends Fragment {
             });
         }
     }
-    //mostrar foto de perfil
-    /*
-    public void mostrarFotoPerfil(ImageView profileImageView) {
-        if (apiService != null) {
-            Call<RespuestaInsertarUsuario> call = apiService.getUsuarioById(1); // Cambia el 1 por el ID del usuario actual
-            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
-                @Override
-                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
-                    if (response.isSuccessful()) {
-                        RespuestaInsertarUsuario usuario = response.body();
-                        if (usuario != null) { // Verificar que el objeto usuario no sea nulo
-                            String fotoBase64 = usuario.getFotoUsuario();
-                            Log.d("FotoPerfil en Base64", "" +fotoBase64); // Agrega este log para ver la fotoBase64
-                            if (fotoBase64 != null && !fotoBase64.isEmpty()) {
-                                // Decodificar la imagen desde Base64
-                                byte[] decodedBytes = Base64.decode(fotoBase64, Base64.DEFAULT);
-                                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
 
-                                // Mostrar la imagen decodificada en el ImageView
-                                profileImageView.setImageBitmap(decodedBitmap);
-                            }
-                        } else {
-                            Log.e("mostrarFotoPerfil", "El objeto usuario es nulo");
-                        }
-                    } else {
-                        // Manejar la respuesta de error
-                        Log.e("mostrarFotoPerfil", "Respuesta no exitosa: " + response.code());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
-                    // Manejar el fallo en la llamada a la API
-                    Log.e("mostrarFotoPerfil", "Error en la llamada a la API: " + t.getMessage());
-                }
-            });
-        }
-    }
-*/
     private void showNewArmarioDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Nuevo Armario");

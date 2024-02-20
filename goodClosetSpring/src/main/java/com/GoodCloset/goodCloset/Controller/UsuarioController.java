@@ -39,9 +39,13 @@ public class UsuarioController {
         return usuarioService.comprobarYRegistrarUsuario(usuario);
     }
 
-    @PostMapping("/saveUserProfileImage") //hace tanto la funcion de insert como de update.
+    @PostMapping("/saveUserProfileImage")
     public Usuario saveUserImage(@RequestBody Usuario usuario){
-        return usuarioService.comprobarYRegistrarUsuario(usuario);
+        return usuarioService.postImageProfile(usuario);
+    }
+    @PostMapping("/editUser")
+    public Usuario editUser(@RequestBody Usuario usuario, @RequestParam String contraseñaAntigua, @RequestParam String contraseñaNueva){
+        return usuarioService.chkPasswordAndEdtUser(usuario,contraseñaAntigua, contraseñaNueva);
     }
 
     @GetMapping("/find-user-by-chain/{chain}")
@@ -56,8 +60,6 @@ public class UsuarioController {
         }
         return usuarioShearched;
     }
-
-
 
 
 

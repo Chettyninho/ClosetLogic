@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         ApiService apiService = apiClient.getApiService();
 
         // Realizar la llamada a la API para obtener la lista de armarios
-        Call<List<UsuarioModelo>> call = apiService.getUsersFollowedByMainUser(1);
+        Call<List<UsuarioModelo>> call = apiService.getUsersFollowedByMainUser(usuario.getId());
 
         // Ejecutar la llamada asíncrona
         call.enqueue(new Callback<List<UsuarioModelo>>() {
@@ -76,7 +76,6 @@ public class HomeFragment extends Fragment {
 
                     // Actualizar el adaptador con la lista de armarios
                     adapter.actualizarLista(allUsuarioModelos);
-
                 }
             }
 
@@ -89,67 +88,8 @@ public class HomeFragment extends Fragment {
 
         ArrayList<ArmarioModelo> listaArmarios = new ArrayList<>();
 
-        /*recoger = rootView.findViewById(R.id.recoger);
-        recoger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Llamamos a la función para obtener los usuarios seguidos
-                obtenerAllSeguidos(idUsr);
-
-            }
-        });*/
-        // aqui voy a hacer el home, luego habra que cabiarlo, hago aqui el get all users
-        // Devuelve la vista del fragmento
         return rootView;
     }
 
-   /* public void obtenerAllSeguidos(Integer idUsr){
-        //esta funcion se carga nada mas abrir la actividad, no se si deberia ser async(?)
-        ApiService apiService = ApiClient.getInstance().getApiService();
-
-        if (apiService!=null){
-            Call<List<UsuarioModelo>> call = apiService.getUsersFollowedByMainUser(idUsr); // este 3 se sustituye por idUsr, lo que
-
-            //pasa es que siempre entro con user = s que el id es 30 y nadie le sigue :(
-            Log.d("TAG", "Llamada a la API iniciada");
-
-            call.enqueue(new Callback<List<UsuarioModelo>>() {
-                @Override
-                public void onResponse(Call<List<UsuarioModelo>> call, Response<List<UsuarioModelo>> response) {
-                    Log.d("TAG", "Código de respuesta: " + response.code());
-
-                    if (response.isSuccessful()) {
-                        List<UsuarioModelo> usuariosSeguidos = response.body();
-
-                        Log.d(".u.", "" + response.body().toString());
-
-                        if (!usuariosSeguidos.isEmpty()){
-                            for (UsuarioModelo u : usuariosSeguidos) {
-                                u.setSaltReal(Arrays.toString(u.getSalt()).getBytes());
-                                Log.e("Id usuario del get", " : " + u.getId());
-                            }
-                        }else {
-                            Log.e("....","LA LISTA ESTA VACIA");
-                        }
-
-                    } else {
-                        try {
-                            Log.e("Error en la respuesta", response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<UsuarioModelo>> call, Throwable t) {
-                    Log.e("Error en la llamada", "Error: " + t.getMessage());
-                }
-            });
-
-        }
-
-    }
-*/
 
 }

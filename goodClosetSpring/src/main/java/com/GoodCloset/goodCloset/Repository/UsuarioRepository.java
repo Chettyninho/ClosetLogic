@@ -10,10 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
-    //List<Usuario> findAll(); este metodo realmene no hace fata porque viene predefinido en JpaRepository
-
     public List<Usuario> findByUsernameAndPassword(String username, String password);
-
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 

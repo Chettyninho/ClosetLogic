@@ -4,7 +4,6 @@ import com.GoodCloset.goodCloset.Models.Seguidor;
 import com.GoodCloset.goodCloset.Models.Usuario;
 import com.GoodCloset.goodCloset.Repository.SeguidorRepository;
 import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,11 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private SeguidorRepository seguidorRepositorys;
-    public Usuario postImageProfile(Usuario usuario){return usuarioRepository.save(usuario);}
+    public Usuario postImageProfile(Usuario usuario){
+        usuario.setPassword(usuarioRepository.findById(usuario.getId()).get().getPassword());
+        usuario.setSalt(usuarioRepository.findById(usuario.getId()).get().getSalt());
+        return usuarioRepository.save(usuario);
+    }
     public List<Usuario> getAllUsuarios(){
         return usuarioRepository.findAll();
     }
@@ -99,10 +102,21 @@ public class UsuarioService {
         }
     }
     public void follow4Follow(Integer idSeguido, Integer idSeguidor) {
-        Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguido).get(),usuarioRepository.findById(idSeguidor).get());
-//        Seguidor usuarioSeguidor = new Usuario(idSeguidor);
-//        Seguidor ns = new Seguidor();
+        Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguidor).get(),usuarioRepository.findById(idSeguido).get());
         seguidorRepositorys.save(usuarioSeguido);
     }
 
+    public Usuario chkPasswordAndEdtUser(Usuario usuario, String contraseñaAntigua, String contraseñaNueva) {
+    Optional<Usuario> userSelected = usuarioRepository.findById(usuario.getId());
+    byte[] SaltUsr = userSelected.get().getSalt();
+        if(hashPassword(contraseñaAntigua,SaltUsr) == userSelected.get().getPassword()){
+            byte[] nuevoSalt = generateSalt();
+            usuario.setSalt(nuevoSalt);
+            usuario.setPassword(hashPassword(contraseñaNueva,nuevoSalt));
+            return usuarioRepository.save(usuario);
+
+        }else{
+            return null;
+        }
+    }
 }

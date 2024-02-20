@@ -33,50 +33,6 @@ public class ApiClient {
         return apiService;
     }
 
-
-        // prueba para las fotos outft
-       /* private static final String TAG = "ApiClient";
-
-        public static List<YourImageModel> fetchImageListFromAPI(String urlString) {
-            List<YourImageModel> imageList = new ArrayList<>();
-
-            try {
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("GET");
-
-                int responseCode = urlConnection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    String inputLine;
-                    StringBuilder response = new StringBuilder();
-
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-
-                    JSONArray jsonArray = new JSONArray(response.toString());
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        byte[] fotoArriba = jsonObject.getString("foto_arriba").getBytes();
-                        byte[] fotoMedio = jsonObject.getString("foto_medio").getBytes();
-                        byte[] fotoAbajo = jsonObject.getString("foto_abajo").getBytes();
-
-                        YourImageModel imageModel = new YourImageModel(fotoArriba, fotoMedio, fotoAbajo);
-                        imageList.add(imageModel);
-                    }
-                } else {
-                    Log.e(TAG, "Error en la respuesta de la API. Código de respuesta: " + responseCode);
-                }
-                urlConnection.disconnect();
-            } catch (IOException | JSONException e) {
-                Log.e(TAG, "Error al obtener la lista de imágenes desde la API: " + e.getMessage());
-                e.printStackTrace();
-            }
-
-            return imageList;
-        }*/
     }
 
 
