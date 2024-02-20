@@ -49,7 +49,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
 
         ImageView imageView1 = view.findViewById(R.id.imageView1);
-     Log.d("0oooo","" + prendasDeOutfit.get(0).getFoto_prenda().toString());
+        Log.d("0oooo","" + prendasDeOutfit.get(0).getFoto_prenda().toString());
 
         imageView1.setImageBitmap(ArmarioMethods.convertirBase64ABitmap(prendasDeOutfit.get(0).getFoto_prenda()));
 

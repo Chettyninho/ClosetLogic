@@ -47,6 +47,7 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
         //Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
        // holder.imageView.setImageBitmap(bitmap);
         holder.tvUserName.setText(user.getUserName());
+
         //holder..setText(user.getUserName());
 
     }

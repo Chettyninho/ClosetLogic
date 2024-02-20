@@ -24,6 +24,7 @@ import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
+import com.example.goodcloset.methodLayer.ArmarioMethods;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
 import com.google.android.material.tabs.TabLayout;
@@ -59,7 +60,7 @@ public class strangerProfileFragment extends AppCompatActivity {
         NumeroFollower = findViewById(R.id.followersTextView);
         NumeroFollow = findViewById(R.id.tvNumeroSeguidos);
         NumeroArmarios = findViewById(R.id.tvNumeroArmarios);
-        imagenPerfil = findViewById(R.id.profileImageViewProfileExtraño);
+        imagenPerfil = findViewById(R.id.profileImageViewProfileExtrano);
         establecerDatosDelUsuarioEnLaVista(usuarioRecibido);
 
         //HAY QUE TENER UN USUARIO PARA RECOGER LOS DATOS QUE SE LE PASARAN DESDE LA OTRA ACTIVIADA
@@ -95,25 +96,10 @@ public class strangerProfileFragment extends AppCompatActivity {
         NumeroFollow.setText(String.valueOf(usuarioRecibido.getContador_seguidos()));
         NumeroArmarios.setText(String.valueOf(usuarioRecibido.getContador_armarios()));
         // Decodificar la cadena de la imagen en un array de bytes
-        if (usuarioRecibido.getFotoUsuario() != null) {
-            try {
-                // Decodificar la cadena Base64 en un array de bytes
-                byte[] imagenBytes = Base64.decode(usuarioRecibido.getFotoUsuario(), Base64.DEFAULT);
+        Log.d("referencia imagen", imagenPerfil.toString());
+        Bitmap imagenPerfilBitmap = ArmarioMethods.convertirBase64ABitmap(usuarioRecibido.getFotoUsuario());
+        imagenPerfil.setImageBitmap(imagenPerfilBitmap);
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
-
-                // Establecer el Bitmap en el ImageView
-                imagenPerfil.setImageBitmap(bitmap);
-            } catch (Exception e) {
-                e.printStackTrace();
-                // Manejar el error, por ejemplo, establecer una imagen predeterminada
-                // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
-            }
-        } else {
-            // Manejar el caso en que la cadena de la imagen sea nula
-            // Por ejemplo, puedes establecer una imagen predeterminada o hacer alguna otra acción
-            // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
-        }
     }
 
     private static void follow(ApiService apiService,RespuestaInsertarUsuario usuarioSingleton/*,UsuarioModel usuarioExtraño*/){

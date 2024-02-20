@@ -405,7 +405,7 @@ public class  ProfileFragment extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Bundle extras = result.getData().getExtras();
                         Bitmap imgBitmap = (Bitmap) extras.get("data");
-                        profileImageDialog.setImageBitmap(imgBitmap);
+                        //profileImageDialog.setImageBitmap(imgBitmap);
                         String imgEnBase64 = ArmarioMethods.convertirBitmapABase64(imgBitmap);
                         usuarioModifyProfileImage = new RespuestaInsertarUsuario(usuario.getId(), usuario.getNombre(), usuario.getSurname(), usuario.getEmail(), usuario.getUsername(), usuario.getContador_seguidores(), usuario.getContador_seguidos(), usuario.getContador_armarios(), usuario.getFotoUsuario());
                         usuarioModifyProfileImage.setFotoUsuario(imgEnBase64);
