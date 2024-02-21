@@ -5,7 +5,6 @@ import com.GoodCloset.goodCloset.Models.Outfit;
 import com.GoodCloset.goodCloset.Repository.ArmarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ArmarioService {
         return armarioRepository.findAll();
     }
 
-   public Armario saveArmario(Armario armario){
+    public Armario saveArmario(Armario armario){
        return armarioRepository.save(armario);
    }
 

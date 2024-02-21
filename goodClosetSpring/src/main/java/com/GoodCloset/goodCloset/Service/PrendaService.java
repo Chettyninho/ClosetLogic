@@ -4,20 +4,16 @@ import com.GoodCloset.goodCloset.Models.Prenda;
 import com.GoodCloset.goodCloset.Repository.PrendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class PrendaService {
     @Autowired
     private PrendaRepository prendaRepository;
-
     public List<Prenda> getAllPrendas() {
         return prendaRepository.findAll();
     }
-
     public boolean deletePrendaById(Integer id) {
         // Verificar si la prenda con el ID dado existe
         if (prendaRepository.existsById(id)) {
@@ -29,7 +25,6 @@ public class PrendaService {
             return false;
         }
     }
-
     public Prenda getPrendaById(Integer idPrenda) {
         Optional<Prenda> prenda = prendaRepository.findById(idPrenda);
         if (prenda.isPresent()) {
@@ -37,15 +32,5 @@ public class PrendaService {
         } else {
             return new Prenda();
         }
-        /*List<Prenda> listaPrendas = prendaRepository.findAll();
-        Prenda prenda = null;
-        for (Prenda p : listaPrendas){
-            if(Objects.equals(p.getId(), idPrenda)){
-                prenda = p;
-            }else{
-                prenda = null;
-            }
-        }
-        return prenda;*/
     }
 }

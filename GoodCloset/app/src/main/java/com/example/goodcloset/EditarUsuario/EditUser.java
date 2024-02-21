@@ -47,17 +47,16 @@ import retrofit2.Response;
 
 public class EditUser extends AppCompatActivity {
     RespuestaInsertarUsuario usuarioSingleton = SingletonUser.getInstance().getUsuario();
-    EditText userName,nombre,email,contraseñaActual,ContraseñaNueva;
+    EditText userName,nombre,email,contrasenaActual,ContrasenaNueva;
     Button enviarUsuarioModificado;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enviarUsuarioModificado = findViewById(R.id.sendModifyUser);
-        setContentView(R.layout.activity_edit_user); // Asegúrate de que el nombre del layout sea correcto
+        setContentView(R.layout.activity_edit_user);
 
         userName = findViewById(R.id.username);
         userName.setHint("@ " + usuarioSingleton.getUserName());
-
+        enviarUsuarioModificado = findViewById(R.id.sendModifyUser);
         nombre = findViewById(R.id.name);
         nombre.setHint(usuarioSingleton.getNombre());
 
@@ -65,10 +64,10 @@ public class EditUser extends AppCompatActivity {
         email.setHint(usuarioSingleton.getEmail());
         //esto lo pasaremos y lo gestionaremos en service para ver si se cambian o no los datos,
         //si la contraseña actual es correcta se cambiaran. sino alerta de que contraseña incorrecta.
-        contraseñaActual = findViewById(R.id.contraseñaActual);
-        contraseñaActual.setHint("********");
+        contrasenaActual = findViewById(R.id.contrasenaActual);
+        contrasenaActual.setHint("********");
 
-        ContraseñaNueva = findViewById(R.id.password);
+        ContrasenaNueva = findViewById(R.id.password);
 
         enviarUsuarioModificado.setOnClickListener(new View.OnClickListener() {
             @Override

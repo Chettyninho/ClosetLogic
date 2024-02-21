@@ -63,7 +63,7 @@
                 android:textSize="22dp" />
 
             <EditText
-                android:id="@+id/contraseñaActual"
+                android:id="@+id/contrasenaActual"
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:background="@drawable/registroborder"
@@ -83,7 +83,7 @@
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:layout_margin="13dp"
-                android:hint="CONTRASEÑA NUEVA"
+                android:hint="CONTRASENA NUEVA"
                 android:textSize="22dp"
                 android:elevation="10dp" />
         </LinearLayout>

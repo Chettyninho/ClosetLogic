@@ -29,43 +29,38 @@ public class OutfitService {
     }
 
 
-//añade un outfit pasandole la lista de imagenes
-public Outfit nuevoOutfit(Integer idArmario, List<String> imagenesCapturadaBase64) {
-    Outfit outfit = new Outfit();
-    outfit.setNombre("testDefinitivo");
-    outfit.setDescripcion("Outfit de prueba");
-    outfit = outfitRepository.save(outfit);
+    //añade un outfit pasandole la lista de imagenes
+    public Outfit nuevoOutfit(Integer idArmario, List<String> imagenesCapturadaBase64) {
+        Outfit outfit = new Outfit();
+        outfit.setNombre("testDefinitivo");
+        outfit.setDescripcion("Outfit de prueba");
+        outfit = outfitRepository.save(outfit); //insertamos el outfit
 
-    Optional<Armario> armario = armarioRepository.findById(idArmario);
-    if (armario.isPresent()) {
-        Armario armarioExistente = armario.get();
-        ArmarioOutfit armarioOutfit = new ArmarioOutfit(armarioExistente, outfit);
-        armarioOutfitRepository.save(armarioOutfit);
+        Optional<Armario> armario = armarioRepository.findById(idArmario);
+        if (armario.isPresent()) {
+            Armario armarioExistente = armario.get();
+            ArmarioOutfit armarioOutfit = new ArmarioOutfit(armarioExistente, outfit);
+            armarioOutfitRepository.save(armarioOutfit);
 
-        List<Prenda> listaPrendas = new ArrayList<>();
-        for (String s : imagenesCapturadaBase64) {
-            Prenda prenda = new Prenda();
-            prenda.setFotoEnBase64(s);
-            prendaRepository.save(prenda);
-            listaPrendas.add(prenda);
+            List<Prenda> listaPrendas = new ArrayList<>();
+            for (String s : imagenesCapturadaBase64) {
+                Prenda prenda = new Prenda();
+                prenda.setFotoEnBase64(s);
+                prendaRepository.save(prenda);
+                listaPrendas.add(prenda); //insertamos las prendas de la lista (seran siempre 3)
+            }
+
+            // Recuperar los últimos tres IDs de las prendas y el último ID del outfit
+            List<Prenda> ultimasPrendas = prendaRepository.findTop3ByOrderByIdDesc();
+            for (Prenda p : ultimasPrendas){
+                Prenda_Outfit prenda_outfit = new Prenda_Outfit(p, outfit);
+                prenda_outfitRepository.save(prenda_outfit);  //guardamos la relacon entre prenda y outyfit
+            }
+            return outfit;
+        } else {
+            throw new RuntimeException("Armario con ID " + idArmario + " no encontrado.");
         }
-
-        // Recuperar los últimos tres IDs de las prendas y el último ID del outfit
-        List<Prenda> ultimasPrendas = prendaRepository.findTop3ByOrderByIdDesc();
-        //Outfit ultimoOutfit = outfitRepository.findTop1ByOrderByIdDesc();
-        for (Prenda p : ultimasPrendas){
-
-            //los objetos tienen valor pero al crearlos no??
-            Prenda_Outfit prenda_outfit = new Prenda_Outfit(p, outfit);
-
-            prenda_outfitRepository.save(prenda_outfit);
-        }
-
-        return outfit;
-    } else {
-        throw new RuntimeException("Armario con ID " + idArmario + " no encontrado.");
     }
-}
 
 
 

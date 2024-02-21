@@ -21,7 +21,7 @@ public class OutfitModelo implements Serializable {
     @SerializedName("prendas")
     List<PrendaModelo> prendasDelOutfit;
 
-    private List<String> imgsBase64; //contendra las img en base 64
+    private List<String> fotoEnBase64; //contendra las img en base 64
 
     public int getId() {
         return id;

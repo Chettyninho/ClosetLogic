@@ -134,24 +134,26 @@ public class FragmentLogIn extends Fragment {
 
     private void entrar(UsuarioModelo usuarioAInsertar) {
         ApiService apiService = ApiClient.getInstance().getApiService();
+        Log.d("KAKA","1");
         if (apiService != null) {
             Call<RespuestaInsertarUsuario> call = apiService.login(usuarioAInsertar);
-
+            Log.d("KAKA","2");
             call.enqueue(new Callback<RespuestaInsertarUsuario>() {
 
                 @Override
                 public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
-
+                    Log.d("KAKA","3");
                     if (response.isSuccessful()) {
                         RespuestaInsertarUsuario respuesta = response.body();
-
+                        Log.d("KAKA","4");
                         //Log.d("salt"," : " + Arrays.toString(respuesta.getSalt());
                         //String userNameCheck = respuesta.getUserName(); // Obtén el usuario de la respuesta
                         Log.e("ALL RESPUESTA", "username" + respuesta.getUserName() +
                                 ", // pswdd: " + respuesta.getContraseñaSinHassear());
 
                         if (respuesta.getSalt() != null) {
-                            Log.e("dentrodelIF:",": " + respuesta.getSalt());
+                            Log.d("KAKA","5");
+                            Log.e("dentrodelIF:",": TODO SWEET AMIGO" + respuesta.getSalt());
                             respuesta.setSaltReal(Arrays.toString(respuesta.getSalt()).getBytes());
                             Log.d("salt", " : " + Arrays.toString(respuesta.getSalt()));
                             //crear el singleton del usuario recibido.
@@ -175,6 +177,7 @@ public class FragmentLogIn extends Fragment {
 
                 @Override
                 public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                    Log.d("KAKA","6: " + t.getMessage());
                     Log.e("Error en la llamada", "Tipo de excepción: " + t.getClass().getSimpleName());
                     if (t instanceof JsonSyntaxException) {
                         // Imprimir información adicional sobre el JSON en caso de JsonSyntaxException

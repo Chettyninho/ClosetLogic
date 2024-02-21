@@ -6,7 +6,6 @@ import com.GoodCloset.goodCloset.Repository.SeguidorRepository;
 import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

@@ -27,13 +27,13 @@ public class CarrouselArmario extends AppCompatActivity  {
 
     //armario que recibe cuando tocas en alguno del perfil
     ArmarioModelo armarioRecibido = new ArmarioModelo();
-    private ViewPager viewPager;
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_outfits_armarios);
 
-        viewPager = findViewById(R.id.viewPager); // Inicializa viewPager aquí
+        viewPager = findViewById(R.id.carrouselDeOutfitsViewPager); // Inicializa viewPager aquí
 
         Button button = findViewById(R.id.button3);
 
@@ -60,9 +60,9 @@ public class CarrouselArmario extends AppCompatActivity  {
                         }else{
                             CustomPagerAdapter adapter = new CustomPagerAdapter(CarrouselArmario.this, outfitsDeArmario);
                             viewPager.setAdapter(adapter);
-                                }
                             }
                         }
+                    }
                 @Override
                 public void onFailure(Call<List<OutfitModelo>> call, Throwable t) {
 
