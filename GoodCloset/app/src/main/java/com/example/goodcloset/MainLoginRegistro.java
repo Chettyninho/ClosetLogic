@@ -22,27 +22,49 @@ public class MainLoginRegistro extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    GestorFragments pageAdatper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login_registro);
 
         imgbg = findViewById(R.id.registrobg);
-
-        // Cargar la imagen con Glide y animación de fade in
-        Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_background);
-        imgbg.startAnimation(fadeInAnimation);
-        Glide.with(this)
-                .load(R.drawable.registrobg)
-                .into(imgbg);
+        imgbg.animate().translationY(-2100).setDuration(1000).setStartDelay(0);
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
+        Animation animation  =  AnimationUtils.loadAnimation(this,R.anim.slideup);
+        tabLayout.startAnimation(animation);
+        viewPager.startAnimation(animation);
+
         // Configurando el ViewPager
-        GestorFragments gestorFragments = new GestorFragments(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        gestorFragments.addFragment(new FragmentLogIn(), "LOGIN");
-        gestorFragments.addFragment(new FragmentRegistro(), "REGISTRO");
-        viewPager.setAdapter(gestorFragments);
+        pageAdatper = new GestorFragments( getSupportFragmentManager(),tabLayout.getTabCount());
+        pageAdatper.addFragment(new FragmentLogIn(), "LOGIN");
+        pageAdatper.addFragment(new FragmentRegistro(), "REGISTRO");
+        viewPager.setAdapter(pageAdatper);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if(tab.getPosition() == 0){
+                    pageAdatper.notifyDataSetChanged();
+                }
+                if(tab.getPosition() == 1){
+                    pageAdatper.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 }
