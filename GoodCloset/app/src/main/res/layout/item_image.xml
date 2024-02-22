@@ -6,8 +6,8 @@
 
         <ImageView
             android:id="@+id/tvParteArrivaImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:layout_margin="40dp"
             android:layout_weight="1"
             android:scaleType="fitCenter" />
@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/tvParteMediaImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="160dp"
             android:layout_margin="40dp"
             android:layout_weight="1"
             android:scaleType="fitCenter" />
@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/tvParteAbajoImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="160dp"
             android:layout_margin="40dp"
             android:layout_weight="1"
             android:scaleType="fitCenter" />
