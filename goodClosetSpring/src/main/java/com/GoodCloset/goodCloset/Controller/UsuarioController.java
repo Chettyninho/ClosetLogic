@@ -45,6 +45,7 @@ public class UsuarioController {
     }
     @PostMapping("/editUser")
     public Usuario editUser(@RequestBody Usuario usuario, @RequestParam String contraseñaAntigua, @RequestParam String contraseñaNueva){
+        System.out.println("entra en ocntroller");
         return usuarioService.chkPasswordAndEdtUser(usuario,contraseñaAntigua, contraseñaNueva);
     }
 

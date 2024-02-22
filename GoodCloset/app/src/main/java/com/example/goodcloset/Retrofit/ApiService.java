@@ -29,15 +29,6 @@ public interface ApiService {
     Call<List<UsuarioModelo>> getUsersFollowedByMainUser(@Path("idUsr") Integer idPropietario);
     @GET("/usuarios/all")
     Call<List<UsuarioModelo>> obtenerUsuarios();
-    @GET("armario/propietario/{idPropietario}")
-    Call<List<ArmarioModelo>> getArmariosUser(@Path("idPropietario") Integer idPropietario);
-
-    @POST("armario/saveArmario")
-    Call <ArmarioModelo> postArmariosUser(@Body ArmarioModelo armarioModelo);
-
-    @POST("outfit/{idArmario}/newOutfit")
-    Call<OutfitModelo> postOutfit(@Path("idArmario") Integer idArmario, @Body ArrayList<String> imagenesCapturadas);
-
     @GET("/find-user-by-username/{username}")
     Call<UsuarioModelo> getUserByUsername(@Path("id_usuario") String username);
     @GET("/usuarios/{id_usuario}")
@@ -47,13 +38,23 @@ public interface ApiService {
     @GET("usuarios/fotos")
     Call<ResponseBody> obtenerImagen();
 
+    @POST("usuarios/editUser")
+    Call<RespuestaInsertarUsuario> editUsr(@Body RespuestaInsertarUsuario usuarioModelo,@Query("contraseñaAntigua") String contraseñaAntigua, @Query("contraseñaNueva") String contraseñaNueva);
+
     ///////////////////////////////////////////////////////////
 
     @GET("armario/{id_armario}/outfits")
     Call<List<OutfitModelo>> getOutfits_Armario(@Path("id_armario") Integer id_armario);
+    @GET("armario/propietario/{idPropietario}")
+    Call<List<ArmarioModelo>> getArmariosUser(@Path("idPropietario") Integer idPropietario);
+
+    @POST("armario/saveArmario")
+    Call <ArmarioModelo> postArmariosUser(@Body ArmarioModelo armarioModelo);
 
     ////////////////////////////////////////////////////////
-    
+    @POST("outfit/{idArmario}/newOutfit")
+    Call<OutfitModelo> postOutfit(@Path("idArmario") Integer idArmario, @Body ArrayList<String> imagenesCapturadas);
+
     ///////////////////////////////////////////////////////////////
     @GET("/prenda/{idPrenda}")
     Call<PrendaModelo> getImgB64(@Path("idPrenda") Integer idPrenda);

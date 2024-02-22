@@ -46,4 +46,6 @@ public class HomeController {
         String hashedPassword = UsuarioService.hashPassword(testPasword, salt);
         return hashedPassword;
     }
+
+
 }

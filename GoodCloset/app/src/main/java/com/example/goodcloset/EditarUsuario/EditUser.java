@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,14 +73,52 @@ public class EditUser extends AppCompatActivity {
         enviarUsuarioModificado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviar();
+                    String contraseñaAntigua = String.valueOf(contrasenaActual.getText());
+                    String contraseñaNueva = String.valueOf(ContrasenaNueva.getText());
+                if(contrasenaActual.getText()!=null && ContrasenaNueva.getText()!=null){
+                    enviar(usuarioSingleton, contraseñaAntigua, contraseñaNueva);
+                }
             }
         });
     }
-private void enviar(){
+    private void enviar(RespuestaInsertarUsuario usuario,String contraseñaAntigua,String contraseñaNueva){
+        ApiService apiService = ApiClient.getInstance().getApiService();
+        if(apiService!=null){
 
-}
-    //falta la logica para hacer la peticion con la nueva contraseña, lo haremos pasando el id del usuario ya que lo tenemos.
-    //creo que lo mejor seria meterlo en home controller
+            if (userName != null && nombre != null && email != null &&
+                    !TextUtils.isEmpty(userName.getText()) &&
+                    !TextUtils.isEmpty(nombre.getText()) &&
+                    !TextUtils.isEmpty(email.getText())) {
+                usuario.setUserName(String.valueOf(userName.getText()));
+                usuario.setNombre(String.valueOf(nombre.getText()));
+                usuario.setEmail(String.valueOf(email.getText()));
+            } else {
+                // Mostrar un mensaje de error o realizar alguna acción si los campos están vacíos o nulos
+                Toast.makeText(getApplicationContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+            Call<RespuestaInsertarUsuario> call = apiService.editUsr(usuario,contraseñaAntigua,contraseñaNueva);
+Log.d("IN","IN");
+            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
+                @Override
+                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("Respuesta del servidor", response.body().toString());
+                        usuarioSingleton = response.body();
+                    } else {
+                        Log.e("Error en la respuesta", response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                    Log.e("Error en la llamada", t.getMessage());
+                }
+            });
+        }
+    }
+
 
 }

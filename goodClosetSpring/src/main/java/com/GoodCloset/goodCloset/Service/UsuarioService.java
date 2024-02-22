@@ -108,10 +108,17 @@ public class UsuarioService {
     public Usuario chkPasswordAndEdtUser(Usuario usuario, String contraseñaAntigua, String contraseñaNueva) {
     Optional<Usuario> userSelected = usuarioRepository.findById(usuario.getId());
     byte[] SaltUsr = userSelected.get().getSalt();
-        if(hashPassword(contraseñaAntigua,SaltUsr) == userSelected.get().getPassword()){
+        System.out.println("antes del if:ususarioService");
+        ////////////
+        System.out.println("Comparativa: " + hashPassword(contraseñaAntigua,SaltUsr));
+        System.out.println("Comparativa2: " + userSelected.get().getPassword());
+
+
+        if(hashPassword(contraseñaAntigua,SaltUsr).equals( userSelected.get().getPassword())){
             byte[] nuevoSalt = generateSalt();
             usuario.setSalt(nuevoSalt);
             usuario.setPassword(hashPassword(contraseñaNueva,nuevoSalt));
+            System.out.println("nuevo susuario con contraseña formateada");
             return usuarioRepository.save(usuario);
 
         }else{
