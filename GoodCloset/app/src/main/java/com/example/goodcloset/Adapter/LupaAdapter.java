@@ -2,6 +2,7 @@ package com.example.goodcloset.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.methodLayer.ArmarioMethods;
 import com.example.goodcloset.strangerProfileFragment;
 import com.example.goodcloset.R;
 import com.example.goodcloset.modelos.UsuarioModelo;
@@ -55,8 +57,9 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+            UsuarioModelo usuario = itemArray.get(position);
           holder.text.setText(itemArray.get(position).getUserName());
+
           holder.card.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
@@ -67,6 +70,18 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
                   view.getContext().startActivity(intent);
               }
           });
+
+        // Aquí obtienes la imagen del usuario si está disponible
+        if (usuario.getFotoUsuario() != null) {
+            Bitmap imagenPerfilBitmap = ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario());
+            // Suponiendo que holder.image es la ImageView donde deseas mostrar la imagen
+            holder.image.setImageBitmap(imagenPerfilBitmap);
+        } else {
+            // Si no hay imagen de usuario disponible, puedes establecer un icono predeterminado o dejar la imagen vacía
+            holder.image.setImageResource(R.drawable.baseline_person_black_24);
+            // O puedes dejar la imagen vacía
+            // holder.image.setImageDrawable(null);
+        }
     }
 
     @Override
@@ -79,14 +94,14 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
         CardView card;
         TextView text;
-        ImageView img;
+        ImageView image;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.cardSearch);
             text = itemView.findViewById(R.id.textViewPrueba);
-            img = itemView.findViewById(R.id.imageViewPrueba);
+            image = itemView.findViewById(R.id.imageViewPrueba);
         }
     }
 }
