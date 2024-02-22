@@ -108,8 +108,13 @@ public class strangerProfileFragment extends AppCompatActivity {
         NumeroArmarios.setText(String.valueOf(usuarioRecibido.getContador_armarios()));
         // Decodificar la cadena de la imagen en un array de bytes
         Log.d("referencia imagen", imagenPerfil.toString());
-        Bitmap imagenPerfilBitmap = ArmarioMethods.convertirBase64ABitmap(usuarioRecibido.getFotoUsuario());
-        imagenPerfil.setImageBitmap(imagenPerfilBitmap);
+        String fotoUsuarioBase64 = usuarioRecibido.getFotoUsuario();
+        if (fotoUsuarioBase64 != null) {
+            Bitmap imagenPerfilBitmap = ArmarioMethods.convertirBase64ABitmap(fotoUsuarioBase64);
+            imagenPerfil.setImageBitmap(imagenPerfilBitmap);
+        } else {
+            imagenPerfil.setImageResource(R.drawable.baseline_person_24);
+        }
 
     }
 

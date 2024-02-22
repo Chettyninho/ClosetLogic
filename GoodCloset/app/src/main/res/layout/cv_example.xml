@@ -9,34 +9,37 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearch"
         android:layout_width="409dp"
+
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
-
         <LinearLayout
-            android:background="@drawable/layout_search_style"
-            android:layout_width="409dp"
-            android:layout_height="729dp"
-            android:padding="20dp"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/imageViewPrueba"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:src="@drawable/baseline_search_dark"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_search_dark"
+                android:scaleType="centerCrop"
+                android:background="@drawable/circle"/>
 
             <TextView
                 android:id="@+id/textViewPrueba"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout
-            >
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <!-- <androidx.cardview.widget.CardView
