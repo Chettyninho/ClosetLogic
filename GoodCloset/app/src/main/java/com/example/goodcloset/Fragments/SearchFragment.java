@@ -2,6 +2,14 @@ package com.example.goodcloset.Fragments;
 
 import android.content.Intent;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -109,12 +117,16 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 searchView.setIconified(false);
                 recyclerView.setVisibility(View.VISIBLE);
+                recyclerViewFotos.setVisibility(View.GONE);
+
             }
         });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
                 recyclerView.setVisibility(View.GONE);
+                recyclerViewFotos.setVisibility(View.VISIBLE);
+
                 return false;
             }
         });
@@ -184,6 +196,7 @@ public class SearchFragment extends Fragment {
         return rootView;
 
     }
+
 
 
 

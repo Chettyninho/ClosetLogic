@@ -1,8 +1,16 @@
 package com.example.goodcloset.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +26,7 @@ import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.R;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
+import com.example.goodcloset.strangerProfileFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +60,11 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
-                // Establecer el Bitmap en el ImageViewç
-                holder.imageView.setImageBitmap(bitmap);
+                // Redondear la imagen antes de establecerla en el ImageView
+                Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 9); // Radio de 20 para las esquinas redondeadas
+
+                // Establecer el Bitmap redondeado en el ImageView
+                holder.imageView.setImageBitmap(roundedBitmap);
             } catch (Exception e) {
                 e.printStackTrace();
                 // Manejar el error, por ejemplo, establecer una imagen predeterminada
@@ -62,8 +74,37 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
             holder.imageView.setImageResource(R.drawable.defaultimg);
         }
         holder.tvUserName.setText("@"+user.getUserName());
-        //holder..setText(user.getUserName());
 
+        holder.tvUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioModelo usernameSeleccionado = usuarios.get(position);
+                Intent intent = new Intent(view.getContext(), strangerProfileFragment.class);
+                Log.d("AAAAAAAAAA", "AAAAAAAAA: " + usernameSeleccionado);
+                intent.putExtra("usuario",usernameSeleccionado);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+    }
+    // Método para redondear las esquinas de un Bitmap
+    private Bitmap roundedCornerBitmap(Bitmap bitmap, int cornerRadius) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(Color.BLACK); // Ajusta el color según tus necesidades
+        canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
     }
 
     public void setFilteredLsit(ArrayList<UsuarioModelo> filteredList){

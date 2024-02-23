@@ -41,8 +41,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="0dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:background="@drawable/border_image" />
+                    android:scaleType="fitXY" />
 
                 <TextView
                     android:id="@+id/tvPieDeFoto"
