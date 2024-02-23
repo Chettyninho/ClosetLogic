@@ -78,7 +78,7 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
             holder.image.setImageBitmap(imagenPerfilBitmap);
         } else {
             // Si no hay imagen de usuario disponible, puedes establecer un icono predeterminado o dejar la imagen vacía
-            holder.image.setImageResource(R.drawable.baseline_person_black_24);
+            holder.image.setImageResource(R.drawable.avatar);
             // O puedes dejar la imagen vacía
             // holder.image.setImageDrawable(null);
         }

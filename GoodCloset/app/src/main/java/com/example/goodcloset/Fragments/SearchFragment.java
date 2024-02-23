@@ -2,6 +2,14 @@ package com.example.goodcloset.Fragments;
 
 import android.content.Intent;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +22,13 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodcloset.Adapter.HomeRVAdapter;
 import com.example.goodcloset.Adapter.LupaAdapter;
+import com.example.goodcloset.Adapter.SearchRVAdapter;
 import com.example.goodcloset.ExampleItem;
 import com.example.goodcloset.PruebagetFoto.GetFotos;
 import com.example.goodcloset.R;
@@ -41,12 +52,11 @@ public class SearchFragment extends Fragment {
     private ApiService apiService;
     private Button boton;
     List<UsuarioModelo> allUsuarioModelos;
-    private RecyclerView recyclerView;
-
+    private RecyclerView recyclerView, recyclerViewFotos;
     private ArrayList<UsuarioModelo> itemList = new ArrayList<>();
-
+    private ArrayList<UsuarioModelo> fotoUsuarios = new ArrayList<>();
     private LupaAdapter itemAdapter;
-
+    private SearchRVAdapter adapter;
     private SearchView searchView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,12 +117,16 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 searchView.setIconified(false);
                 recyclerView.setVisibility(View.VISIBLE);
+                recyclerViewFotos.setVisibility(View.GONE);
+
             }
         });
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
                 recyclerView.setVisibility(View.GONE);
+                recyclerViewFotos.setVisibility(View.VISIBLE);
+
                 return false;
             }
         });
@@ -141,8 +155,50 @@ public class SearchFragment extends Fragment {
             }
         });
 
+
+
+        recyclerViewFotos = rootView.findViewById(R.id.RecyclerVistaTodasLasFotos);
+        fotoUsuarios = new ArrayList<>();
+
+        adapter = new SearchRVAdapter(getContext(), fotoUsuarios);
+        recyclerViewFotos.setAdapter(adapter);
+        recyclerViewFotos.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        Call<List<UsuarioModelo>> call1 = apiService.obtenerUsuarios();
+
+        // Ejecutar la llamada asíncrona
+        call1.enqueue(new Callback<List<UsuarioModelo>>() {
+
+            @Override
+            public void onResponse(Call<List<UsuarioModelo>> call1, Response<List<UsuarioModelo>> response) {
+
+                if (response.isSuccessful()) {
+                    // Obtener la lista de armarios del cuerpo de la respuesta
+                    allUsuarioModelos = response.body();
+                    // Imprimir el array de armarios en el registro
+                    Log.d("Usuarios", "Lista de Usuarios: " + allUsuarioModelos.toString());
+
+                    // Actualizar el adaptador con la lista de armarios
+                    adapter.actualizarLista(allUsuarioModelos);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UsuarioModelo>> call, Throwable t) {
+
+            }
+
+        });
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerViewFotos.setLayoutManager(layoutManager);
+
         return rootView;
+
     }
+
+
+
 
     private void filterList(String text) {
         ArrayList<UsuarioModelo> filterList = new ArrayList<>();
@@ -201,5 +257,7 @@ public class SearchFragment extends Fragment {
 
         }
     }
+
+
 
 }
