@@ -23,6 +23,11 @@ public class OutfitModelo implements Serializable {
 
     private List<String> fotoEnBase64; //contendra las img en base 64
 
+    public OutfitModelo(String name, String description) {
+        this.nombre = name;
+        this.descripcion = description;
+    }
+
     public int getId() {
         return id;
     }
@@ -41,5 +46,13 @@ public class OutfitModelo implements Serializable {
 
     public List<PrendaModelo> getPrendasDelOutfit() {
         return prendasDelOutfit;
+    }
+
+    public List<String> getFotoEnBase64() {
+        return fotoEnBase64;
+    }
+
+    public void setFotoEnBase64(List<String> fotoEnBase64) {
+        this.fotoEnBase64 = fotoEnBase64;
     }
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -39,6 +40,7 @@ public class FragmentVerArmarios extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ver_armarios, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewVerArmarios);
+        ImageView imageViewEmpty = view.findViewById(R.id.imageViewEmpty);
 
         // Configurar un GridLayoutManager con 3 columnas
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
@@ -47,13 +49,13 @@ public class FragmentVerArmarios extends Fragment {
         adapter = new ProfileArmarioRVadapter(getContext(), armariosList);
         recyclerView.setAdapter(adapter);
 
-        obtenerListaDeArmarios();
+        obtenerListaDeArmarios(recyclerView,imageViewEmpty);
 
         return view;
     }
 
     // Llamada a la API para obtener los armarios del usuario
-    private void obtenerListaDeArmarios() {
+    private void obtenerListaDeArmarios(RecyclerView recyclerView,ImageView imageViewEmpty) {
         int idPropietario = usuario.getId();
 
         // Obtener la instancia de ApiClient
@@ -77,6 +79,15 @@ public class FragmentVerArmarios extends Fragment {
 
                     // Actualizar el adaptador con la lista de armarios
                     adapter.actualizarLista(armarios);
+
+                    // Verificar si la lista está vacía para mostrar la imagen
+                    if (armarios.isEmpty()) {
+                        recyclerView.setVisibility(View.GONE); // Oculta el RecyclerView
+                        imageViewEmpty.setVisibility(View.VISIBLE); // Muestra la imagen
+                    } else {
+                        recyclerView.setVisibility(View.VISIBLE); // Muestra el RecyclerView
+                        imageViewEmpty.setVisibility(View.GONE); // Oculta la imagen
+                    }
                 } else {
                     // Manejar la respuesta no exitosa
                     Log.e("Armarios", "Error al obtener la lista de armarios: " + response.message());
