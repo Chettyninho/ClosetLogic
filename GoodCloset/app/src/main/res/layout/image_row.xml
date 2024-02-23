@@ -11,6 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,17 +25,14 @@
             android:textColor="@color/white"
             android:text="Valeria_Clothes"
             android:textSize="23sp"
-
             android:textStyle="bold"
             android:layout_marginLeft="40dp"
-
             />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="40dp"
-                android:background="#292D4E">
+                android:layout_margin="40dp">
 
                 <ImageView
                     android:id="@+id/imageViewArmarioUser"
@@ -44,8 +42,7 @@
                     android:layout_marginTop="0dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:background="@drawable/background_image_row"
-                    android:src="@drawable/foto" />
+                    android:background="@drawable/border_image" />
 
                 <TextView
                     android:id="@+id/tvPieDeFoto"
