@@ -204,7 +204,7 @@ public class AddFragment extends Fragment {
             //aqui se aplica la logica para enviar el array de fotos
             //en vez de idArmario mejor Armario
 
-            if (imagenesCapturadas.size() != 3) {
+            if (imagenesCapturadas.size() != 3 || name.isEmpty()||description.isEmpty()) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
