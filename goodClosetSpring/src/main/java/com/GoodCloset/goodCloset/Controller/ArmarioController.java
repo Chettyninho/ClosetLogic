@@ -28,8 +28,6 @@ public class ArmarioController {
     }
 
 
-
-
     //obtiene todos los armarios de un mismo prpietario
     @GetMapping("/propietario/{idPropietario}")
     public List<Armario> getAllArmariosDe(@PathVariable Integer idPropietario){

@@ -18,11 +18,10 @@ public class OutfitController {
         return outfitService.getAllOutfits();
     }
     @PostMapping("/{idArmario}/newOutfit")
-    public Outfit saveNewOutfit(@PathVariable Integer idArmario, @RequestBody List<String> imagenesCapturadaBase64) {
-        // Puedes utilizar outfitService.nuevoOutfit(...) y pasarle el idArmario y las imágenes capturadas
+    public Outfit saveNewOutfit(@PathVariable Integer idArmario, @RequestBody List<String> imagenesCapturadaBase64,@RequestParam String name, @RequestParam String description) {
 
         // Devuelve el outfit guardado (esto puede variar según tu lógica)
-        return outfitService.nuevoOutfit(idArmario, imagenesCapturadaBase64);
+        return outfitService.nuevoOutfit(idArmario, imagenesCapturadaBase64,name,description);
     }
 
 
