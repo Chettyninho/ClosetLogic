@@ -30,10 +30,10 @@ public class OutfitService {
 
 
     //añade un outfit pasandole la lista de imagenes
-    public Outfit nuevoOutfit(Integer idArmario, List<String> imagenesCapturadaBase64) {
+    public Outfit nuevoOutfit(Integer idArmario, List<String> imagenesCapturadaBase64,String name,String description) {
         Outfit outfit = new Outfit();
-        outfit.setNombre("testDefinitivo");
-        outfit.setDescripcion("Outfit de prueba");
+        outfit.setNombre(name);
+        outfit.setDescripcion(description);
         outfit = outfitRepository.save(outfit); //insertamos el outfit
 
         Optional<Armario> armario = armarioRepository.findById(idArmario);
