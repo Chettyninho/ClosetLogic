@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.FragmentVerArmarios"
     android:background="@color/azulparaverarmarios">
 
-    <!-- TODO: Update blank fragment layout -->
-
+    <!-- RecyclerView para mostrar los armarios -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewVerArmarios"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:visibility="visible" /> <!-- Por defecto, se muestra -->
 
-</FrameLayout>
+    <!-- ImageView para mostrar cuando el RecyclerView esté vacío -->
+    <ImageView
+        android:id="@+id/imageViewEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/no_closets"
+        android:scaleType="centerInside"
+        android:visibility="gone" />
+
+</RelativeLayout>

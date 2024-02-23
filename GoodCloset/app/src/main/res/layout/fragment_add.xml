@@ -17,12 +17,25 @@ tools:context=".MainActivity">
     android:paddingBottom="50dp"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="EDITOR DE ARMARIOS"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:layout_marginBottom="20dp"></TextView>
+
     <Button
         android:id="@+id/btnSelectArmario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Seleccionar Armario"/>
+        android:text="Tus Armarios"
+
+        android:backgroundTint="@color/azulparaverarmarios"
+        android:textSize="25dp"/>
 
     <ImageView
         android:id="@+id/parteAriba"
