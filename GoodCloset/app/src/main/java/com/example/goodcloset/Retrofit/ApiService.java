@@ -53,7 +53,7 @@ public interface ApiService {
 
     ////////////////////////////////////////////////////////
     @POST("outfit/{idArmario}/newOutfit")
-    Call<OutfitModelo> postOutfit(@Path("idArmario") Integer idArmario, @Body ArrayList<String> imagenesCapturadas);
+    Call<OutfitModelo> postOutfit(@Path("idArmario") Integer idArmario, @Body ArrayList<String> imagenesCapturadas, @Query("name") String name, @Query("description") String description);
 
     ///////////////////////////////////////////////////////////////
     @GET("/prenda/{idPrenda}")

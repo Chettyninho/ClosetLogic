@@ -6,13 +6,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -43,7 +48,7 @@ import retrofit2.Response;
 
 public class AddFragment extends Fragment {
     private Integer idArmario;
-    Button btnCamara, selectCloset;
+    Button btnEnviar, selectCloset;
     ImageView partearriba, partemedia, parteabajo;
 
     private ArrayList<String> imagenesCapturadas;
@@ -78,14 +83,51 @@ public class AddFragment extends Fragment {
             }
         });
         selectCloset = rootView.findViewById(R.id.btnSelectArmario);
-        btnCamara = rootView.findViewById(R.id.enviarOutfitButton);
+        btnEnviar = rootView.findViewById(R.id.enviarOutfitButton);
 
         //BOTON PARA ENVIAR
-        btnCamara.setOnClickListener(new View.OnClickListener() {
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApiService apiService = ApiClient.getInstance().getApiService();
-                enviarOutfit(imagenesCapturadas,idArmario);
+                // Crear un AlertDialog builder
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Detalles del atuendo");
+                builder.setMessage("Ingrese el nombre y descripción del atuendo");
+
+                // Crear un LinearLayout container
+                LinearLayout layout = new LinearLayout(getActivity());
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                // Agregar campos de texto EditText para el nombre y descripción del atuendo
+                final EditText outfitName = new EditText(getActivity());
+                outfitName.setInputType(InputType.TYPE_CLASS_TEXT);
+                outfitName.setHint("Nombre del atuendo");
+                layout.addView(outfitName);
+
+                final EditText outfitDescription = new EditText(getActivity());
+                outfitDescription.setInputType(InputType.TYPE_CLASS_TEXT);
+                outfitDescription.setHint("Descripción del atuendo");
+                layout.addView(outfitDescription);
+
+                // Agregar el LinearLayout al AlertDialog
+                builder.setView(layout);
+
+                // Agregar un botón para enviar
+                builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = outfitName.getText().toString();
+                        String description = outfitDescription.getText().toString();
+                        ApiService apiService = ApiClient.getInstance().getApiService();
+                        if (apiService != null) {
+                            enviarOutfit(imagenesCapturadas, idArmario, name, description);
+                        }
+                    }
+                });
+
+                // Mostrar el AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 //BOTON SELECCIONAR ARMARIO DONDE SE GUARDA EL OUTFIT
@@ -94,11 +136,6 @@ public class AddFragment extends Fragment {
             public void onClick(View v) {
                 ApiService apiService = ApiClient.getInstance().getApiService();
                 RespuestaInsertarUsuario mainUsr = SingletonUser.getInstance().getUsuario();
-
-                // Inicializar la lista de nombres de armarios existentes
-                //List<String> nombresArmarios = new ArrayList<>();
-                //armariosList = new ArrayList<>();
-
 
                 if (apiService != null) {
 
@@ -125,7 +162,6 @@ public class AddFragment extends Fragment {
                                             }
                                         })
 
-
                                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -151,8 +187,6 @@ public class AddFragment extends Fragment {
                         }
 
                     });
-                    /////////////
-
 
                 }
 
@@ -164,26 +198,39 @@ public class AddFragment extends Fragment {
         return rootView;
     }
 
-    private void enviarOutfit(ArrayList<String> imagenesCapturadas, Integer idArmario) {
+    private void enviarOutfit(ArrayList<String> imagenesCapturadas, Integer idArmario,String name, String description) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService != null) {
             //aqui se aplica la logica para enviar el array de fotos
-            Call<OutfitModelo> call = apiService.postOutfit(idArmario, imagenesCapturadas);
+            //en vez de idArmario mejor Armario
 
-            call.enqueue(new Callback<OutfitModelo>() {
+            if (imagenesCapturadas.size() != 3) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Debe haber únicamente 3 fotos en el outfit", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else{
+                Call<OutfitModelo> call = apiService.postOutfit(idArmario, imagenesCapturadas,name,description);
 
-                             @Override
-                             public void onResponse(Call<OutfitModelo> call, Response<OutfitModelo> response) {
-                                 if (response.isSuccessful()) {
-                                     Log.d("en onResponse" , " respuesta :" +response.body().toString());
-                                 }
-                             }
+                call.enqueue(new Callback<OutfitModelo>() {
 
-                             @Override
-                             public void onFailure(Call<OutfitModelo> call, Throwable t) {
-                                Log.d("Debug","estas en el onFailure");
-                             }
-                         });
+                    @Override
+                    public void onResponse(Call<OutfitModelo> call, Response<OutfitModelo> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("en onResponse" , " respuesta :" +response.body().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<OutfitModelo> call, Throwable t) {
+                        Log.d("Debug","estas en el onFailure");
+                    }
+                });
+            }
+
+
             //para relacionar el id del armario con el outfit, ademas habra que insertar las prendas en su tabla correspondiente
 
         } else {
@@ -191,6 +238,7 @@ public class AddFragment extends Fragment {
         }
     }
 
+    //lanzar las camaras y guardar las fotos
     ActivityResultLauncher<Intent> camaraLauncher1 = registerForActivityResult(new
             ActivityResultContracts.StartActivityForResult(), new
             ActivityResultCallback<ActivityResult>() {
