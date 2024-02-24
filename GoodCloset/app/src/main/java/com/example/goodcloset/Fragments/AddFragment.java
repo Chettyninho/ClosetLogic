@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +39,7 @@ import com.example.goodcloset.Retrofit.ApiService;
 import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.OutfitModelo;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,7 +55,13 @@ public class AddFragment extends Fragment {
     Button btnEnviar, selectCloset;
     ImageView partearriba, partemedia, parteabajo;
 
+    AutoCompleteTextView autoCompleteTextView;
+
+    TextInputLayout txtInputLayout;
+
     private ArrayList<String> imagenesCapturadas;
+
+    private List<ArmarioModelo> armarioModeloList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +72,6 @@ public class AddFragment extends Fragment {
         partearriba = rootView.findViewById(R.id.parteAriba);
         partemedia = rootView.findViewById(R.id.parteMedia);
         parteabajo = rootView.findViewById(R.id.parteAbajo);
-
 
         partearriba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +91,8 @@ public class AddFragment extends Fragment {
                 camaraLauncher3.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
             }
         });
-        selectCloset = rootView.findViewById(R.id.btnSelectArmario);
         btnEnviar = rootView.findViewById(R.id.enviarOutfitButton);
+        autoCompleteTextView = rootView.findViewById(R.id.auto_complete_txt);
 
         //BOTON PARA ENVIAR
         btnEnviar.setOnClickListener(new View.OnClickListener() {
@@ -124,54 +133,27 @@ public class AddFragment extends Fragment {
                         }
                     }
                 });
-
                 // Mostrar el AlertDialog
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
         });
-//BOTON SELECCIONAR ARMARIO DONDE SE GUARDA EL OUTFIT
-        selectCloset.setOnClickListener(new View.OnClickListener() {
+
+        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApiService apiService = ApiClient.getInstance().getApiService();
                 RespuestaInsertarUsuario mainUsr = SingletonUser.getInstance().getUsuario();
 
                 if (apiService != null) {
-
                     Call<List<ArmarioModelo>> call = apiService.getArmariosUser(mainUsr.getId());
                     call.enqueue(new Callback<List<ArmarioModelo>>() {
                         @Override
                         public void onResponse(@NonNull Call<List<ArmarioModelo>> call, @NonNull Response<List<ArmarioModelo>> response) {
                             if (response.isSuccessful() && response.body() != null) {
-                                List<ArmarioModelo> armarioModeloList = response.body();
-                                Log.d("responseBody Mario", armarioModeloList.toString());
+                                armarioModeloList = response.body();
                                 List<String> nombresArmarios = ArmarioMethods.getNombresArmarios(armarioModeloList);
-                                CharSequence[] items = nombresArmarios.toArray(new CharSequence[nombresArmarios.size()]);
-
-                                // Crear el AlertDialog
-                                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-                                builder.setTitle("Selecciona un armario o crea uno nuevo")
-
-                                        .setItems(items, new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                // Acciones al hacer clic en un armario existente
-                                                String armarioSeleccionado = nombresArmarios.get(which);
-                                                idArmario=ArmarioMethods.devolverIdArmario(armarioSeleccionado,armarioModeloList);
-                                            Log.d("id armario debug", "" + idArmario);
-                                            }
-                                        })
-
-                                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
-                                            }
-                                        });
-
-                                // Mostrar el AlertDialog
-                                builder.create().show();
-
+                                setupAutoCompleteTextView(nombresArmarios);
                             } else {
                                 try {
                                     Log.e("Error en la respuesta", response.errorBody().string());
@@ -180,24 +162,39 @@ public class AddFragment extends Fragment {
                                 }
                             }
                         }
-
                         @Override
                         public void onFailure(Call<List<ArmarioModelo>> call, Throwable t) {
                             // Manejar error en la respuesta
                         }
-
                     });
-
                 }
-
-
             }
         });
-        // Importa las clases necesarias
 
         return rootView;
     }
 
+    private void setupAutoCompleteTextView(List<String> nombresArmarios) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, nombresArmarios);
+        autoCompleteTextView.setAdapter(adapter);
+
+        // Manejar la apertura del menú de opciones automáticamente
+        autoCompleteTextView.post(new Runnable() {
+            @Override
+            public void run() {
+                autoCompleteTextView.showDropDown();
+            }
+        });
+
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String armarioSeleccionado = nombresArmarios.get(position);
+                idArmario = ArmarioMethods.devolverIdArmario(armarioSeleccionado, armarioModeloList);
+                Log.d("id armario debug", "" + idArmario);
+            }
+        });
+    }
     private void enviarOutfit(ArrayList<String> imagenesCapturadas, Integer idArmario,String name, String description) {
         ApiService apiService = ApiClient.getInstance().getApiService();
         if (apiService != null) {
@@ -222,22 +219,18 @@ public class AddFragment extends Fragment {
                             Log.d("en onResponse" , " respuesta :" +response.body().toString());
                         }
                     }
-
                     @Override
                     public void onFailure(Call<OutfitModelo> call, Throwable t) {
                         Log.d("Debug","estas en el onFailure");
                     }
                 });
             }
-
-
             //para relacionar el id del armario con el outfit, ademas habra que insertar las prendas en su tabla correspondiente
 
         } else {
             Log.d("ApiService", "= null en home Fragment");
         }
     }
-
     //lanzar las camaras y guardar las fotos
     ActivityResultLauncher<Intent> camaraLauncher1 = registerForActivityResult(new
             ActivityResultContracts.StartActivityForResult(), new
@@ -253,7 +246,6 @@ public class AddFragment extends Fragment {
                     }
                 }
             });
-
     ActivityResultLauncher<Intent> camaraLauncher2 = registerForActivityResult(new
             ActivityResultContracts.StartActivityForResult(), new
             ActivityResultCallback<ActivityResult>() {
@@ -268,7 +260,6 @@ public class AddFragment extends Fragment {
                     }
                 }
             });
-
     ActivityResultLauncher<Intent> camaraLauncher3 = registerForActivityResult(new
             ActivityResultContracts.StartActivityForResult(), new
             ActivityResultCallback<ActivityResult>() {
