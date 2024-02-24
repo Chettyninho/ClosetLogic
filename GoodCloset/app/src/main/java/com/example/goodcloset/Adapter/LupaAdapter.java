@@ -3,6 +3,15 @@ package com.example.goodcloset.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,9 +82,14 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
 
         // Aquí obtienes la imagen del usuario si está disponible
         if (usuario.getFotoUsuario() != null) {
-            Bitmap imagenPerfilBitmap = ArmarioMethods.convertirBase64ABitmap(usuario.getFotoUsuario());
-            // Suponiendo que holder.image es la ImageView donde deseas mostrar la imagen
-            holder.image.setImageBitmap(imagenPerfilBitmap);
+            byte[] imagenBytes = Base64.decode(usuario.getFotoUsuario(), Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+
+            // Aplicar la forma circular a la imagen
+            Bitmap circularBitmap = roundedCornerBitmap(bitmap);
+
+            // Establecer el Bitmap circular en el ImageView
+            holder.image.setImageBitmap(circularBitmap);
         } else {
             // Si no hay imagen de usuario disponible, puedes establecer un icono predeterminado o dejar la imagen vacía
             holder.image.setImageResource(R.drawable.avatar);
@@ -88,6 +102,26 @@ public class LupaAdapter extends RecyclerView.Adapter<LupaAdapter.MyViewHolder> 
     public int getItemCount() {
         return itemArray.size();
     }
+
+    private Bitmap roundedCornerBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(Color.BLACK); // Puedes ajustar el color según tus necesidades
+        canvas.drawCircle(bitmap.getWidth() / 2f, bitmap.getHeight() / 2f, bitmap.getWidth() / 2f, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
