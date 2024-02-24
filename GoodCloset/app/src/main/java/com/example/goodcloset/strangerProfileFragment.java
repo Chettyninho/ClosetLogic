@@ -53,13 +53,14 @@ public class strangerProfileFragment extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
         tabLayout.setupWithViewPager(viewPager);
+        usuarioRecibido = (UsuarioModelo) getIntent().getSerializableExtra("usuario");
 
         com.example.goodcloset.GestorFragments gestorFragments = new com.example.goodcloset.GestorFragments(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerPerfil(), "PERFIL");
-        gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerArmarios(), "ARMARIOS");
+        Log.d("strngerprofileFragment", "" + usuarioRecibido);
+        gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerArmarios(usuarioRecibido), "ARMARIOS");
         viewPager.setAdapter(gestorFragments);
 
-        usuarioRecibido = (UsuarioModelo) getIntent().getSerializableExtra("usuario");
         Log.d("test","usuarioRecibido ->" + usuarioRecibido.toString());
         nombreUser = findViewById(R.id.usernameTextView);
         NumeroFollower = findViewById(R.id.followersTextView);
@@ -72,24 +73,6 @@ public class strangerProfileFragment extends AppCompatActivity {
         //////////////////
         ApiService apiService = ApiClient.getInstance().getApiService();
         RespuestaInsertarUsuario usuarioSingleton = SingletonUser.getInstance().getUsuario();
-
-
-        //HAY QUE TENER UN USUARIO PARA RECOGER LOS DATOS QUE SE LE PASARAN DESDE LA OTRA ACTIVIADA
-        //POR EJEMPLO:
-        //USUARIOMODELO USUAROeXTRAÑO = /*USUAARIO QUE SE RECIBA DE LA OTRA VISTA*/
-
-        //aqui habra que ajustar la lógica
-        //para que cuando hayamos hecho click en algun perfil...
-        //cargará esta vista trayendo los datos del usuario que hayamos clicado
-
-        //COSAS POR HACER EN ESTA CLASE:
-        //Endopoint para seguir a un usuario (post a tabla seguidor)
-
-        //llamada para recuperar armarios de un id(en este caso del que hayamos clickado)
-        //ver si se puede aprovechar profileArmarioAdapter y su vista para pintar los datos (imagino q si pq no se usan a la vez...)
-
-        //opcional:
-        //poner boton dentro de los armarios para añadir un outfit al tuyo (nuestros armarios los tenemos, los de la persona tambien seria solo añador un outfit a nuestro armario)
 
         seguirButton = findViewById(R.id.seguirButton);
         seguirButton.setOnClickListener(new View.OnClickListener() {
