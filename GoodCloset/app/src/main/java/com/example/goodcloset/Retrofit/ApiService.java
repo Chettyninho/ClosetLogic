@@ -41,6 +41,9 @@ public interface ApiService {
     @POST("usuarios/editUser")
     Call<RespuestaInsertarUsuario> editUsr(@Body RespuestaInsertarUsuario usuarioModelo,@Query("contraseñaAntigua") String contraseñaAntigua, @Query("contraseñaNueva") String contraseñaNueva);
 
+    @GET("usuarios/likes/{id_usuario}")
+    Call<List<ArmarioModelo>> getLikedCloset(@Path("id_usuario") Integer id_usuario);
+
     ///////////////////////////////////////////////////////////
 
     @GET("armario/{id_armario}/outfits")

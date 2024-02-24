@@ -1,14 +1,19 @@
 package com.GoodCloset.goodCloset.Service;
 
+import com.GoodCloset.goodCloset.Models.Armario;
 import com.GoodCloset.goodCloset.Models.Seguidor;
 import com.GoodCloset.goodCloset.Models.Usuario;
+import com.GoodCloset.goodCloset.Models.UsuarioLikeArmario;
+import com.GoodCloset.goodCloset.Repository.ArmarioRepository;
 import com.GoodCloset.goodCloset.Repository.SeguidorRepository;
+import com.GoodCloset.goodCloset.Repository.UsuarioLikeArmarioRepository;
 import com.GoodCloset.goodCloset.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +24,11 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private SeguidorRepository seguidorRepositorys;
+    @Autowired
+    private ArmarioRepository armarioRepository;
+    @Autowired
+    private UsuarioLikeArmarioRepository usuarioLikeArmarioRepository;
+
     public Usuario postImageProfile(Usuario usuario){
         usuario.setPassword(usuarioRepository.findById(usuario.getId()).get().getPassword());
         usuario.setSalt(usuarioRepository.findById(usuario.getId()).get().getSalt());
@@ -91,15 +101,15 @@ public class UsuarioService {
         return false;
     }
 
-    public byte[] getFotoUsuarioPorId(Integer id) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-
-        if (usuarioOptional.isPresent()) {
-            return usuarioOptional.get().getFotoUsuario();
-        } else {
-            return null;
-        }
-    }
+//    public byte[] getFotoUsuarioPorId(Integer id) {
+//        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+//
+//        if (usuarioOptional.isPresent()) {
+//            return usuarioOptional.get().getFotoUsuario();
+//        } else {
+//            return null;
+//        }
+//    }
     public void follow4Follow(Integer idSeguido, Integer idSeguidor) {
         Seguidor usuarioSeguido = new Seguidor(usuarioRepository.findById(idSeguidor).get(),usuarioRepository.findById(idSeguido).get());
         seguidorRepositorys.save(usuarioSeguido);
@@ -124,5 +134,18 @@ public class UsuarioService {
         }else{
             return null;
         }
+    }
+
+    public List<Armario> likesArmario(Integer idUsuario) {
+        //List<Armario> listaDeArmarios = armarioRepository.findAll();
+        List<UsuarioLikeArmario> listaDeArmariosLikeadosTotales = usuarioLikeArmarioRepository.findAll();
+        List<Armario> listaDeArmariosLikeadosUsuario = new ArrayList<>();
+
+            for (UsuarioLikeArmario armariosLikeado: listaDeArmariosLikeadosTotales){
+                if(armariosLikeado.getUsuario().getId().equals(idUsuario)){
+                    listaDeArmariosLikeadosUsuario.add(armariosLikeado.getArmario());
+                }
+            }
+        return listaDeArmariosLikeadosUsuario;
     }
 }

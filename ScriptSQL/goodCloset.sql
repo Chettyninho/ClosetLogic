@@ -119,8 +119,24 @@ END;
 
 //DELIMITER ;
     
-  drop table outfit;
-  /*truncate table outfit;*/
+CREATE TABLE usuario_like_armario(
+id integer auto_increment primary key,
+  id_armario int,
+  id_usuario int,
+  FOREIGN KEY(id_armario) REFERENCES armario(id),
+  FOREIGN KEY(id_usuario) REFERENCES usuario(id)
+  );
+DELIMITER //
+CREATE TRIGGER update_armario_count
+AFTER INSERT ON usuario_like_armario
+FOR EACH ROW
+BEGIN
+  UPDATE armario SET contador_de_armarios = contador_de_armarios + 1 WHERE id = NEW.id_armario;
+END;
+//DELIMITER ; 
+    
+drop table outfit;
+/*truncate table outfit;*/
 CREATE TABLE outfit(
 id integer auto_increment primary key,
 Nombre varchar(50),
