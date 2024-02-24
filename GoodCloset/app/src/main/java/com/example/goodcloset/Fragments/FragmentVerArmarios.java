@@ -43,7 +43,7 @@ public class FragmentVerArmarios extends Fragment {
         ImageView imageViewEmpty = view.findViewById(R.id.imageViewEmpty);
 
         // Configurar un GridLayoutManager con 3 columnas
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new ProfileArmarioRVadapter(getContext(), armariosList);
