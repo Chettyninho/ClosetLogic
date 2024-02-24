@@ -35,6 +35,8 @@ public interface ApiService {
     Call<RespuestaInsertarUsuario> getUsuarioById(@Path("id_usuario") int idUsuario);
     @POST("/usuarios/seguir/{id_seguido}/{id_seguidor}")
     Call<Void> follow4Follow(@Path("id_seguido") int idUsuarioExtraño, @Path("id_seguidor") int idUsuario);
+
+    //yo creo que esta se puede quitar:
     @GET("usuarios/fotos")
     Call<ResponseBody> obtenerImagen();
 
