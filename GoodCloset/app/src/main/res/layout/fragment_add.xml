@@ -25,6 +25,7 @@
         android:layout_margin="14dp"
         android:layout_height="70dp"
         android:textColorHint="#83000000"
+        app:hintTextColor="@color/white"
         android:hint="Selecciona un armario"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         app:boxBackgroundColor="@color/white"
