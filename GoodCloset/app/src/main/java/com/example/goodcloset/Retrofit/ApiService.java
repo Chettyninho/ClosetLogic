@@ -35,11 +35,16 @@ public interface ApiService {
     Call<RespuestaInsertarUsuario> getUsuarioById(@Path("id_usuario") int idUsuario);
     @POST("/usuarios/seguir/{id_seguido}/{id_seguidor}")
     Call<Void> follow4Follow(@Path("id_seguido") int idUsuarioExtraño, @Path("id_seguidor") int idUsuario);
+
+    //yo creo que esta se puede quitar:
     @GET("usuarios/fotos")
     Call<ResponseBody> obtenerImagen();
 
     @POST("usuarios/editUser")
     Call<RespuestaInsertarUsuario> editUsr(@Body RespuestaInsertarUsuario usuarioModelo,@Query("contraseñaAntigua") String contraseñaAntigua, @Query("contraseñaNueva") String contraseñaNueva);
+
+    @GET("usuarios/likes/{id_usuario}")
+    Call<List<ArmarioModelo>> getLikedCloset(@Path("id_usuario") Integer id_usuario);
 
     ///////////////////////////////////////////////////////////
 
