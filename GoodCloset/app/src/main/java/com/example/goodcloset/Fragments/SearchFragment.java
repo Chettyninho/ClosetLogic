@@ -145,18 +145,6 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        // Configura el onClickListener para el botón
-       boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Utiliza getActivity() para obtener el contexto de la actividad actual
-                Intent intent = new Intent(getActivity(), GetFotos.class);
-                startActivity(intent);
-            }
-        });
-
-
-
         recyclerViewFotos = rootView.findViewById(R.id.RecyclerVistaTodasLasFotos);
         fotoUsuarios = new ArrayList<>();
 

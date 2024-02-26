@@ -29,6 +29,8 @@ public class UsuarioService {
     @Autowired
     private UsuarioLikeArmarioRepository usuarioLikeArmarioRepository;
 
+
+
     public Usuario postImageProfile(Usuario usuario){
         usuario.setPassword(usuarioRepository.findById(usuario.getId()).get().getPassword());
         usuario.setSalt(usuarioRepository.findById(usuario.getId()).get().getSalt());
@@ -164,5 +166,30 @@ public class UsuarioService {
                 }
             }
         }
+    }
+
+    public void deleteLikedArmario(Integer idUsuario, Integer idArmario) {
+        List<UsuarioLikeArmario> totalArmariosLikes = usuarioLikeArmarioRepository.findAll();
+        List<Usuario> totalUsuarios = usuarioRepository.findAll();
+        List<Armario> totalArmarios = armarioRepository.findAll();
+        UsuarioLikeArmario usuarioLikeArmario = null;
+        for (Usuario u : totalUsuarios){
+            if(u.getId().equals(idUsuario)){
+                for (Armario a : totalArmarios){
+                    if(a.getId().equals(idArmario)){
+                         usuarioLikeArmario = new UsuarioLikeArmario(u,a);
+
+
+                    }
+                }
+            }
+        }
+        for(UsuarioLikeArmario ulike : totalArmariosLikes){
+
+            if( usuarioLikeArmario.equals(ulike)){
+                usuarioLikeArmarioRepository.delete(ulike);
+            }
+        }
+
     }
 }

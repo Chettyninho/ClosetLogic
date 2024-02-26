@@ -203,8 +203,8 @@ public class  ProfileFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new FragmentVerArmarios(), "Ver Armarios");
-        adapter.addFragment(new FragmentVerPerfil(), "Ver Perfil");
+        adapter.addFragment(new FragmentVerArmarios(), "Tus Armarios");
+        adapter.addFragment(new FragmentVerPerfil(), "Armarios Guardados");
         viewPager.setAdapter(adapter);
     }
 
