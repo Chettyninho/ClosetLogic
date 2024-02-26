@@ -64,10 +64,8 @@ public class FragmentVerPerfil extends Fragment {
         recyclerView.setAdapter(adapter);
         if(usuarioRecibido == null){
             obtenerListaDeArmariosLikeados(recyclerView,imageViewEmpty);
-
         }else{
             obtenerListaDeArmariosLikeadosExtrangeProfile(recyclerView,imageViewEmpty);
-
         }
         return view;
     }

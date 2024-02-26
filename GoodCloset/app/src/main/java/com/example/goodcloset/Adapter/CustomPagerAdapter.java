@@ -34,7 +34,6 @@ public class CustomPagerAdapter extends PagerAdapter {
     private Context context;
     private List<OutfitModelo> outfitsDeArmario;
     private List<PrendaModelo> prendasDeOutfit;
-    private ImageView imageView1,imageView2,imageView3;
 
     public CustomPagerAdapter(Context context, List<OutfitModelo> outfitsDeArmario) {
         this.context = context;

@@ -26,6 +26,7 @@ import retrofit2.Response;
 
 public class CarrouselArmario extends AppCompatActivity  {
     private List<OutfitModelo> outfitsDeArmario = new ArrayList<>();
+    private List<ArmarioModelo> armarios = new ArrayList<>();
     private RespuestaInsertarUsuario usrSingleton = SingletonUser.getInstance().getUsuario();
     //esto debera ser una lista
 
@@ -44,6 +45,16 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         // Recibir el ID del armario del intent
         armarioRecibido = (ArmarioModelo) getIntent().getSerializableExtra("armario");
+        armarios = (List<ArmarioModelo>) getIntent().getSerializableExtra("listaArmarios");
+
+        for(ArmarioModelo a : armarios){
+            if(a.getId() == armarioRecibido.getId()){
+                buttonLike.setText("Ya no me gusta...");
+                buttonLike.setTextColor(R.color.white);
+                buttonLike.setBackgroundColor(R.color.SecondColor);
+            }
+        }
+
         buttonLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
