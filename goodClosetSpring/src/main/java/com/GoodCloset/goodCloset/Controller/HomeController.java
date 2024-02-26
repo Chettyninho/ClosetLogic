@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/inicio")
 public class HomeController {
 
-
     @Autowired
     UsuarioRepository uRepo;
 

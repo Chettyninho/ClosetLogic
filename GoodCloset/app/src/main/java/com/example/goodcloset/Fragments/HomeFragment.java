@@ -10,7 +10,6 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.goodcloset.Adapter.HomeRVAdapter;
 import com.example.goodcloset.R;
 import com.example.goodcloset.Retrofit.ApiClient;
@@ -19,12 +18,8 @@ import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
 import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.UsuarioModelo;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

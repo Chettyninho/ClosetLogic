@@ -50,6 +50,7 @@ public class ProfileArmarioRVadapter  extends RecyclerView.Adapter<ProfileArmari
                 Intent intent = new Intent(context, CarrouselArmario.class);
                 // Puedes pasar datos adicionales si es necesario
                 intent.putExtra( "armario",  armario);
+                intent.putExtra("listaArmarios", armarios);
                 context.startActivity(intent);
             }
         });
