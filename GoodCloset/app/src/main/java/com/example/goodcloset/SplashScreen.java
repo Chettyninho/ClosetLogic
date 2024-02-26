@@ -30,11 +30,10 @@ public class SplashScreen extends AppCompatActivity {
         lottieAnimationView = findViewById(R.id.lottie);
         powered = findViewById(R.id.powered);
 
-        imgbg.animate().translationY(-2500).setDuration(1000).setStartDelay(3000);
-        //logo.animate().translationY(-1400).setDuration(1000).setStartDelay(4000);
-        appname.animate().translationY(-1400).setDuration(1000).setStartDelay(3000);
-        lottieAnimationView.animate().translationY(-1700).setDuration(1000).setStartDelay(3000);
-        powered.animate().translationY(-1900).setDuration(1000).setStartDelay(3000);
+        imgbg.animate().translationY(-3000).setDuration(900).setStartDelay(3000);
+        appname.animate().translationY(-3000).setDuration(900).setStartDelay(3000);
+        lottieAnimationView.animate().translationY(-3000).setDuration(900).setStartDelay(3000);
+        powered.animate().translationY(-3000).setDuration(900).setStartDelay(3000);
 
         final Animation animacion1 = AnimationUtils.loadAnimation(this, R.anim.slideleft);
         final Animation animacion2 = AnimationUtils.loadAnimation(this, R.anim.slideright);

@@ -2,33 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/firstcolor">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:background="@color/firstcolor"
         > <!-- Ajusta el margen entre las tarjetas según sea necesario -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/firstcolor">
 
             <ImageView
                 android:layout_gravity="center"
                 android:id="@+id/iconArmarioImageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:background="@color/firstcolor"
                 android:scaleType="centerCrop"
-                android:src="@drawable/icon_closet_canva" />
+                android:src="@drawable/viewarmarioimg" />
 
             <TextView
                 android:id="@+id/nombreArmariotv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre Armario"
-                android:background="@color/azulparaverarmarios"
+                android:background="@color/firstcolor"
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textStyle="bold" />
