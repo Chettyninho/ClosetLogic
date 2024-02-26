@@ -178,15 +178,15 @@ public class UsuarioService {
                 for (Armario a : totalArmarios){
                     if(a.getId().equals(idArmario)){
                          usuarioLikeArmario = new UsuarioLikeArmario(u,a);
-
-
+                        System.out.println("HA COINCIDIDDOS");
                     }
                 }
             }
         }
         for(UsuarioLikeArmario ulike : totalArmariosLikes){
 
-            if( usuarioLikeArmario.equals(ulike)){
+            if( usuarioLikeArmario.getUsuario().getId().equals(ulike.getUsuario().getId()) && usuarioLikeArmario.getArmario().getId().equals(ulike.getArmario().getId()) ){
+                System.out.println("coincide y elimina");
                 usuarioLikeArmarioRepository.delete(ulike);
             }
         }
