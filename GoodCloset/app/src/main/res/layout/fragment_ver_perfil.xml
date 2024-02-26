@@ -7,17 +7,17 @@
     android:background="#292D4E">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recicledViewPerfil"
+        android:id="@+id/recicledViewArmariosLikes"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         />
 
     <ImageView
-        android:id="@+id/imageViewEmptyPerfil"
+        android:id="@+id/imagenSinArmariosLikeados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/no_closets"
+        android:src="@drawable/armario_sinlikes"
         android:scaleType="centerInside"
         android:visibility="gone" />
 </RelativeLayout>

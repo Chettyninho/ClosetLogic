@@ -53,8 +53,8 @@ public class FragmentVerPerfil extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ver_perfil, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recicledViewPerfil);
-        ImageView imageViewEmpty = view.findViewById(R.id.imageViewEmptyPerfil);
+        RecyclerView recyclerView = view.findViewById(R.id.recicledViewArmariosLikes);
+        ImageView imageViewEmpty = view.findViewById(R.id.imagenSinArmariosLikeados);
 
         // Configurar un GridLayoutManager con 3 columnas
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
