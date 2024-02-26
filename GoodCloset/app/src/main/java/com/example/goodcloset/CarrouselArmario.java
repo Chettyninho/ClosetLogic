@@ -2,6 +2,7 @@ package com.example.goodcloset;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -11,6 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.goodcloset.Adapter.CustomPagerAdapter;
 import com.example.goodcloset.Retrofit.ApiClient;
 import com.example.goodcloset.Retrofit.ApiService;
+import com.example.goodcloset.Retrofit.Respuestas.RespuestaInsertarUsuario;
+import com.example.goodcloset.Retrofit.SingletonUser;
 import com.example.goodcloset.modelos.ArmarioModelo;
 import com.example.goodcloset.modelos.OutfitModelo;
 
@@ -23,6 +26,7 @@ import retrofit2.Response;
 
 public class CarrouselArmario extends AppCompatActivity  {
     private List<OutfitModelo> outfitsDeArmario = new ArrayList<>();
+    private RespuestaInsertarUsuario usrSingleton = SingletonUser.getInstance().getUsuario();
     //esto debera ser una lista
 
     //armario que recibe cuando tocas en alguno del perfil
@@ -35,13 +39,36 @@ public class CarrouselArmario extends AppCompatActivity  {
 
         viewPager = findViewById(R.id.carrouselDeOutfitsViewPager); // Inicializa viewPager aquí
 
-        Button button = findViewById(R.id.button3);
+        Button buttonLike = findViewById(R.id.LIKE);
+
 
         // Recibir el ID del armario del intent
         armarioRecibido = (ArmarioModelo) getIntent().getSerializableExtra("armario");
+        buttonLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//hacer la llamada del me gusta
+                ApiService apiService = ApiClient.getInstance().getApiService();
+                if(apiService!= null){
+                   Call<Void> call = apiService.likeToArmario(usrSingleton.getId(),armarioRecibido.getId());
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            buttonLike.setText("Ya no me gusta...");
+                            buttonLike.setTextColor(R.color.white);
+                            buttonLike.setBackgroundColor(R.color.SecondColor);
+                        }
 
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
+        });
         // Mostrar un Toast con el ID del armario
-        Toast.makeText(this, "nombre del ararmio " + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
         obtenerOutfits(armarioRecibido);
 
     }

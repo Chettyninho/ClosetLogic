@@ -19,7 +19,7 @@ android:orientation="vertical">
     </androidx.viewpager.widget.ViewPager>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/LIKE"
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:backgroundTint="@color/SecondColor"
