@@ -2,10 +2,121 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/dialog_bg">
+    android:background="@color/white">
 
-    <ImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/imagenDialog"
+                android:layout_width="110dp"
+                android:layout_height="142dp"
+                android:layout_gravity="start"
+                android:layout_margin="15dp"
+                android:src="@color/white" />
+
+            <TextView
+                android:id="@+id/CambiarFotoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cambiar Foto"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:layout_margin="13dp"
+                android:textSize="18dp"
+                android:layout_gravity="start"
+                android:elevation="15dp"/>
+
+            <Button
+                android:id="@+id/btnEnviarImgProfile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Aceptar cambio de foto"
+                android:visibility="gone"
+                android:backgroundTint="@color/secondColorMasClarito"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="left|center"
+                android:layout_margin="13dp"
+                android:hint="USERNAME"
+                android:textSize="22dp"
+                android:elevation="20dp"/>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="left|center"
+                android:layout_margin="13dp"
+                android:hint="NAME"
+                android:textSize="22dp"
+                android:elevation="20dp"/>
+
+
+            <EditText
+                android:id="@+id/emailDialog"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="left|center"
+                android:layout_margin="13dp"
+                android:hint="EMAIL"
+                android:textSize="22dp" />
+
+            <EditText
+                android:id="@+id/contrasenaActual"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="left|center"
+                android:layout_margin="13dp"
+                android:hint="CONTRASEÑA ACTUAL"
+                android:textSize="22dp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/registroborder"
+                android:backgroundTint="@color/white"
+                android:gravity="left|center"
+                android:layout_margin="13dp"
+                android:hint="CONTRASENA NUEVA"
+                android:textSize="22dp"
+                android:elevation="10dp" />
+
+            <Button
+                android:id="@+id/sendModifyUser"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Listoo!!"
+                android:backgroundTint="@color/SecondColor"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<ImageView
         android:id="@+id/imagenDialog"
         android:layout_width="110dp"
         android:layout_height="142dp"
@@ -38,5 +149,6 @@
         android:layout_height="40dp"
         android:text="Perfil"
         android:backgroundTint="@color/SecondColor"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"/>-->
+
 </LinearLayout>

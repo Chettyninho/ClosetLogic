@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
@@ -30,6 +31,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -83,6 +85,10 @@ public class  ProfileFragment extends Fragment {
     Button btnEnviarImgProfile;
     Button seguirdoDialogButton;
     ImageView profileImageView;
+
+    RespuestaInsertarUsuario usuarioSingleton = SingletonUser.getInstance().getUsuario();
+    EditText userName,nombre,email,contrasenaActual,ContrasenaNueva;
+    Button enviarUsuarioModificado;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -349,10 +355,45 @@ public class  ProfileFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.buttom_sheet_diaolg);
 
-        //profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+        profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+
+        byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+
+        // Redondear la imagen antes de establecerla en el ImageView
+        Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
+
+        profileImageDialog.setImageBitmap(roundedBitmap);
+
         cambiarFotoButton = dialog.findViewById(R.id.CambiarFotoButton);
         btnEnviarImgProfile = dialog.findViewById(R.id.btnEnviarImgProfile);
-        seguirdoDialogButton = dialog.findViewById(R.id.btnGoToEdit);
+        userName = dialog.findViewById(R.id.username);
+        userName.setHint("@ " + usuarioSingleton.getUserName());
+        enviarUsuarioModificado = dialog.findViewById(R.id.sendModifyUser);
+        nombre = dialog.findViewById(R.id.name);
+        nombre.setHint(usuarioSingleton.getNombre());
+
+        email = dialog.findViewById(R.id.emailDialog);
+        email.setHint(usuarioSingleton.getEmail());
+        //esto lo pasaremos y lo gestionaremos en service para ver si se cambian o no los datos,
+        //si la contraseña actual es correcta se cambiaran. sino alerta de que contraseña incorrecta.
+        contrasenaActual = dialog.findViewById(R.id.contrasenaActual);
+        contrasenaActual.setHint("********");
+
+        ContrasenaNueva = dialog.findViewById(R.id.password);
+
+        enviarUsuarioModificado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contraseñaAntigua = String.valueOf(contrasenaActual.getText());
+                String contraseñaNueva = String.valueOf(ContrasenaNueva.getText());
+                if(contrasenaActual.getText()!=null && ContrasenaNueva.getText()!=null){
+                    enviar(usuarioSingleton, contraseñaAntigua, contraseñaNueva);
+                    dialog.hide();
+                }
+            }
+        });
 
         // Mostrar el diálogo
         dialog.show();
@@ -381,13 +422,45 @@ public class  ProfileFragment extends Fragment {
                 btnEnviarImgProfile.setVisibility(View.GONE);
             }
         });
-        seguirdoDialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), EditUser.class);
-                startActivity(i);
+    }
+
+    private void enviar(RespuestaInsertarUsuario usuario,String contraseñaAntigua,String contraseñaNueva){
+        ApiService apiService = ApiClient.getInstance().getApiService();
+        if(apiService!=null){
+
+            if (userName != null && nombre != null && email != null &&
+                    !TextUtils.isEmpty(userName.getText()) &&
+                    !TextUtils.isEmpty(nombre.getText()) &&
+                    !TextUtils.isEmpty(email.getText())) {
+                usuario.setUserName(String.valueOf(userName.getText()));
+                usuario.setNombre(String.valueOf(nombre.getText()));
+                usuario.setEmail(String.valueOf(email.getText()));
+            } else {
+                // Mostrar un mensaje de error o realizar alguna acción si los campos están vacíos o nulos
+                Toast.makeText(getContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
+
+
+            Call<RespuestaInsertarUsuario> call = apiService.editUsr(usuario,contraseñaAntigua,contraseñaNueva);
+            Log.d("IN","IN");
+            call.enqueue(new Callback<RespuestaInsertarUsuario>() {
+                @Override
+                public void onResponse(Call<RespuestaInsertarUsuario> call, Response<RespuestaInsertarUsuario> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("Respuesta del servidor", response.body().toString());
+                        usuarioSingleton = response.body();
+                    } else {
+                        Log.e("Error en la respuesta", response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RespuestaInsertarUsuario> call, Throwable t) {
+                    Log.e("Error en la llamada", t.getMessage());
+                }
+            });
+        }
     }
 
     ActivityResultLauncher<Intent> camaraLauncherIMG = registerForActivityResult(new
@@ -423,4 +496,6 @@ public class  ProfileFragment extends Fragment {
             });
         }
     }
+
+
 }

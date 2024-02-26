@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical">
+android:orientation="vertical"
+android:background="@color/firstcolor">
 
 <LinearLayout
     android:id="@+id/layoutContenedorCarrousel"
@@ -14,18 +15,37 @@ android:orientation="vertical">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/carrouselDeOutfitsViewPager"
         android:layout_width="match_parent"
+        android:background="@color/firstcolor"
         android:layout_height="660dp">
 
     </androidx.viewpager.widget.ViewPager>
 
-    <Button
-        android:id="@+id/LIKE"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:backgroundTint="@color/SecondColor"
-        android:text="ME GUSTA"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp">
+
+        <Button
+            android:id="@+id/LIKE"
+            android:layout_width="300dp"
+            android:layout_height="73dp"
+            android:backgroundTint="@color/SecondColor"
+            android:text="ME GUSTA"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iconHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_favorite_border_24"
+            android:layout_alignEnd="@+id/LIKE"
+            android:layout_margin="25dp"
+            />
+
+    </RelativeLayout>
+
 </LinearLayout>
 
 </LinearLayout>

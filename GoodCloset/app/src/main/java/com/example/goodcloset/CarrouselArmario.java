@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class CarrouselArmario extends AppCompatActivity  {
 
     //armario que recibe cuando tocas en alguno del perfil
     ArmarioModelo armarioRecibido = new ArmarioModelo();
+
+    ImageView iconHeart;
     ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class CarrouselArmario extends AppCompatActivity  {
         viewPager = findViewById(R.id.carrouselDeOutfitsViewPager); // Inicializa viewPager aquí
 
         Button buttonLike = findViewById(R.id.LIKE);
-
+        iconHeart = findViewById(R.id.iconHeart);
 
         // Recibir el ID del armario del intent
         armarioRecibido = (ArmarioModelo) getIntent().getSerializableExtra("armario");
@@ -54,9 +57,10 @@ public class CarrouselArmario extends AppCompatActivity  {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            buttonLike.setText("Ya no me gusta...");
+                            buttonLike.setText("Te ha gutado!!");
                             buttonLike.setTextColor(R.color.white);
                             buttonLike.setBackgroundColor(R.color.SecondColor);
+                            iconHeart.setImageResource(R.drawable.baseline_favorite_24);
                         }
 
                         @Override
