@@ -61,7 +61,7 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
                 // Redondear la imagen antes de establecerla en el ImageView
-                Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 9); // Radio de 20 para las esquinas redondeadas
+                Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 9); //radio para las esquinas
 
                 // Establecer el Bitmap redondeado en el ImageView
                 holder.imageView.setImageBitmap(roundedBitmap);
@@ -71,8 +71,28 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
                 // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
             }
         } else {
-            holder.imageView.setImageResource(R.drawable.defaultimg);
+            Bitmap defaultBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.defaultimgcopia);
+            Bitmap roundedDefaultBitmap = roundedCornerBitmap(defaultBitmap, 35);
+            holder.imageView.setImageBitmap(roundedDefaultBitmap);
         }
+
+        holder.iconHeart.setImageResource(R.drawable.baseline_favorite_border_24);
+        holder.iconHeart.setOnClickListener(new View.OnClickListener() {
+            boolean visible = false;
+            @Override
+            public void onClick(View v) {
+
+                if (visible == false){
+                    holder.iconHeart.setImageResource(R.drawable.baseline_favorite_24);
+                    visible = true;
+                } else {
+                    holder.iconHeart.setImageResource(R.drawable.baseline_favorite_border_24);
+                    visible = false;
+                }
+            }
+
+        });
+
         holder.tvUserName.setText("@"+user.getUserName());
 
         holder.tvUserName.setOnClickListener(new View.OnClickListener() {
@@ -128,13 +148,15 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvPieDeFoto,tvUserName;
-        ImageView imageView;
+        ImageView imageView,iconHeart;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             this.tvPieDeFoto = itemView.findViewById(R.id.tvPieDeFoto);
             this.tvUserName = itemView.findViewById(R.id.tvUserNameHome);
             this.imageView = itemView.findViewById(R.id.imageViewArmarioUser);
+            this.iconHeart = itemView.findViewById(R.id.tvIconHeart);
         }
     }
 

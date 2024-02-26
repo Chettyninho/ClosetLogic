@@ -107,7 +107,8 @@ public class strangerProfileFragment extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 seguirButton.setText("Seguido");
-                seguirButton.setBackgroundColor(R.color.seguidoButton);
+                seguirButton.setTextColor(R.color.white);
+                seguirButton.setBackgroundColor(R.color.SecondColor);
             }
 
             @Override

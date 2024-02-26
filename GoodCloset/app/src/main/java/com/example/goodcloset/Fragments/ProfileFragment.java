@@ -6,6 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -148,12 +155,15 @@ public class  ProfileFragment extends Fragment {
             Log.d("foto", usuario.getFotoUsuario().toString());
             try {
                 // Decodificar la cadena Base64 en un array de bytes
+
                 byte[] imagenBytes = Base64.decode(usuario.getFotoUsuario(), Base64.DEFAULT);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
-                // Establecer el Bitmap en el ImageView
-                profileImageDialog.setImageBitmap(bitmap);
+                // Redondear la imagen antes de establecerla en el ImageView
+                Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
+
+                profileImageDialog.setImageBitmap(roundedBitmap);
             } catch (Exception e) {
                 e.printStackTrace();
                 // Manejar el error, por ejemplo, establecer una imagen predeterminada
@@ -164,6 +174,25 @@ public class  ProfileFragment extends Fragment {
             // Por ejemplo, puedes establecer una imagen predeterminada o hacer alguna otra acción
             // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
         }
+    }
+
+    private Bitmap roundedCornerBitmap(Bitmap bitmap, int cornerRadius) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(Color.BLACK); // Ajusta el color según tus necesidades
+        canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
     }
 
     private void setupViewPager(ViewPager viewPager) {

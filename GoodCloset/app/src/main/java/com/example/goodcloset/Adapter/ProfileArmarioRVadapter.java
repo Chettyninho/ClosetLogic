@@ -40,7 +40,7 @@ public class ProfileArmarioRVadapter  extends RecyclerView.Adapter<ProfileArmari
     public void onBindViewHolder(@NonNull ProfileArmarioRVadapter.MyViewHolder holder, int position) {
         ArmarioModelo armario = armarios.get(position);
         holder.nombreArmarioTextView.setText(armario.getNombre_armario());
-        holder.armarioIconImageView.setImageResource(R.drawable.icon_closet_canva);
+        holder.armarioIconImageView.setImageResource(R.drawable.viewarmarioimg);
 
         // Agregar clic listener al elemento
         holder.itemView.setOnClickListener(new View.OnClickListener() {
