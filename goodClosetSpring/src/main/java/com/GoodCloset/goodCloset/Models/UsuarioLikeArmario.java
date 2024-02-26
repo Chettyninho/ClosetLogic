@@ -1,11 +1,12 @@
 package com.GoodCloset.goodCloset.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @Entity
 @Table(name = "usuario_like_armario")
@@ -26,4 +27,8 @@ public class UsuarioLikeArmario {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    public UsuarioLikeArmario(Usuario usuario, Armario armario) {
+        this.usuario = usuario;
+        this.armario = armario;
+    }
 }

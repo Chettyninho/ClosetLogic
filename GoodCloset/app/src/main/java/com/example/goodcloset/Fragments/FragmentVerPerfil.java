@@ -40,6 +40,13 @@ public class FragmentVerPerfil extends Fragment {
 
     public List<ArmarioModelo> armariosLikeados;
     private RespuestaInsertarUsuario usuario = SingletonUser.getInstance().getUsuario();
+    private UsuarioModelo usuarioRecibido;
+
+    public FragmentVerPerfil(UsuarioModelo usuarioRecibido) {
+        this.usuarioRecibido = usuarioRecibido;
+    }
+    public FragmentVerPerfil() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +62,13 @@ public class FragmentVerPerfil extends Fragment {
 
         adapter = new ProfileArmarioRVadapter(getContext(), armariosList);
         recyclerView.setAdapter(adapter);
+        if(usuarioRecibido == null){
+            obtenerListaDeArmariosLikeados(recyclerView,imageViewEmpty);
 
-        obtenerListaDeArmariosLikeados(recyclerView,imageViewEmpty);
+        }else{
+            obtenerListaDeArmariosLikeadosExtrangeProfile(recyclerView,imageViewEmpty);
+
+        }
         return view;
     }
 
@@ -108,7 +120,52 @@ public class FragmentVerPerfil extends Fragment {
         });
     }
 
+    private void obtenerListaDeArmariosLikeadosExtrangeProfile(RecyclerView recyclerView,ImageView imageViewEmpty) {
+        int idPropietario = usuarioRecibido.getId();
 
+        // Obtener la instancia de ApiClient
+        ApiClient apiClient = ApiClient.getInstance();
+
+        // Obtener el servicio ApiInterface
+        ApiService apiService = apiClient.getApiService();
+
+        // Realizar la llamada a la API para obtener la lista de armarios
+        Call<List<ArmarioModelo>> call = apiService.getLikedCloset(idPropietario);
+
+        // Ejecutar la llamada asíncrona
+        call.enqueue(new Callback<List<ArmarioModelo>>() {
+            @Override
+            public void onResponse(Call<List<ArmarioModelo>> call, Response<List<ArmarioModelo>> response) {
+                if (response.isSuccessful()) {
+                    // Obtener la lista de armarios del cuerpo de la respuesta
+                    armariosLikeados = response.body();
+                    // Imprimir el array de armarios en el registro
+                    Log.d("Armarios", "Lista de armarios: " + armariosLikeados.toString());
+
+                    // Actualizar el adaptador con la lista de armarios
+                    adapter.actualizarLista(armariosLikeados);
+
+                    // Verificar si la lista está vacía para mostrar la imagen
+                    if (armariosLikeados.isEmpty()) {
+                        recyclerView.setVisibility(View.GONE); // Oculta el RecyclerView
+                        imageViewEmpty.setVisibility(View.VISIBLE); // Muestra la imagen
+                    } else {
+                        recyclerView.setVisibility(View.VISIBLE); // Muestra el RecyclerView
+                        imageViewEmpty.setVisibility(View.GONE); // Oculta la imagen
+                    }
+                } else {
+                    // Manejar la respuesta no exitosa
+                    Log.e("Armarios", "Error al obtener la lista de armarios: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ArmarioModelo>> call, Throwable t) {
+                // Manejar el fallo en la llamada
+                Log.e("Armarios", "Error al obtener la lista de armarios", t);
+            }
+        });
+    }
 
 
 

@@ -109,10 +109,10 @@ public class UsuarioController {
         usuarioService.follow4Follow(id_seguido,id_seguidor);
     }
 
-    // @PostMapping("/liketocloset/{id_usuario}/{id_armario}")
-//    public void likeArmario(@PathVariable("id_usuario") Integer id_usuario, @PathVariable("id_armario")Integer id_armario){
-//        usuarioService.likeArmario(id_usuario,id_armario);
-//    }
+     @PostMapping("/liketocloset/{id_usuario}/{id_armario}")
+    public void likeArmario(@PathVariable("id_usuario") Integer id_usuario, @PathVariable("id_armario")Integer id_armario){
+        usuarioService.likeArmario(id_usuario,id_armario);
+    }
  @GetMapping("/likes/{id_usuario}")
     public List<Armario> getArmariosLikeados(@PathVariable("id_usuario") Integer id_usuario){
         return usuarioService.likesArmario(id_usuario);

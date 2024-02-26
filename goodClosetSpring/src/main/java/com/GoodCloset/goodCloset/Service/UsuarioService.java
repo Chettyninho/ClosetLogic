@@ -148,4 +148,21 @@ public class UsuarioService {
             }
         return listaDeArmariosLikeadosUsuario;
     }
+
+    public void likeArmario(Integer idUsuario, Integer idArmario) {
+        List<Usuario> totalUsuarios = usuarioRepository.findAll();
+        List<Armario> totalArmarios = armarioRepository.findAll();
+
+        for (Usuario u : totalUsuarios){
+            if(u.getId().equals(idUsuario)){
+                for (Armario a : totalArmarios){
+                    if(a.getId().equals(idArmario)){
+                        UsuarioLikeArmario usuarioLikeArmario = new UsuarioLikeArmario(u,a);
+                        usuarioLikeArmarioRepository.save(usuarioLikeArmario);
+
+                    }
+                }
+            }
+        }
+    }
 }
