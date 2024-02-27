@@ -56,9 +56,8 @@ public class strangerProfileFragment extends AppCompatActivity {
         usuarioRecibido = (UsuarioModelo) getIntent().getSerializableExtra("usuario");
 
         com.example.goodcloset.GestorFragments gestorFragments = new com.example.goodcloset.GestorFragments(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerPerfil(usuarioRecibido), "PERFIL");
-        Log.d("strngerprofileFragment", "" + usuarioRecibido);
         gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerArmarios(usuarioRecibido), "ARMARIOS");
+        gestorFragments.addFragment(new com.example.goodcloset.Fragments.FragmentVerPerfil(usuarioRecibido), "ARMARIOS GUARDADOS");
         viewPager.setAdapter(gestorFragments);
 
         Log.d("test","usuarioRecibido ->" + usuarioRecibido.toString());

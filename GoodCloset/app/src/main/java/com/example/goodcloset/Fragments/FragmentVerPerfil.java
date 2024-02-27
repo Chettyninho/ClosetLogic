@@ -90,8 +90,6 @@ public class FragmentVerPerfil extends Fragment {
                 if (response.isSuccessful()) {
                     // Obtener la lista de armarios del cuerpo de la respuesta
                     armariosLikeados = response.body();
-                    // Imprimir el array de armarios en el registro
-                    Log.d("Armarios", "Lista de armarios: " + armariosLikeados.toString());
 
                     // Actualizar el adaptador con la lista de armarios
                     adapter.actualizarLista(armariosLikeados);

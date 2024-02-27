@@ -26,6 +26,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CarrouselArmario extends AppCompatActivity  {
+    private boolean mg = false;
+    private List<ArmarioModelo> armariosLikeados = new ArrayList<>();
     private List<OutfitModelo> outfitsDeArmario = new ArrayList<>();
     private List<ArmarioModelo> armarios = new ArrayList<>();
     private RespuestaInsertarUsuario usrSingleton = SingletonUser.getInstance().getUsuario();
@@ -42,51 +44,69 @@ public class CarrouselArmario extends AppCompatActivity  {
         setContentView(R.layout.ver_outfits_armarios);
 
         viewPager = findViewById(R.id.carrouselDeOutfitsViewPager); // Inicializa viewPager aquí
-
         Button buttonLike = findViewById(R.id.LIKE);
         iconHeart = findViewById(R.id.iconHeart);
 
-        // Recibir el ID del armario del intent
+        // Recibir el ID del armario del intent y la lista de armarios
         armarioRecibido = (ArmarioModelo) getIntent().getSerializableExtra("armario");
         armarios = (List<ArmarioModelo>) getIntent().getSerializableExtra("listaArmarios");
-
-        for(ArmarioModelo a : armarios){
-            if(a.getId() == armarioRecibido.getId()){
-                buttonLike.setText("Ya no me gusta...");
-                buttonLike.setTextColor(R.color.white);
-                buttonLike.setBackgroundColor(R.color.SecondColor);
-            }
-        }
+        Toast.makeText(this, "" + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
+        obtenerOutfits(armarioRecibido);
 
         buttonLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//hacer la llamada del me gusta
                 ApiService apiService = ApiClient.getInstance().getApiService();
-                if(apiService!= null){
-                   Call<Void> call = apiService.likeToArmario(usrSingleton.getId(),armarioRecibido.getId());
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            buttonLike.setText("Te ha gutado!!");
-                            buttonLike.setTextColor(R.color.white);
-                            buttonLike.setBackgroundColor(R.color.SecondColor);
-                            iconHeart.setImageResource(R.drawable.baseline_favorite_24);
-                        }
 
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
+                if (mg){
+                    if(apiService!= null) {
+                        Call<Void> call = apiService.dislikeToArmario(usrSingleton.getId(), armarioRecibido.getId());
+                        call.enqueue(new Callback<Void>() {
 
-                        }
-                    });
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                buttonLike.setText("Te ha gutado!!");
+                                buttonLike.setTextColor(R.color.white);
+                                buttonLike.setBackgroundColor(R.color.SecondColor);
+                                iconHeart.setImageResource(R.drawable.baseline_favorite_24);
+                                mg = false;
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+                    }
+
+                }else{
+                    if(apiService!= null){
+                        Call<Void> call = apiService.likeToArmario(usrSingleton.getId(),armarioRecibido.getId());
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                buttonLike.setText("ME GUSTA!!");
+                                buttonLike.setTextColor(R.color.white);
+                                buttonLike.setBackgroundColor(R.color.SecondColor);
+                                iconHeart.setImageResource(R.drawable.baseline_favorite_border_24);
+                                mg = true;
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+                    }
                 }
+
+
             }
         });
-        // Mostrar un Toast con el ID del armario
-        Toast.makeText(this, "" + armarioRecibido.getNombre_armario(), Toast.LENGTH_SHORT).show();
-        obtenerOutfits(armarioRecibido);
 
     }
+
 
     private void obtenerOutfits(ArmarioModelo armarioRecibido){
         ApiService apiService = ApiClient.getInstance().getApiService();
