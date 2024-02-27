@@ -118,7 +118,7 @@ public class UsuarioController {
         return usuarioService.likesArmario(id_usuario);
     }
 
-    @DeleteMapping("/unliketocloset/{id_usuario}/{id_armario}")
+    @PostMapping("/unliketocloset/{id_usuario}/{id_armario}")
     public void unlikeArmario(@PathVariable("id_usuario") Integer id_usuario, @PathVariable("id_armario")Integer id_armario){
         usuarioService.deleteLikedArmario(id_usuario,id_armario);
     }
