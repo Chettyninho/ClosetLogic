@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -15,14 +14,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-
+            <View
+                android:layout_gravity="center"
+                android:layout_width="70dp"
+                android:layout_height="4dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/firstcolor" />
             <ImageView
                 android:id="@+id/imagenDialog"
                 android:layout_width="110dp"
                 android:layout_height="142dp"
                 android:layout_gravity="start"
                 android:layout_margin="15dp"
-                android:src="@color/white" />
+                android:src="@drawable/defaultimg"
+                />
 
             <TextView
                 android:id="@+id/CambiarFotoButton"

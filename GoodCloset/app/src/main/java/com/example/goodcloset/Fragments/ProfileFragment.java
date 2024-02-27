@@ -179,6 +179,7 @@ public class  ProfileFragment extends Fragment {
             // Manejar el caso en que la cadena de la imagen sea nula
             // Por ejemplo, puedes establecer una imagen predeterminada o hacer alguna otra acción
             // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
+            profileImageDialog.setImageResource(R.drawable.defaultimg);
         }
     }
 
@@ -355,16 +356,25 @@ public class  ProfileFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.buttom_sheet_diaolg);
 
-        profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+        applyRoundedCorners(dialog);
 
-        byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
+        if (usuario.getFotoUsuario() != null){
+            profileImageDialog = dialog.findViewById(R.id.imagenDialog);
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+            byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
 
-        // Redondear la imagen antes de establecerla en el ImageView
-        Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
-        profileImageDialog.setImageBitmap(roundedBitmap);
+            // Redondear la imagen antes de establecerla en el ImageView
+            Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
+
+            profileImageDialog.setImageBitmap(roundedBitmap);
+        } else {
+            profileImageView.setImageResource(R.drawable.defaultimg);
+
+        }
+
+
 
         cambiarFotoButton = dialog.findViewById(R.id.CambiarFotoButton);
         btnEnviarImgProfile = dialog.findViewById(R.id.btnEnviarImgProfile);
@@ -424,6 +434,14 @@ public class  ProfileFragment extends Fragment {
         });
     }
 
+    private void applyRoundedCorners(Dialog dialog) {
+        // Obtiene la ventana del diálogo
+        Window window = dialog.getWindow();
+        if (window != null) {
+            // Configura bordes redondeados para la ventana del diálogo
+            window.setBackgroundDrawableResource(R.drawable.dialog_bg);
+        }
+    }
     private void enviar(RespuestaInsertarUsuario usuario,String contraseñaAntigua,String contraseñaNueva){
         ApiService apiService = ApiClient.getInstance().getApiService();
         if(apiService!=null){
