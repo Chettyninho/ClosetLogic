@@ -355,6 +355,8 @@ public class  ProfileFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.buttom_sheet_diaolg);
 
+        applyRoundedCorners(dialog);
+
         profileImageDialog = dialog.findViewById(R.id.imagenDialog);
 
         byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
@@ -424,6 +426,14 @@ public class  ProfileFragment extends Fragment {
         });
     }
 
+    private void applyRoundedCorners(Dialog dialog) {
+        // Obtiene la ventana del diálogo
+        Window window = dialog.getWindow();
+        if (window != null) {
+            // Configura bordes redondeados para la ventana del diálogo
+            window.setBackgroundDrawableResource(R.drawable.dialog_bg);
+        }
+    }
     private void enviar(RespuestaInsertarUsuario usuario,String contraseñaAntigua,String contraseñaNueva){
         ApiService apiService = ApiClient.getInstance().getApiService();
         if(apiService!=null){
