@@ -179,6 +179,7 @@ public class  ProfileFragment extends Fragment {
             // Manejar el caso en que la cadena de la imagen sea nula
             // Por ejemplo, puedes establecer una imagen predeterminada o hacer alguna otra acción
             // imagenPerfil.setImageResource(R.drawable.imagen_predeterminada);
+            profileImageDialog.setImageResource(R.drawable.defaultimg);
         }
     }
 
@@ -357,16 +358,23 @@ public class  ProfileFragment extends Fragment {
 
         applyRoundedCorners(dialog);
 
-        profileImageDialog = dialog.findViewById(R.id.imagenDialog);
+        if (usuario.getFotoUsuario() != null){
+            profileImageDialog = dialog.findViewById(R.id.imagenDialog);
 
-        byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
+            byte[] imagenBytes = Base64.decode(usuarioSingleton.getFotoUsuario(), Base64.DEFAULT);
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagenBytes, 0, imagenBytes.length);
 
-        // Redondear la imagen antes de establecerla en el ImageView
-        Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
+            // Redondear la imagen antes de establecerla en el ImageView
+            Bitmap roundedBitmap = roundedCornerBitmap(bitmap, 15); //radio para las esquinas
 
-        profileImageDialog.setImageBitmap(roundedBitmap);
+            profileImageDialog.setImageBitmap(roundedBitmap);
+        } else {
+            profileImageView.setImageResource(R.drawable.defaultimg);
+
+        }
+
+
 
         cambiarFotoButton = dialog.findViewById(R.id.CambiarFotoButton);
         btnEnviarImgProfile = dialog.findViewById(R.id.btnEnviarImgProfile);
